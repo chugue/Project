@@ -1,3 +1,35 @@
+
+-- 이력서 테이블
+insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, is_public, created_at) values (1, '능력있고 성실한 개발자!', '판교분당', '학력무관', '미들(4~8년)', '열심히 일하는 개발자가 되겠습니다.', 'naver.com/superjjangcoding', true, now());
+insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, is_public, created_at) values (2, '신입 개발자 지원합니다', '서울', '대학(2~3)', '신입', '안녕하십니까. 엄격한 아버지와 자상한 어머니의 밑에서 자라나 20대가 된 저는', 'nate.com/gugu', true, now());
+insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, is_public, created_at) values (3, '이력서 입니다.', '부산', '학력무관', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin', true, now());
+
+-- 공고 테이블
+INSERT INTO jobs_tb(user_id, area, edu, career, content, dead_line, task, created_at) VALUES (4, '부산', '학력무관', '미들(4~8년)', '성실하고 열심히 일하실 분 모집!', '2024-03-10', '백엔드', NOW());
+INSERT INTO jobs_tb(user_id, area, edu, career, content, dead_line, task, created_at) VALUES (4, '서울', '4년제', '신입', '성실하고 열심히 일하실 분 모집!', '2024-05-22', '백엔드', NOW());
+INSERT INTO jobs_tb(user_id, area, edu, career, content, dead_line, task, created_at) VALUES (4, '울산', '학력무관', '시니어(10년 이상)', '성실하고 열심히 일하실 분 모집!', '2024-04-09', '백엔드', NOW());
+INSERT INTO jobs_tb(user_id, area, edu, career, content, dead_line, task, created_at) VALUES (5, '부산', '학력무관', '신입', '성실하고 열심히 일하실 분 모집!', '2024-03-29', '백엔드', NOW());
+
+
+-- 스킬 테이블 (개인)
+insert into skill_tb (resume_id, name, role) values(1, 'java', 1);
+insert into skill_tb (resume_id, name, role) values(1, 'javaScript', 1);
+insert into skill_tb (resume_id, name, role) values(1, 'HTML/CSS', 1);
+insert into skill_tb (resume_id, name, role) values(1, 'Webpack', 1);
+insert into skill_tb (resume_id, name, role) values(2, 'jQuery', 1);
+insert into skill_tb (resume_id, name, role) values(2, 'Oracle', 1);
+insert into skill_tb (resume_id, name, role) values(3, 'React', 1);
+insert into skill_tb (resume_id, name, role) values(3, 'Java', 1);
+
+
+-- 스킬 테이블 (기업)
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'java', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'jQuery', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'React', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(2, 'HTML/CSS', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'javaScript', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'java', 2);
+
 insert into user_tb(email, my_name,password,phone,address,birth, business_number,comp_name,homepage,role,created_at)
 values ('blackpig4b@naver.com','감자','1234','010-1234-5822','부산광역시 부산진구 범향빌딩402호','1985-11-24','17-15618-1212','삼성','www.samsung.com','2',now());
 insert into user_tb(email, my_name,password,phone,address,birth, business_number,comp_name,homepage,role,created_at)
@@ -5,8 +37,13 @@ values ('greenpig4b@naver.com','오이','1234','010-5678-5822','부산광역시 
 insert into user_tb(email, my_name,password,phone,address,birth,role,created_at)
 values ('bluepig4b@naver.com','고구마','1234','010-9011-5822','부산광역시 부산진구 범향빌딩405호','1999-05-06','1',now());
 
-insert into jobs_tb(comp_id,title,area,edu,career,content,dead_line,task,created_at) values (1,'백엔드직원을 구해요','부산','고졸','1년이상','회사오면 맛있는거많음','2024-11-15','백엔드',now());
+insert into scrap_tb(user_id, resume_id, created_at) values(1, 1, now());
+insert into scrap_tb(user_id, resume_id, created_at) values(2, 1, now());
+insert into scrap_tb(user_id, jobs_id, created_at) values(3, 1, now());
 
+<<<<<<< HEAD
 insert into scrap_tb(resume_id, jobs_id, created_at) values(1, 1, now());
 insert into scrap_tb(resume_id, jobs_id, created_at) values(2, 3, now());
 insert into scrap_tb(resume_id, jobs_id, created_at) values(3, 1, now());
+=======
+>>>>>>> 9dadc20184ba74d8a2b69eb438e65bbe5b7b8d3b

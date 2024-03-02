@@ -19,6 +19,9 @@ public class Scrap {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
+    private Integer userId;
+
     private Integer resumeId;
     private Integer jobsId;
 

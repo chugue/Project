@@ -58,7 +58,7 @@
                     <div>
                         <h6><b>전체
                             <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
-                                ${rDtos.size()}
+
                             </div>
                         </b></h6>
                     </div>
@@ -70,188 +70,70 @@
                     </div>
                 </div>
 
-
-                <div class="card mb-4 mt-3">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-9 mt-2">
-                                <a href="/resume/resumeDetail"
-                                   onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                    <h5 class="card-title" style="text-align: left;">
-                                        백엔드 개발자 지원합니다.
-                                    </h5>
-                                    <!--기술스킬-->
-                                    <div class="d-flex">
-                                        <div class="skill-wrap">
-                                            <span class="badge bg-warning">JavaScript</span>
-                                            <span class="badge bg-primary">HTML/CSS</span>
-                                            <span class="badge bg-success">Webpack</span>
+                {{#resumeList}}
+                    <div class="card mb-4 mt-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-9 mt-2">
+                                    <a href="/resume/resumeDetail"
+                                       onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                        <h5 class="card-title" style="text-align: left;">
+                                            [{{user.myName}}]&nbsp;{{title}}
+                                        </h5>
+                                        <!--기술스킬-->
+                                        <div class="d-flex">
+                                            {{#skillList}}
+                                                <div class="skill-wrap">
+                                                    <span class="badge bg-primary mr-5">{{name}}</span>
+<!--                                                    <span class="badge bg-warning mr-5">{{name}}</span>-->
+<!--                                                    <span class="badge bg-success">{{name}}</span>-->
+                                                </div>
+                                            {{/skillList}}
                                         </div>
-                                    </div>
+                                        <div class="m-2" style="float: left;">
+                                            <h6 class="card-subtitle text-muted">
+                                                {{edu}}
+                                            </h6>
+                                        </div>
+                                        <div class="m-2" style="float: left;">
+                                            <h6 class="card-subtitle text-muted">
+                                                {{career}}
+                                            </h6>
+                                        </div>
+                                        <div class="m-2" style="float: left;">
+                                            <h6 class="card-subtitle text-muted">
+                                                {{area}}
+                                            </h6>
+                                        </div>
+                                    </a>
+                                </div>
 
-                                    <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle text-muted">
-                                            경력무관
-                                        </h6>
-                                    </div>
-                                    <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle text-muted">
-                                            미들(4~8년)
-                                        </h6>
-                                    </div>
-                                    <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle text-muted">
-                                            판교분당
-                                        </h6>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-3">
-                                <div class="row">
-                                    <input type="hidden" value="" name="" id="">
-                                    <div class="mb-2" style="float: right;">
-                                        <a href="/resume/updateResumeForm">
-                                            <button type="button" class="btn btn-mint" style="float: right;" onclick="">
-                                                이력서
-                                                수정
+                                <div class="col-3">
+                                    <div class="row">
+                                        <input type="hidden" value="" name="" id="">
+                                        <div class="mb-2" style="float: right;">
+                                            <a href="/resume/updateResumeForm">
+                                                <button type="button" class="btn btn-mint" style="float: right;"
+                                                        onclick="">
+                                                    이력서
+                                                    수정
+                                                </button>
+                                            </a>
+                                        </div>
+                                        <div class="mb-2" style="float: right;">
+                                            <button type="button" class="btn btn-outline-mint mb-2"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#dModal" style="float: right;" onclick="">이력서
+                                                삭제
                                             </button>
+                                        </div>
 
-                                        </a>
                                     </div>
-                                    <div class="mb-2" style="float: right;">
-                                        <button type="button" class="btn btn-outline-mint mb-2" data-bs-toggle="modal"
-                                                data-bs-target="#dModal" style="float: right;" onclick="">이력서
-                                            삭제
-                                        </button>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="card mb-4 mt-3">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-9 mt-2">
-                                <a href="/resume/resumeDetail"
-                                   onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                    <h5 class="card-title" style="text-align: left;">
-                                        백엔드 개발자 지원합니다.
-                                    </h5>
-                                    <!--기술스킬-->
-                                    <div class="d-flex">
-                                        <div class="skill-wrap">
-                                            <span class="badge bg-warning">JavaScript</span>
-                                            <span class="badge bg-primary">HTML/CSS</span>
-                                            <span class="badge bg-success">Webpack</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle text-muted">
-                                            경력무관
-                                        </h6>
-                                    </div>
-                                    <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle text-muted">
-                                            미들(4~8년)
-                                        </h6>
-                                    </div>
-                                    <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle text-muted">
-                                            판교분당
-                                        </h6>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-3">
-                                <div class="row">
-                                    <input type="hidden" value="" name="" id="">
-                                    <div class="mb-2" style="float: right;">
-                                        <a href="/resume/updateResumeForm">
-                                            <button type="button" class="btn btn-mint" style="float: right;" onclick="">
-                                                이력서
-                                                수정
-                                            </button>
-                                        </a>
-
-                                    </div>
-                                    <div class="mb-2" style="float: right;">
-                                        <button type="button" class="btn btn-outline-mint mb-2" data-bs-toggle="modal"
-                                                data-bs-target="#dModal" style="float: right;" onclick="">이력서
-                                            삭제
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card mb-4 mt-3">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-9 mt-2">
-                                <a href="/resume/resumeDetail"
-                                   onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                    <h5 class="card-title" style="text-align: left;">
-                                        백엔드 개발자 지원합니다.
-                                    </h5>
-                                    <!--기술스킬-->
-                                    <div class="d-flex">
-                                        <div class="skill-wrap">
-                                            <span class="badge bg-warning">JavaScript</span>
-                                            <span class="badge bg-primary">HTML/CSS</span>
-                                            <span class="badge bg-success">Webpack</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle text-muted">
-                                            경력무관
-                                        </h6>
-                                    </div>
-                                    <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle text-muted">
-                                            미들(4~8년)
-                                        </h6>
-                                    </div>
-                                    <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle text-muted">
-                                            판교분당
-                                        </h6>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-3">
-                                <div class="row">
-                                    <input type="hidden" value="" name="" id="">
-                                    <div class="mb-2" style="float: right;">
-                                        <a href="/resume/updateResumeForm">
-                                            <button type="button" class="btn btn-mint" style="float: right;" onclick="">
-                                                이력서
-                                                수정
-                                            </button>
-                                        </a>
-                                    </div>
-                                    <div class="mb-2" style="float: right;">
-                                        <button type="button" class="btn btn-outline-mint mb-2" data-bs-toggle="modal"
-                                                data-bs-target="#dModal" style="float: right;" onclick="">이력서
-                                            삭제
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {{/resumeList}}
 
             </div>
         </div>

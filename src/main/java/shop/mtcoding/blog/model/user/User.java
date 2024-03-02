@@ -18,8 +18,12 @@ public class User {
     // 이메일
     @Column(unique = true, nullable = false)
     private String email;
+<<<<<<< HEAD
 
     // 유저 네임
+=======
+  
+>>>>>>> 9dadc20184ba74d8a2b69eb438e65bbe5b7b8d3b
     @Column(nullable = false)
     private String myName;
 
