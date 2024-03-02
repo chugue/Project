@@ -15,12 +15,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    // 이메일
     @Column(unique = true, nullable = false)
     private String email;
 
+    // 유저 네임
     @Column(nullable = false)
     private String myName;
 
+    // 유저 비번
     @Column(nullable = false)
     private String password;
 
@@ -28,7 +31,7 @@ public class User {
     private String phone;
     private String address;
     private Date birth;
-    
+
     @Column(unique = true)
     private String businessNumber;
     private String photo;

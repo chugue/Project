@@ -34,6 +34,15 @@ public class JobsController {
 
     @GetMapping("/jobs/jobsDetail")
     public String jobsDetail() {
+
+        //List<BoardResponse.ReplyDTO> replyDTOList = replyRepository.findById(id);
+
+
+        //request.setAttribute("isScrap", true);
+
+
+
+
         return "/jobs/jobsDetail";
     }
     @GetMapping("/jobs/updateJobsForm/{jobId}")

@@ -5,7 +5,13 @@ import lombok.Data;
 
 import java.sql.Timestamp;
 
-@Table(name="scrap_tb")
+
+@Table(name="scrap_tb", uniqueConstraints = {
+        @UniqueConstraint(
+                name="scrap_uk",
+                columnNames={"resume_id","jobs_id"}
+        )})
+
 @Data
 @Entity
 public class Scrap {

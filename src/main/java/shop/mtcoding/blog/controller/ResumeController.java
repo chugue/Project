@@ -15,8 +15,11 @@ public class ResumeController {
     public String resumeDetail () {
         return "/resume/resumeDetail";
     }
+
     @GetMapping("/resume/updateResumeForm")
     public String updateResumeForm () {
+
+
         return "/resume/updateResumeForm";
     }
     @GetMapping("/resume/writeResumeForm")
