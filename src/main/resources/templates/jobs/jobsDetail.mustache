@@ -182,10 +182,17 @@
                     <div>
                         <div id="scrap-${rDto.resumeId}-render">
                             <div id="scrap-${rDto.resumeId}-remove">
+                                {{#isScrap}}
+                                    <button id="scrap-${rDto.resumeId}" type="button" class="btn btn-mint w-100 mb-10"
+                                            onclick="">스크랩
+                                    </button>
+                                {{/isScrap}}
 
-                                <button id="scrap-${rDto.resumeId}" type="button" class="btn btn-mint w-100 mb-10"
-                                        onclick="">스크랩
-                                </button>
+                                {{^isScrap}}
+                                    <button id="scrap-${rDto.resumeId}" type="button" class="btn btn-mint w-100 mb-10"
+                                            onclick="">스크랩
+                                    </button>
+                                {{/isScrap}}
 
                                 <button id="scrap-${rDto.resumeId}" type="button" class="btn btn-outline-mint w-100"
                                         onclick="">제안하기
