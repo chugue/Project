@@ -21,27 +21,6 @@ public class MainController {
     private final Paging paging;
     private final JobsRepository jobsRepository;
 
-//    @GetMapping("/")
-//    public String main(HttpServletRequest request, @RequestParam(defaultValue = "") String keyword) {
-//
-//        List<Jobs> jobsList = jobsRepository.findAll();
-//        request.setAttribute("jobsList", jobsList);
-//
-//        if(keyword.isBlank()) { //isBlank면 검색 안함
-//            jobsList = jobsRepository.findAll();
-//            request.setAttribute("keyword", "");
-//            request.setAttribute("jobsList", jobsList);
-//
-//        } else {    //검색하면 키워드를 던져줌
-//            jobsList = jobsRepository.findAll(keyword);
-//            request.setAttribute("keyword", keyword);
-//            request.setAttribute("jobsList", jobsList);
-//        }
-//
-//
-//        return "index";
-//    }
-
     @GetMapping("/")
     public String index(HttpServletRequest request, @RequestParam(defaultValue = "") String keyword) {
         int currentPage = 1;
@@ -65,25 +44,17 @@ public class MainController {
         if (keyword.isBlank()) { //isBlank면 검색 안함
             pageList = paging.showPages(currentPage);
             request.setAttribute("keyword", "");
-            request.setAttribute("pages", pageActive);
-            request.setAttribute("firstPage", firstPage);
-            request.setAttribute("lastPage", lastPage);
-            request.setAttribute("pageList", pageList);
-            request.setAttribute("prevPage", Math.max(1, currentPage - 1));
-            request.setAttribute("nextPage", Math.min(totalPages, currentPage + 1));
-            return "index";
-
         } else {    //검색하면 키워드를 던져줌
             pageList = paging.showPages(currentPage, keyword);
             request.setAttribute("keyword", keyword);
-            request.setAttribute("pages", pageActive);
-            request.setAttribute("firstPage", firstPage);
-            request.setAttribute("lastPage", lastPage);
-            request.setAttribute("pageList", pageList);
-            request.setAttribute("prevPage", Math.max(1, currentPage - 1));
-            request.setAttribute("nextPage", Math.min(totalPages, currentPage + 1));
-            return "index";
         }
+        request.setAttribute("pages", pageActive);
+        request.setAttribute("firstPage", firstPage);
+        request.setAttribute("lastPage", lastPage);
+        request.setAttribute("pageList", pageList);
+        request.setAttribute("prevPage", Math.max(1, currentPage - 1));
+        request.setAttribute("nextPage", Math.min(totalPages, currentPage + 1));
+        return "index";
     }
 
     @GetMapping("/{page}")
@@ -109,24 +80,17 @@ public class MainController {
         if (keyword.isBlank()) { //isBlank면 검색 안함
             pageList = paging.showPages(currentPage);
             request.setAttribute("keyword", "");
-            request.setAttribute("pages", pageActive);
-            request.setAttribute("firstPage", firstPage);
-            request.setAttribute("lastPage", lastPage);
-            request.setAttribute("pageList", pageList);
-            request.setAttribute("prevPage", Math.max(1, currentPage - 1));
-            request.setAttribute("nextPage", Math.min(totalPages, currentPage + 1));
-            return "index";
-
         } else {    //검색하면 키워드를 던져줌
             pageList = paging.showPages(currentPage, keyword);
             request.setAttribute("keyword", keyword);
-            request.setAttribute("pages", pageActive);
-            request.setAttribute("firstPage", firstPage);
-            request.setAttribute("lastPage", lastPage);
-            request.setAttribute("pageList", pageList);
-            request.setAttribute("prevPage", Math.max(1, currentPage - 1));
-            request.setAttribute("nextPage", Math.min(totalPages, currentPage + 1));
-            return "index";
         }
+        request.setAttribute("pages", pageActive);
+        request.setAttribute("firstPage", firstPage);
+        request.setAttribute("lastPage", lastPage);
+        request.setAttribute("pageList", pageList);
+        request.setAttribute("prevPage", Math.max(1, currentPage - 1));
+        request.setAttribute("nextPage", Math.min(totalPages, currentPage + 1));
+        return "index";
     }
 }
+
