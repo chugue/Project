@@ -61,10 +61,12 @@ public class JobsRepository {
     public Object[] findById(Integer jobId) {
         String q = """
                 select ut.comp_name, ut.business_number, ut.phone, jt.area, jt.edu, jt.career, jt.content,
-                        jt.title, jt.id, ut.homepage, jt.task, jt.comp_id, jt.dead_line
+                        jt.title, jt.id, ut.homepage, jt.task, jt.user_id, jt.dead_line, st.name
                 from jobs_tb jt
                 join user_tb ut
-                on jt.comp_id = ut.id
+                on jt.user_id = ut.id
+                join skill_tb st
+                on jt.id = st.jobs_id
                 where jt.id = ?
                     """;
         Query query = em.createNativeQuery(q);

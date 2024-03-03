@@ -12,6 +12,7 @@ import shop.mtcoding.blog.model.comp.CompRepository;
 import shop.mtcoding.blog.model.comp.CompRequest;
 import shop.mtcoding.blog.model.jobs.Jobs;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
+import shop.mtcoding.blog.model.skill.SkillRequest;
 import shop.mtcoding.blog.model.user.User;
 import shop.mtcoding.blog.model.user.UserRepository;
 
@@ -36,8 +37,20 @@ public class CompController {
 
         List<Jobs> jobsList = compRepository.findAll(id);
         List<CompRequest.JobsViewDTO> viewDTOList = new ArrayList<>();
+        List<SkillRequest.CompskillDTO> skills = new ArrayList<>();
+
+        for (Jobs job : jobsList){
+            //엔티티 -> DTO에 담기
+//
+//            for (String skill : job.getSkillList().sp(",")){
+//                skills.add(SkillRequest.CompskillDTO.builder().name(skill).build());
+//            }
+//
+//            viewDTOList.add()
+        }
 
         for (int i = 0; i < jobsList.size(); i++) {
+
             // 1. JobList에 있는 문서하나 들고와서
             Jobs job = jobsList.get(i);
             // 2. ViewDTO를 생성한다
@@ -56,6 +69,11 @@ public class CompController {
             // 3. ViewDTO를 ViewDTOList에 담는다
             viewDTOList.add(viewDTO);
         }
+
+
+
+
+
 
         session.setAttribute("jobList", viewDTOList);
 
