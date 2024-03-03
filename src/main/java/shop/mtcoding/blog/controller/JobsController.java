@@ -1,7 +1,4 @@
 package shop.mtcoding.blog.controller;
-
-
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import shop.mtcoding.blog.model.jobs.JobRequest;
-import shop.mtcoding.blog.model.jobs.Jobs;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
 import shop.mtcoding.blog.model.user.User;
 
@@ -96,10 +92,7 @@ public class JobsController {
         return "redirect:/comp/comphome/" + jobWriterDTO.getUserId();
     }
 
-    @PostMapping("jobs/{jobId}/delete")
-    public String delete(@PathVariable Integer jobId){
-        return "redirect:/comp/"+jobWriterDTO.getUserId()+"/comphome" ;
-    }
+
 
     @PostMapping("/jobs/{id}/delete")
     public String delete(HttpSession session,@PathVariable Integer id){

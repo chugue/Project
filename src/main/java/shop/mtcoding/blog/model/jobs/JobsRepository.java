@@ -2,7 +2,6 @@ package shop.mtcoding.blog.model.jobs;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,6 +53,9 @@ public class JobsRepository {
         query.setParameter(1, jobId);
 
         Jobs job = (Jobs) query.getSingleResult();
+
+        return job;
+    }
 
 
     public Object[] findById(Integer jobId) {
