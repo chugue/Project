@@ -30,12 +30,12 @@ public class ResumeController {
 
     private final HttpSession session;
     private final ResumeRepository resumeRepository;
-    private final HttpSession session;
     private final ScrapRepository scrapRepository;
   
-    @GetMapping("/resume/manageResume")
-    public String manageResume(HttpServletRequest request) {
+    @GetMapping("/resume/{id}/manageResume")
+    public String manageResume(HttpServletRequest request , @PathVariable Integer id) {
         List<Resume> resumeList = resumeRepository.findAll();
+
         request.setAttribute("resumeList", resumeList);
 
         return "/resume/manageResume";
@@ -49,7 +49,6 @@ public class ResumeController {
         Resume resumeDTO = resumeRepository.findById(id);
         request.setAttribute("resume", resumeDTO);
 
-
         if(sessionUser == null) {
             ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id);
             request.setAttribute("scrap", scrapDetailDTO);
@@ -57,7 +56,11 @@ public class ResumeController {
             ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id, sessionUser.getId());
             request.setAttribute("scrap", scrapDetailDTO);
         }
+
+        return "/resume/resumeDetail";
+
     }
+
 
     @GetMapping("/resume/resumeDetail")
     public String resumeDetail() {
@@ -73,6 +76,9 @@ public class ResumeController {
 
     @GetMapping("/resume/writeResumeForm")
     public String writeResumeForm() {
+
+//        Resume userId = resumeRepository.findByUser(id);
+//        request.setAttribute("resumeUser", userId);
 
         return "/resume/writeResumeForm";
     }

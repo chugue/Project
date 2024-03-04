@@ -28,9 +28,7 @@
                     <li class="nav-item mx-3 fs-5">
                         <a class="nav-link text-dark" href="/jobs/info">채용정보</a>
                     </li>
-                    <li class="nav-item mx-3 fs-5">
-                        <a class="nav-link text-dark" href="/resume/manageResume">이력서</a>
-                    </li>
+
 
                     <li class="nav-item mx-3 fs-5">
                         <a class="nav-link text-dark" href="/jobs/interest">관심기업</a>
@@ -43,21 +41,26 @@
                             <a class="nav-link text-dark mr-30" href="/user/loginForm">로그인</a>
                         </li>
 
+                        <li class="nav-item company-service">
+                            <a class="nav-link mint-color" href="/comp/jobsInfo">기업서비스</a>
+                        </li>
+
                     {{/sessionUser}}
 
                     {{#sessionUser}}
+                        <li class="nav-item mx-3 fs-5">
+                            <a class="nav-link text-dark" href="/resume/{{id}}/manageResume">이력서</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark mr-30" href="/logout">로그아웃</a>
                         </li>
+
+                        <li class="nav-item company-service">
+                            <a class="nav-link mint-color" href="/comp/{{id}}/comphome">기업서비스</a>
+
+                        </li>
                     {{/sessionUser}}
 
-                    <li class="nav-item company-service ">
-                        <a class="nav-link mint-color" href="/comp/{{id}}/comphome">기업서비스</a>
-                        <!--
-                            <a class="nav-link mint-color" href="/comphome.html">기업서비스</a>
-                            회원가입 또는 로그인 인증 체크후 기업홈으로!!
-                        -->
-                    </li>
                 </ul>
             </div>
         </div>

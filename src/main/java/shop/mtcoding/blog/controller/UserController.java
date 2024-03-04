@@ -36,6 +36,7 @@ public class UserController {
         userRepository.save(requestDTO);
         List<User> userList = userRepository.findAll();
         System.out.println(userList);
+
         return "redirect:/";
     }
 
@@ -51,7 +52,7 @@ public class UserController {
                 session.setAttribute("sessionUser", user);
                 return "redirect:/";
             } else if (role == 2) {
-                session.setAttribute("sessionComp", user);
+                session.setAttribute("sessionUser", user);
                 return  "redirect:/comp/jobsInfo";
             }
         }

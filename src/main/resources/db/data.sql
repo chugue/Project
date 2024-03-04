@@ -18,10 +18,7 @@ values ('yellopig@naver.com','상추','1234','010-8868-5232','부산광역시 �
 insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, is_public, created_at) values (1, '능력있고 성실한 개발자!', '판교분당', '학력무관', '미들(4~8년)', '열심히 일하는 개발자가 되겠습니다.', 'naver.com/superjjangcoding', true, now());
 insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, is_public, created_at) values (1, '신입 개발자 지원합니다', '서울', '대학(2~3)', '신입', '안녕하십니까. 엄격한 아버지와 자상한 어머니의 밑에서 자라나 20대가 된 저는', 'nate.com/gugu', true, now());
 insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, is_public, created_at) values (2, '이력서 입니다.', '부산', '학력무관', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin', true, now());
-<<<<<<< HEAD
 
-=======
->>>>>>> 7f0721dab72f99b56b5cfe94287f71f74512c9a6
 
 -- 공고 테이블
 
@@ -72,10 +69,7 @@ INSERT INTO skill_tb(jobs_id, name, role, color) VALUES(3, 'javaScript', 2,'purp
 INSERT INTO skill_tb(jobs_id, name, role, color) VALUES(3, 'java', 2,'yellow');
 INSERT INTO skill_tb(jobs_id, name, role, color) VALUES(4, 'java', 2,'yellow');
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 7f0721dab72f99b56b5cfe94287f71f74512c9a6
 -- 스크랩 테이블
 insert into scrap_tb(user_id, resume_id, created_at) values(1, 1, now());
 insert into scrap_tb(user_id, resume_id, created_at) values(2, 1, now());
