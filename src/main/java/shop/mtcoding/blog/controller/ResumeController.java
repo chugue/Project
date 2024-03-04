@@ -77,21 +77,22 @@ public class ResumeController {
     @GetMapping("/resume/writeResumeForm")
     public String writeResumeForm() {
 
-//        Resume userId = resumeRepository.findByUser(id);
-//        request.setAttribute("resumeUser", userId);
+        // 1. 인증 체크
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        if (sessionUser == null) {
+            return "redirect:/user/loginForm";
+        }
 
         return "/resume/writeResumeForm";
     }
 
 
     @PostMapping("/resume/save")
-    public String save(ResumeRequest.ResumeWriterDTO requestDTO, HttpServletRequest request) {
+    public String save(ResumeRequest.ResumeSaveDTO requestDTO) {
         System.out.println(requestDTO);
-        resumeRepository.save(requestDTO);
 
-        return "redirect:/resume/manageResume";
+        return "redirect:/";
     }
 
-//
 }
 

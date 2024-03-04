@@ -39,22 +39,21 @@ public class ResumeRepository {
     }
 
 
-// 탬플릿에서 유저 못찾고 있는데 ..
     @Transactional
-    public void save(ResumeRequest.ResumeWriterDTO requestDTO) {
-        String q = """
-            insert into resume_tb(title, area, edu, career, introduce, port_link, is_public, created_at) 
-            values (?,?,?,?,?,?,?,?, now());
-            """;
-        Query query = em.createNativeQuery(q);
-        query.setParameter(2, requestDTO.getTitle());
-        query.setParameter(3, requestDTO.getArea());
-        query.setParameter(4, requestDTO.getEdu());
-        query.setParameter(5, requestDTO.getCareer());
-        query.setParameter(6, requestDTO.getIntroduce());
-        query.setParameter(7, requestDTO.getPortLink());
-        query.setParameter(8, requestDTO.getIsPublic());
-        query.executeUpdate();
+    public void save() {
+//        String q = """
+//            insert into resume_tb(title, area, edu, career, introduce, port_link, is_public, created_at)
+//            values (?,?,?,?,?,?,?,?, now());
+//            """;
+//        Query query = em.createNativeQuery(q);
+//        query.setParameter(2, requestDTO.getTitle());
+//        query.setParameter(3, requestDTO.getArea());
+//        query.setParameter(4, requestDTO.getEdu());
+//        query.setParameter(5, requestDTO.getCareer());
+//        query.setParameter(6, requestDTO.getIntroduce());
+//        query.setParameter(7, requestDTO.getPortLink());
+//        query.setParameter(8, requestDTO.getIsPublic());
+//        query.executeUpdate();
     }
 
 

@@ -11,8 +11,7 @@ public class ResumeRequest {
 
     @Data
     @NoArgsConstructor
-    public static class ResumeWriterDTO {
-        private User user;
+    public static class ResumeSaveDTO {
         private String title;
         private String area;
         private String edu;
@@ -23,7 +22,5 @@ public class ResumeRequest {
         private Timestamp createdAt;
 
     }
-
-
 
 }
