@@ -94,8 +94,8 @@ public class MainController {
     }
 
 
-    @GetMapping("/?keyword={keyword}")
-    public String index(@PathVariable String keyword, HttpServletRequest request, @RequestParam(defaultValue = "") String keyword) {
+    @GetMapping("/{page}")
+    public String index(@PathVariable int page, HttpServletRequest request, @RequestParam(defaultValue = "") String keyword) {
         int currentPage = page;
         boolean lastPage = paging.lastPage(currentPage);
         boolean firstPage = paging.firstPage(currentPage);
