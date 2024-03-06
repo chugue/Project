@@ -93,3 +93,9 @@ insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(2,1,1,now()
 insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(1,2,1,now());
 insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(3,1,1,now());
 insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(2,3,1,now());
+
+-- 기업이 제안한 이력서
+-- 첫번째 이력서를 첫번째 공고가 제안함, 대기중
+insert into offer_tb(resume_id, jobs_id, status, created_at) values(1,1,1,now());
+insert into offer_tb(resume_id, jobs_id, status, created_at) values(2,2,1,now());
+insert into offer_tb(resume_id, jobs_id, status, created_at) values(3,3,1,now());

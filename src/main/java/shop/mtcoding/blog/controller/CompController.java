@@ -40,7 +40,7 @@ public class CompController {
 
     private final ResumeRepository resumeRepository;
 
-    @GetMapping("/comp/apply")
+    @GetMapping("/comp/{id}/apply")
     public String apply(HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionComp");
         request.setAttribute("id", sessionUser.getId());
@@ -259,7 +259,7 @@ public class CompController {
     }
 
     @GetMapping("/comp/readResume")
-    public String readResume(HttpServletRequest request){
+    public String readResume(){
         List<Object[]> resumeViewList = compRepository.findAllByUserId();
         List<CompRequest.ResumeViewDTO> viewDTOList = new ArrayList<>();// 담는리스트
         CompRequest.ResumeViewDTO prevViewDTO = new CompRequest.ResumeViewDTO(); // 담는 로우하나
@@ -356,6 +356,92 @@ public class CompController {
         List<Scrap> scrapList = scrapRepository.findByUserId(id);
 
         request.setAttribute("scrapList", scrapList);
+
+        List<Object[]> resumeViewList = compRepository.findAllByUserId();
+        List<CompRequest.ResumeViewDTO> viewDTOList = new ArrayList<>();// 담는리스트
+        CompRequest.ResumeViewDTO prevViewDTO = new CompRequest.ResumeViewDTO(); // 담는 로우하나
+
+        for (int i = 0; i < resumeViewList.size(); i++) {
+
+            Object[] job = resumeViewList.get(i);
+            if(prevViewDTO.getId() == job[0]){
+                // 스킬 색깔 생성
+                String color = "";
+                if (((String)job[7]).equals("jQuery")){
+                    color = "badge bg-primary";
+                }
+                else if(((String)job[7]).equals("javaScript")){
+                    color = "badge bg-secondary";
+                }
+                else if(((String)job[7]).equals("Spring")){
+                    color = "badge bg-success";
+                }
+                else if(((String)job[7]).equals("HTML/CSS")){
+                    color = "badge bg-danger";
+                }
+                else if(((String)job[7]).equals("JSP")){
+                    color = "badge bg-warning";
+                }
+                else if(((String)job[7]).equals("java")){
+                    color = "badge bg-info";
+                }
+                else if(((String)job[7]).equals("React")){
+                    color = "badge bg-dark";
+                }
+
+                SkillRequest.CompskillDTO skillDTO = SkillRequest.CompskillDTO.builder().name((String) job[7]).color(color).build();
+
+                // 이전에 있던 viewDOT.skillList에 add
+                prevViewDTO.getSkillList().add(skillDTO);
+            }else{
+                // 스킬 리스트 생성
+                List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
+
+                String color = "";
+                if (((String)job[7]).equals("jQuery")){
+                    color = "badge bg-primary";
+                }
+                else if(((String)job[7]).equals("javaScript")){
+                    color = "badge bg-secondary";
+                }
+                else if(((String)job[7]).equals("Spring")){
+                    color = "badge bg-success";
+                }
+                else if(((String)job[7]).equals("HTML/CSS")){
+                    color = "badge bg-danger";
+                }
+                else if(((String)job[7]).equals("JSP")){
+                    color = "badge bg-warning";
+                }
+                else if(((String)job[7]).equals("java")){
+                    color = "badge bg-info";
+                }
+                else if(((String)job[7]).equals("React")){
+                    color = "badge bg-dark";
+                }
+
+                // 스킬 이름 set
+                skillList.add(SkillRequest.CompskillDTO.builder().name((String) job[7]).color(color).build());
+
+                // 새로운 DTO 생성
+                prevViewDTO = new CompRequest.ResumeViewDTO();
+                prevViewDTO.setId((Integer) job[0]);
+                prevViewDTO.setUserId((Integer) job[1]);
+                prevViewDTO.setMyName((String) job[2]);
+                prevViewDTO.setTitle((String) job[3]);
+                prevViewDTO.setEdu((String) job[4]);
+                prevViewDTO.setCareer((String) job[5]);
+                prevViewDTO.setArea((String) job[6]);
+                prevViewDTO.setSkillList(skillList);
+                viewDTOList.add(prevViewDTO);
+            }
+
+        }
+
+        System.out.println(viewDTOList);
+
+       // session.setAttribute("readResumeList", viewDTOList);
+
 
         return "/comp/scrap";
     }

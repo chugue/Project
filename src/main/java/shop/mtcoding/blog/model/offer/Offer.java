@@ -1,4 +1,4 @@
-package shop.mtcoding.blog.model.resume.offer;
+package shop.mtcoding.blog.model.offer;
 
 
 import jakarta.persistence.*;
