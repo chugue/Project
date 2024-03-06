@@ -179,9 +179,9 @@ public class ResumeController {
         }
         // 업데이트 메서드 실행
         resumeRepository.updateById(requestDTO, id);
-
+        System.out.println("dsafesdafedsa : " + id);
         //return "/resume/"+id+"/updateResumeForm";
-        return "redirect:/resume/{id}/manageResume";
+        return "redirect:/resume/" + sessionUser.getId() + "/manageResume";
     }
 
     @GetMapping("/resume/writeResumeForm")
@@ -199,7 +199,7 @@ public class ResumeController {
         User sessionUser = (User) session.getAttribute("sessionUser");
 
 
-        return "redirect:/resume/" + sessionUser.getId() + "manageResume";
+        return "redirect:/resume/" + sessionUser.getId() + "/manageResume";
     }
 
     // yz/0305 삭제하기
@@ -213,8 +213,8 @@ public class ResumeController {
         resumeRepository.deleteById(id);
 
         //request.setAttribute("resume", resumeDTO);
-
-        return "redirect:/resume/{id}/manageResume";
+        System.out.println("dsafesdafedsa : " + id);
+        return "redirect:/resume/" + sessionUser.getId() + "/manageResume";
 
     }
 
