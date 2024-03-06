@@ -3,6 +3,8 @@ package shop.mtcoding.blog.model.skill;
 import lombok.Builder;
 import lombok.Data;
 
+import java.sql.Timestamp;
+
 public class SkillRequest {
     @Data
     @Builder

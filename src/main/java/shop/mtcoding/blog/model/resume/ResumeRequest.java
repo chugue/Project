@@ -24,6 +24,7 @@ public class ResumeRequest {
         private String introduce;
         private String portLink;
         private Boolean isPublic;
+        private List<String> skill = new ArrayList<>();
         private Timestamp createdAt;
     }
 
@@ -37,7 +38,7 @@ public class ResumeRequest {
         private Integer resumeId;
         private String career;
         private List<SkillRequest.UserskillDTO> skillList = new ArrayList<>();
-        private Integer number;
+
     }
 
     @Builder

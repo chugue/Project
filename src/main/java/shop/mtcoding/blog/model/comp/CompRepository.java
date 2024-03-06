@@ -28,7 +28,7 @@ public class CompRepository {
     public List<Object[]> findAllByUserId() {
         String q = """
                     select
-                    rt.id, ut.id as user_id, ut.my_name, rt.title, rt.edu, rt.career, rt.area, st.name , st.color
+                    rt.id, ut.id as user_id, ut.my_name, rt.title, rt.edu, rt.career, rt.area, st.name 
                     from resume_tb rt
                     join user_tb ut
                     on rt.user_id = ut.id

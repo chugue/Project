@@ -72,6 +72,9 @@
 
                 {{#resumeUserList}}
                     <div class="card mb-4 mt-3">
+                        <div class="new-skill-box">
+
+                        </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-9 mt-2">
@@ -83,12 +86,9 @@
                                     </h5>
                                     <!--기술스킬-->
                                     <div class="d-flex">
-                                        <div class="new-skill-box">
-                                            {{#skilllist}}
+                                        {{#skillList}}
                                             <div class="{{color}}">{{name}}</div>
-                                            {{/skilllist}}
-                                        </div>
-
+                                        {{/skillList}}
                                     </div>
                                     <div class="m-2" style="float: left;">
                                         <h6 class="card-subtitle text-muted">

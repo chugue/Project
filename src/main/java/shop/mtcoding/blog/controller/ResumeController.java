@@ -4,20 +4,19 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.blog.dto.scrap.ScrapResponse;
 import shop.mtcoding.blog.model.comp.CompRequest;
 import shop.mtcoding.blog.model.resume.Resume;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.resume.ResumeRequest;
 import shop.mtcoding.blog.model.scrap.ScrapRepository;
+import shop.mtcoding.blog.model.skill.SkillRepository;
 import shop.mtcoding.blog.model.skill.SkillRequest;
 import shop.mtcoding.blog.model.user.User;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -27,6 +26,7 @@ public class ResumeController {
     private final HttpSession session;
     private final ResumeRepository resumeRepository;
     private final ScrapRepository scrapRepository;
+    private final SkillRepository skillRepository;
 
     
 
@@ -34,8 +34,6 @@ public class ResumeController {
     public String manageResume(@PathVariable Integer id, HttpServletRequest request) {
         List<Object[]> resumeList = resumeRepository.findAll(id);
         List<ResumeRequest.UserViewDTO> userViewDTOList = new ArrayList<>();
-
-        Integer nextNumber = 1;
         ResumeRequest.UserViewDTO userViewDTO = new ResumeRequest.UserViewDTO();
 
         for (int i = 0; i < resumeList.size(); i++) {
@@ -48,7 +46,7 @@ public class ResumeController {
                 if (((String)user[7]).equals("jQuery")){
                     color = "badge bg-primary";
                 }
-                else if(((String)user[7]).equals("JavaScript")){
+                else if(((String)user[7]).equals("javaScript")){
                     color = "badge bg-secondary";
                 }
                 else if(((String)user[7]).equals("Spring")){
@@ -60,10 +58,10 @@ public class ResumeController {
                 else if(((String)user[7]).equals("JSP")){
                     color = "badge bg-warning";
                 }
-                else if(((String)user[7]).equals("Vue.js")){
+                else if(((String)user[7]).equals("java")){
                     color = "badge bg-info";
                 }
-                else if(((String)user[7]).equals("Oracle")){
+                else if(((String)user[7]).equals("React")){
                     color = "badge bg-dark";
                 }
 
@@ -81,7 +79,7 @@ public class ResumeController {
                 if (((String)user[7]).equals("jQuery")){
                     color = "badge bg-primary";
                 }
-                else if(((String)user[7]).equals("JavaScript")){
+                else if(((String)user[7]).equals("javaScript")){
                     color = "badge bg-secondary";
                 }
                 else if(((String)user[7]).equals("Spring")){
@@ -93,13 +91,10 @@ public class ResumeController {
                 else if(((String)user[7]).equals("JSP")){
                     color = "badge bg-warning";
                 }
-                else if(((String)user[7]).equals("Vue.js")){
+                else if(((String)user[7]).equals("java")){
                     color = "badge bg-info";
                 }
-                else if(((String)user[7]).equals("Oracle")){
-                    color = "badge bg-light";
-                }
-                else if(((String)user[7]).equals("MySql")){
+                else if(((String)user[7]).equals("React")){
                     color = "badge bg-dark";
                 }
 
@@ -116,17 +111,20 @@ public class ResumeController {
                 userViewDTO.setResumeId((Integer) user[5]);
                 userViewDTO.setCareer((String) user[6]);
                 userViewDTO.setSkillList(userskillDTO);
-                userViewDTO.setNumber(nextNumber++);
 
-                System.out.println(userViewDTOList);
+                userViewDTO.getSkillList();
+
+
 
                 userViewDTOList.add(userViewDTO);
+
 
             }
 
         }
+        session.setAttribute("resumeUserList", userViewDTOList);
+        userViewDTOList.get(0).getSkillList().get(0).getName();
 
-        request.setAttribute("resumeUserList", userViewDTOList);
 
         // return "/resume/manageResume";
         // User sessionUser = (User) session.getAttribute("sessionUser");
@@ -193,11 +191,15 @@ public class ResumeController {
 
     @PostMapping("/resume/save")
     public String save(ResumeRequest.ResumeWriterDTO requestDTO, HttpServletRequest request) {
-        System.out.println(requestDTO);
-        resumeRepository.save(requestDTO);
-
         User sessionUser = (User) session.getAttribute("sessionUser");
 
+        resumeRepository.save(requestDTO, sessionUser.getId());
+
+        List<String> skills = requestDTO.getSkill();
+        System.out.println();
+//        for (int i = 0; i < skills.size(); i++) {
+//
+//        }
 
         return "redirect:/resume/" + sessionUser.getId() + "/manageResume";
     }
@@ -213,7 +215,7 @@ public class ResumeController {
         resumeRepository.deleteById(id);
 
         //request.setAttribute("resume", resumeDTO);
-        System.out.println("dsafesdafedsa : " + id);
+
         return "redirect:/resume/" + sessionUser.getId() + "/manageResume";
 
     }

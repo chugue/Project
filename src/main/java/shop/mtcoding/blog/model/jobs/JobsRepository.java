@@ -68,7 +68,7 @@ public class JobsRepository {
     public List<Object[]> findAllByUserId(Integer userId) {
         String q = """
                 select
-                    jt.id, ut.id as user_id, ut.comp_name, jt.title, jt.task, jt.career, st.name , st.color
+                    jt.id, ut.id as user_id, ut.comp_name, jt.title, jt.task, jt.career, st.name 
                 from jobs_tb jt
                 join user_tb ut
                 on jt.user_id = ut.id
