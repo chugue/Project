@@ -88,6 +88,7 @@
 
                         <div class="card-body">
                             <div class="row my-3 my-border" style="border:none; background-color: #F8F8F8">
+
                                 <ul class="row technic mt-50">
                                     <li class="col form-check">
                                         <label class="form-check-label">
@@ -98,7 +99,7 @@
                                     <li class="col form-check">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="checkbox" name="skill"
-                                                   value="Java" checked disabled>JavaScrip
+                                                   value="Java" checked disabled>JavaScript
                                         </label>
                                     </li>
                                     <li class="col form-check">
@@ -152,7 +153,7 @@
                                                     <input type="hidden" name="resumeId" value="{{resume.id}}">
                                                     <button type="submit" class="btn btn-mint w-100">스크랩 취소</button>
                                                 </form>
-                                                <button id="scrap-${rDto.resumeId}" type="button"
+                                                <button id="scrap-${rDto.resumeId}" type="submit"
                                                         class="btn btn-outline-mint w-100">지원하기
                                                 </button>
                                             {{/scrap.isScrap}}
@@ -162,7 +163,7 @@
                                                     <input type="hidden" name="resumeId" value="{{id}}">
                                                     <button type="submit" class="btn btn-mint w-100">스크랩</button>
                                                 </form>
-                                                <button id="scrap-${rDto.resumeId}" type="button"
+                                                <button id="scrap-${rDto.resumeId}" type="submit"
                                                         class="btn btn-outline-mint w-100" style="margin-bottom: 20px">지원하기
                                                 </button>
                                             {{/scrap.isScrap}}
