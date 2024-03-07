@@ -1,6 +1,7 @@
 package shop.mtcoding.blog.model.jobs;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import shop.mtcoding.blog.model.skill.Skill;
@@ -12,8 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "jobs_tb")
-@Getter
-@Setter
+@Data
 @Entity
 public class Jobs {
     @Id

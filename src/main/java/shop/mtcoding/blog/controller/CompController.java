@@ -64,9 +64,9 @@ public class CompController {
         }
 
         request.setAttribute("compResumeList",applyList);
-
-
-
+        // 밑에나오는 공고에 지원한 이력서 리스트
+//--------------------------------------------------------------------------------------------------
+        // 기업의 공고리스트
         List<Object[]> jobsList = jobsRepository.findAllByUserId(id);
         List<CompRequest.JobsViewDTO> viewDTOList = new ArrayList<>();
 
