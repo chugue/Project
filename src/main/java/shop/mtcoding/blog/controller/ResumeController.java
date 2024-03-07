@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.blog.dto.scrap.ScrapResponse;
 import shop.mtcoding.blog.model.comp.CompRequest;
+import shop.mtcoding.blog.model.offer.OfferRepository;
+import shop.mtcoding.blog.model.offer.OfferResponse;
 import shop.mtcoding.blog.model.resume.Resume;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.resume.ResumeRequest;
@@ -27,6 +29,7 @@ public class ResumeController {
     private final HttpSession session;
     private final ResumeRepository resumeRepository;
     private final ScrapRepository scrapRepository;
+    private final OfferRepository offerRepository;
 
 
     @GetMapping("/resume/resumeDetail/{id}")
@@ -41,9 +44,13 @@ public class ResumeController {
         if(sessionComp == null) {
             ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id);
             request.setAttribute("scrap", scrapDetailDTO);
+            OfferResponse.OfferDetailDTO offerDetailDTO = offerRepository.findOffer(id);
+            request.setAttribute("offer", offerDetailDTO);
         } else {
             ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id, sessionComp.getId());
             request.setAttribute("scrap", scrapDetailDTO);
+            OfferResponse.OfferDetailDTO offerDetailDTO = offerRepository.findOffer(id, sessionComp.getId());
+            request.setAttribute("offer", offerDetailDTO);
         }
         return "/resume/resumeDetail";
     }
