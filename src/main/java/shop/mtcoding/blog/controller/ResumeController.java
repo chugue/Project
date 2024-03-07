@@ -35,6 +35,10 @@ public class ResumeController {
         List<Object[]> resumeList = resumeRepository.findAll(id);
         List<ResumeRequest.UserViewDTO> userViewDTOList = new ArrayList<>();
 
+//        Integer resumeCount = resumeRepository.resumeCount(id);
+//        request.setAttribute("resumeCount", resumeCount);
+
+
         Integer nextNumber = 1;
         ResumeRequest.UserViewDTO userViewDTO = new ResumeRequest.UserViewDTO();
 
@@ -127,6 +131,9 @@ public class ResumeController {
         }
 
         request.setAttribute("resumeUserList", userViewDTOList);
+
+
+
 
         // return "/resume/manageResume";
         // User sessionUser = (User) session.getAttribute("sessionUser");

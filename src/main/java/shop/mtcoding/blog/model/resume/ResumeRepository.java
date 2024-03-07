@@ -14,6 +14,18 @@ public class ResumeRepository {
 
     private final EntityManager em;
 
+    public Integer resumeCount(Integer userId) {
+        String q = """
+                select count(*) from resume_tb where user_id = ?;
+                """;
+
+        Query query = em.createNativeQuery(q, Resume.class);
+        query.setParameter(1, userId);
+        return (Integer) query.getSingleResult();
+
+    }
+
+
     public List<Resume> findAll() {
         String q = """
                 select * from resume_tb order by id desc
@@ -30,7 +42,7 @@ public class ResumeRepository {
 
 
        String q = """
-               SELECT r.id, r.user_Id, r.title, r.edu, r.area, s.resume_Id,r.career, s.name 
+               SELECT r.id, r.user_id, r.title, r.edu, r.area, s.resume_id,r.career, s.name 
                FROM resume_tb r
                inner join user_tb u
                ON r.user_id = u.id
@@ -104,4 +116,6 @@ public class ResumeRepository {
         System.out.println("query: " + query);
 
     }
+
+
 }

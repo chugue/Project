@@ -21,6 +21,7 @@ insert into resume_tb(user_id, title, area, edu, career, introduce, port_link,  
 insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (1, '신입 개발자 지원합니다', '서울', '고졸', '신입', '안녕하십니까. 엄격한 아버지와 자상한 어머니의 밑에서 자라나 20대가 된 저는', 'nate.com/gugu',now());
 insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (2, '이력서 입니다.', '부산', '대졸', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin',now());
 insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (2, '이력서 입니다2.', '부산', '대졸', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin',now());
+insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (2, '이력서 입니다3.', '부산', '대졸', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin',now());
 
 -- 공고 테이블
 INSERT INTO jobs_tb(user_id, area, title, edu, career, content, dead_line, task, created_at) VALUES (5, '부산', '배달의 민족 24년도 백엔드 신입 개발자 모집', '학력무관', '미들(4~8년)', '성실하고 열심히 일하실 분 모집!', '2024-03-10', '백엔드', NOW());
