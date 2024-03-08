@@ -31,8 +31,10 @@ public class JobsController {
     private final SkillRepository skillRepository;
     private final HttpSession session;
 
-    @GetMapping("/jobs/interest")
-    public String interest () {
+    @GetMapping("/jobs/{id}/interest")
+    public String interest (@PathVariable int id) {
+
+
         return "/jobs/interest";
     }
 
