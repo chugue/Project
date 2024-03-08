@@ -50,59 +50,59 @@ public class CompController {
 
     @GetMapping("/comp/compIndex")
     public String compIndex(HttpServletRequest request, @RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") String page) {
-            int currentPage = Integer.parseInt(page);
-            boolean lastPage = paging.complastPage(currentPage);
-            boolean firstPage = paging.compfirstPage(currentPage);
-            int totalPages = paging.compTotalPages();
+        int currentPage = Integer.parseInt(page);
+        int totalPosts = resumeRepository.findAllWithUserV2().size();
+        boolean lastPage = paging.complastPage(currentPage, totalPosts);
+        boolean firstPage = paging.compfirstPage(currentPage);
+        int totalPages = paging.compTotalPages(totalPosts);
 
-            List<Page> pageActive = new ArrayList<>();
+        List<Page> pageActive = new ArrayList<>();
 
-            // 페이지 네이션에 현재페이지 active기능 넣기
-            for (int i = 1; i <= totalPages; i++) {
-                Page page1 = new Page();
-                page1.setNumber(i);
-                page1.setActive(currentPage == i);
-                pageActive.add(page1);
-            }
+        // 페이지 네이션에 현재페이지 active기능 넣기
+        for (int i = 1; i <= totalPages; i++) {
+            Page page1 = new Page();
+            page1.setNumber(i);
+            page1.setActive(currentPage == i);
+            pageActive.add(page1);
+        }
 
-            // 한 페이지에 5개씩 출력 - 10개중 현재페이지가 1이면 10부터 6까지, 현재 페이지가 2면 5부터 1까지
+        // 한 페이지에 5개씩 출력 - 10개중 현재페이지가 1이면 10부터 6까지, 현재 페이지가 2면 5부터 1까지
 
 
+        if (keyword.isBlank()) { //isBlank면 검색 안함
+            // 직접 조인된 쿼리 결과를 받아오기 위한 DTO, 현재 List<Skill>는 비워져있다.
+            List<ResumeResponse.ResumeUserDTO> pageList = paging.compShowPagesV2(currentPage, resumeRepository.findAllWithUserV2());
 
-            if (keyword.isBlank()) { //isBlank면 검색 안함
-                // 직접 조인된 쿼리 결과를 받아오기 위한 DTO, 현재 List<Skill>는 비워져있다.
-                List<ResumeResponse.ResumeUserDTO> pageList = paging.compShowPagesV2(currentPage);
+            // 이 코드가 한 pageList에 Skill을 객체로 저장하기 위해서 쓰는 코드
+            pageList.forEach(dto -> {
+                List<Skill> skillList = skillRepository.compfindAllV2(dto.getId());
+                dto.setSkillList(skillList);
+            });
+            request.setAttribute("keyword", keyword);
+            request.setAttribute("pages", pageActive);
+            request.setAttribute("firstPage", firstPage);
+            request.setAttribute("lastPage", lastPage);
+            request.setAttribute("pageList", pageList);
+            request.setAttribute("prevPage", Math.max(1, currentPage - 1));
+            request.setAttribute("nextPage", Math.min(totalPages, currentPage + 1));
+            return "comp/compIndex";
 
-                // 이 코드가 한 pageList에 Skill을 객체로 저장하기 위해서 쓰는 코드
-                pageList.forEach(dto -> {
-                    List<Skill> skillList = skillRepository.compfindAllV2(dto.getId());
-                    dto.setSkillList(skillList);
-                });
-                request.setAttribute("keyword", keyword);
-                request.setAttribute("pages", pageActive);
-                request.setAttribute("firstPage", firstPage);
-                request.setAttribute("lastPage", lastPage);
-                request.setAttribute("pageList", pageList);
-                request.setAttribute("prevPage", Math.max(1, currentPage - 1));
-                request.setAttribute("nextPage", Math.min(totalPages, currentPage + 1));
-                return "comp/compIndex";
+        } else {    //검색하면 키워드를 던져줌
+            List<ResumeResponse.ResumeUserDTO> pageList = paging.compShowPagesV2(currentPage, resumeRepository.findAllWithUserV2(keyword));
 
-            } else {    //검색하면 키워드를 던져줌
-                List<JobResponse.DTO> pageList = paging.showPagesV2(currentPage, keyword);
-
-                pageList.forEach(dto -> {
-                    List<Skill> skillList = skillRepository.compfindAllV2(dto.getId());
-                    dto.setSkillList(skillList);
-                });
-                request.setAttribute("keyword", keyword);
-                request.setAttribute("pages", pageActive);
-                request.setAttribute("firstPage", firstPage);
-                request.setAttribute("lastPage", lastPage);
-                request.setAttribute("pageList", pageList);
-                request.setAttribute("prevPage", Math.max(1, currentPage - 1));
-                request.setAttribute("nextPage", Math.min(totalPages, currentPage + 1));
-                return "comp/compIndex";
-            }
+            pageList.forEach(dto -> {
+                List<Skill> skillList = skillRepository.compfindAllV2(dto.getId());
+                dto.setSkillList(skillList);
+            });
+            request.setAttribute("keyword", keyword);
+            request.setAttribute("pages", pageActive);
+            request.setAttribute("firstPage", firstPage);
+            request.setAttribute("lastPage", lastPage);
+            request.setAttribute("pageList", pageList);
+            request.setAttribute("prevPage", Math.max(1, currentPage - 1));
+            request.setAttribute("nextPage", Math.min(totalPages, currentPage + 1));
+            return "comp/compIndex";
+        }
     }
 
 
@@ -115,9 +115,9 @@ public class CompController {
 //    }
 //
 
-  
+
     @GetMapping("/comp/{id}/comphome")
-    public String compHome(@PathVariable Integer id, @RequestParam(required = false ,defaultValue = "1") Integer jobsId,HttpServletRequest request) {
+    public String compHome(@PathVariable Integer id, @RequestParam(required = false, defaultValue = "1") Integer jobsId, HttpServletRequest request) {
 
         // 내 공고리스트에 지원한 이력서 리스트
 
@@ -144,7 +144,7 @@ public class CompController {
 //        });
 //
 
-        for (int i = 0; i <jobList.size() ; i++) {
+        for (int i = 0; i < jobList.size(); i++) {
             JobResponse.JobListByUserId dto = jobList.get(i);
 
             dto.setSkillList(jobsRepository.findAllSkillById(dto.getId()));
@@ -352,7 +352,6 @@ public class CompController {
         List<Scrap> scrapList = scrapRepository.findByUserId(id);
 
         request.setAttribute("scrapList", scrapList);
-
 
 
         request.setAttribute("CompId", id);
