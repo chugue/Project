@@ -8,14 +8,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.multipart.MultipartFile;
 import shop.mtcoding.blog.dto.user.UserRequest;
+import shop.mtcoding.blog.model.apply.ApplyRepository;
+import shop.mtcoding.blog.model.jobs.JobResponse;
+import shop.mtcoding.blog.model.offer.OfferRepository;
+import shop.mtcoding.blog.model.offer.OfferRequest;
 import shop.mtcoding.blog.model.profile.ProfileRepository;
 import shop.mtcoding.blog.model.profile.ProfileRequest;
+import shop.mtcoding.blog.model.resume.ResumeRepository;
+import shop.mtcoding.blog.model.resume.ResumeRequest;
 import shop.mtcoding.blog.model.user.User;
 import shop.mtcoding.blog.model.user.UserRepository;
+
+import shop.mtcoding.blog.model.user.UserRequst;
+import shop.mtcoding.blog.model.user.UserResponse;
+
 import shop.mtcoding.blog.util.ApiUtil;
+
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -29,7 +44,10 @@ import java.util.List;
 public class UserController {
     private final UserRepository userRepository;
     private final ProfileRepository profileRepository;
+    private final OfferRepository offerRepository;
+    private final ApplyRepository applyRepository;
     private final HttpSession session;
+    private final ResumeRepository resumeRepository;
 
     //아이디 중복체크 용. 이메일로 회원가입해서 email을 해줌
     @GetMapping("/api/user/username-same-check")
@@ -90,10 +108,34 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}/offer")
-    public String offer(@PathVariable Integer id) {
+
+    public String offer(@PathVariable Integer id,
+                        @RequestParam(required = false, defaultValue = "1") Integer resumeId,
+                        HttpServletRequest request) {
+
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        request.setAttribute("userId", sessionUser.getId());
+
+        List<UserRequst.ResumeOfterDTO> offerList = offerRepository.findAllByJobsId2(resumeId);
+
+        for (int i = 0; i < offerList.size(); i++) {
+            UserRequst.ResumeOfterDTO dto = offerList.get(i);
+            dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
+        }
+        request.setAttribute("offerList", offerList);
+
+
+        List<UserResponse.UserListByUserId> resumeList = offerRepository.findAllByResumeId(id);
+
+        for (int i = 0; i < resumeList.size(); i++) {
+            UserResponse.UserListByUserId dto = resumeList.get(i);
+            dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
+        }
+
+        request.setAttribute("resumeList", resumeList);
+
         return "/user/offer";
     }
-
 
     @GetMapping("/user/{id}/scrap")
     public String scrap(@PathVariable Integer id) {
@@ -109,6 +151,20 @@ public class UserController {
 
     @GetMapping("/user/{id}/userHome")
     public String userHome(@PathVariable Integer id, HttpServletRequest request) {
+
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId(id);
+        System.out.println(request); // 이거 스킬 안넣었을때 리스트
+
+        for (int i = 0; i < resumeList.size(); i++) {
+            //우리가 아까만든 생성자에 resumeList 값들이 들어간다
+            ResumeRequest.UserViewDTO dto = resumeList.get(i);
+            dto.setSkillList(resumeRepository.findAllByResumeId(dto.getId()));
+        }
+
+        request.setAttribute("resumeList", resumeList);
+        System.out.println(request); // 이건 스킬추카하고 나서 리스트
+//        List<SkillResponse.ResumeSkillDTO> resumeSkillList = resumeRepository.findAllByResumeId(id);
         return "/user/userHome";
     }
 

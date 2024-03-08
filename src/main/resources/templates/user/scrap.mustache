@@ -12,59 +12,12 @@
 </style>
 
 
-<div style="margin-top: 130px; margin-bottom: 50px" class="mx-auto">
-    <div>
-        <div class="row">
+<div class="mx-auto pt-80">
+    <div class="new-flex-wrapper">
+        <div class="new-container">
             <!--지원 및 제안-->
-            <div class="col-3 px-4" style="text-align: center; width: 250px; margin-left: 180px">
-                <div class="mb-3">
-                    <div class="fs-4">공고 스크랩</div>
-                </div>
+            {{> layout/sidebar}}
 
-                <div class="card">
-                    <div style="width: 100%;">
-                        <div class="relative mb-3">
-                            <div>
-                                <a href="/user/profileUpdateForm"
-                                   onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                    <div class="user-img">
-                                        <img src="/images/aboutme_img.jpg" class="rounded" alt="Cinque Terre"
-                                             style="max-width: 80px;">
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h6 class="card-subtitle text-muted">심유주님</h6>
-                            <hr>
-                            <ul class="nav flex-column nav-pills">
-                                <li class="nav-item">
-                                    <a href="/user/{{sessionUser.id}}/userHome" class="nav-link sub-menu a p-1 mb-1"
-                                       aria-current="page">마이 홈</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/resume/{{sessionUser.id}}/manageResume" class="nav-link sub-menu a p-1 mb-1"
-                                       aria-current="page">이력서 관리</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/user/{{sessionUser.id}}/offer" class="nav-link sub-menu a p-1 mb-1">지원 / 제안</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/user/{{sessionUser.id}}/scrap" class="sub-menu a p-1 mb-1 btn btn-mint">스크랩</a>
-                                </li>
-                                <hr>
-                                <li class="nav-item">
-                                    <a href="/user/{{sessionUser.id}}/updateForm" class="nav-link sub-menu a p-1 mb-1">정보수정</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link sub-menu a p-1" href="/">로그아웃</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div class="my-4 layer2-right-container" style="flex: 0 0 auto; width: calc(80% - 300px);">
                 <div class="components">

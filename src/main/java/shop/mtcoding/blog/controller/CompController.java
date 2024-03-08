@@ -17,8 +17,12 @@ import shop.mtcoding.blog.model.offer.OfferRepository;
 import shop.mtcoding.blog.model.offer.OfferRequest;
 import shop.mtcoding.blog.model.jobs.JobResponse;
 import shop.mtcoding.blog.model.jobs.Jobs;
+
+import shop.mtcoding.blog.model.offer.OfferResponse;
+
 import shop.mtcoding.blog.model.page.Page;
 import shop.mtcoding.blog.model.page.Paging;
+
 import shop.mtcoding.blog.model.resume.Resume;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.resume.ResumeResponse;
@@ -45,9 +49,8 @@ public class CompController {
     private final HttpSession session;
     private final SkillRepository skillRepository;
     private final ResumeRepository resumeRepository;
-
     private final Paging paging;
-
+  
     @GetMapping("/comp/compIndex")
     public String compIndex(HttpServletRequest request, @RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") String page) {
         int currentPage = Integer.parseInt(page);
@@ -119,9 +122,13 @@ public class CompController {
     @GetMapping("/comp/{id}/comphome")
     public String compHome(@PathVariable Integer id, @RequestParam(required = false, defaultValue = "1") Integer jobsId, HttpServletRequest request) {
 
+        //
+
         // 내 공고리스트에 지원한 이력서 리스트
 
         List<ApplyResponse.ApplyByJobsDTO> applyList = applyRepository.findAllByJobsId(jobsId);
+
+
 
 //        applyList.forEach(dto -> {
 //            dto.setSkillList(applyRepository.findAllSkillById(dto.getId()));
@@ -131,6 +138,7 @@ public class CompController {
             ApplyResponse.ApplyByJobsDTO dto = applyList.get(i);
             dto.setSkillList(applyRepository.findAllSkillById(dto.getId()));
         }
+
 
         request.setAttribute("compResumeList", applyList);
 
@@ -152,6 +160,10 @@ public class CompController {
 
 
         request.setAttribute("jobList", jobList);
+
+
+//        session.setAttribute("jobsId", jobsId);
+
 
 //        System.out.println(jobList);
 
@@ -244,6 +256,33 @@ public class CompController {
 //         }
 
         return "/comp/comphome";
+    }
+
+    @GetMapping("/comp/{id}/apply")
+    public String offer(@PathVariable Integer id,
+                        @RequestParam(required = false, defaultValue = "1") Integer jobsId,
+                        HttpServletRequest request) {
+
+        User sessionComp = (User) session.getAttribute("sessionComp");
+        request.setAttribute("userId", sessionComp.getId());
+        List<OfferRequest.CompOfterDTO> offerList = offerRepository.findAllByJobsId(jobsId);
+
+        for (int i = 0; i < offerList.size(); i++) {
+            OfferRequest.CompOfterDTO dto = offerList.get(i);
+            dto.setSkillList(applyRepository.findAllSkillById(dto.getId()));
+        }
+        request.setAttribute("offerList", offerList);
+
+
+        List<OfferResponse.OfferListByUserId> jobList = offerRepository.findAllByUserId(id);
+
+        for (int i = 0; i < jobList.size(); i++) {
+            OfferResponse.OfferListByUserId dto = jobList.get(i);
+            dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
+        }
+        request.setAttribute("jobList", jobList);
+
+        return "/comp/apply";
     }
 
     @GetMapping("/comp/joinForm")
@@ -350,16 +389,15 @@ public class CompController {
     @GetMapping("/comp/{id}/scrap")
     public String scrap(@PathVariable Integer id, HttpServletRequest request) {
 
-        List<Scrap> scrapList = scrapRepository.findByUserId(id);
+        List<Resume> resumeList = scrapRepository.findByUserIdWithResume(id);
 
-        request.setAttribute("scrapList", scrapList);
+        request.setAttribute("resumeList", resumeList);
 
-
-        request.setAttribute("CompId", id);
+        request.setAttribute("compId", id);
 
         return "/comp/scrap";
     }
-
+  
     @GetMapping("/comp/talent")
     public String talent(HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionComp");

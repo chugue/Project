@@ -6,11 +6,10 @@ import lombok.RequiredArgsConstructor;
 import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import shop.mtcoding.blog.dto.scrap.ScrapRequest;
-import shop.mtcoding.blog.dto.scrap.ScrapResponse;
-import shop.mtcoding.blog.model.apply.ApplyResponse;
 import shop.mtcoding.blog.model.jobs.JobResponse;
 import shop.mtcoding.blog.model.skill.SkillRequest;
+import shop.mtcoding.blog.model.user.UserRequst;
+import shop.mtcoding.blog.model.user.UserResponse;
 
 import java.util.List;
 
@@ -19,28 +18,26 @@ import java.util.List;
 public class OfferRepository {
     private final EntityManager em;
 
-    public List<OfferRequest.CompOfterDTO> findAllByJobsId(Integer jobsId){
+    public List<UserResponse.UserListByUserId> findAllByResumeId(Integer userId) {
+
         String q = """
                 select
-                     ot.id, ut.my_name, rt.title, ot.status
-                     from offer_tb ot
-                     join resume_tb rt
-                     on ot.resume_id = rt.id
-                     join user_tb ut
-                     on ut.id = rt.user_id
-                     join jobs_tb jt
-                     on jt.id = ot.jobs_id
-                     where ot.jobs_id = ?;
-                """;
+                rt.id, rt.title, rt.area, rt.career 
+                from resume_tb rt
+                join user_tb ut
+                on rt.user_id = ut.id
+                where ut.id = ?;
+                    """;
         Query query = em.createNativeQuery(q);
-        query.setParameter(1, jobsId);
+        query.setParameter(1, userId);
 
         JpaResultMapper mapper = new JpaResultMapper();
-        List<OfferRequest.CompOfterDTO> result = mapper.list(query,OfferRequest.CompOfterDTO.class);
-        return result;
+        List<UserResponse.UserListByUserId> resumeList = mapper.list(query,UserResponse.UserListByUserId.class);
+
+        return resumeList;
     }
 
-    public List<JobResponse.JobListByUserId> findAllByUserId(Integer id) {
+    public List<OfferResponse.OfferListByUserId> findAllByUserId(Integer id) {
 
         String q = """
                 select
@@ -54,9 +51,47 @@ public class OfferRepository {
         query.setParameter(1, id);
 
         JpaResultMapper mapper = new JpaResultMapper();
-        List<JobResponse.JobListByUserId> jobList = mapper.list(query,JobResponse.JobListByUserId.class);
+        List<OfferResponse.OfferListByUserId> jobList = mapper.list(query,OfferResponse.OfferListByUserId.class);
 
         return jobList;
+    }
+
+    public List<OfferRequest.CompOfterDTO> findAllByJobsId(Integer jobsId){
+        String q = """
+                select
+                     ot.id, ut.my_name, rt.title, rt.career, ot.resume_id, ot.status
+                     from offer_tb ot
+                     join resume_tb rt
+                     on ot.resume_id = rt.id
+                     join user_tb ut
+                     on ut.id = rt.user_id
+                     where ot.jobs_id = ?;
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, jobsId);
+
+        JpaResultMapper mapper = new JpaResultMapper();
+        List<OfferRequest.CompOfterDTO> result = mapper.list(query,OfferRequest.CompOfterDTO.class);
+        return result;
+    }
+
+    public List<UserRequst.ResumeOfterDTO> findAllByJobsId2(Integer resumeId){
+        String q = """
+                    select
+                    ot.id, ut.comp_name, jt.title, jt.career, ot.jobs_id, ot.status
+                    from offer_tb ot
+                    join jobs_tb jt
+                    on ot.jobs_id = jt.id
+                    join user_tb ut
+                    on ut.id = jt.user_id
+                    where ot.resume_id = ?;
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, resumeId);
+
+        JpaResultMapper mapper = new JpaResultMapper();
+        List<UserRequst.ResumeOfterDTO> result = mapper.list(query,UserRequst.ResumeOfterDTO.class);
+        return result;
     }
 
     public List<SkillRequest.JobSkillDTO> findAllSkillById(Integer id){
@@ -76,17 +111,6 @@ public class OfferRepository {
         JpaResultMapper mapper = new JpaResultMapper();
         return mapper.list(query,SkillRequest.JobSkillDTO.class);
 
-    }
-    @Transactional
-    public void save(OfferRequest.SaveDTO requestDTO, Integer status) {
-        String q = """
-                insert into offer_tb(jobs_id, resume_id, status, created_at) values(?,?,?, now())
-                """;
-        Query query = em.createNativeQuery(q);
-        query.setParameter(1, requestDTO.getJobsId());
-        query.setParameter(2, requestDTO.getResumeId());
-        query.setParameter(3, status);
-        query.executeUpdate();
     }
 
     public OfferResponse.OfferDetailDTO findOffer(Integer resumeId) {
@@ -109,7 +133,7 @@ public class OfferRepository {
         return responseDTO;
     }
 
-    public OfferResponse.OfferDetailDTO findOffer(Integer resumeId, Integer sessionUserId) {
+    public OfferResponse.OfferDetailDTO findOffer(Integer resumeId, Object sessionUserId) {
         String q = """
                 SELECT id, 
                 case when jobs_id is null then false else true 
@@ -119,7 +143,6 @@ public class OfferRepository {
         Query query = em.createNativeQuery(q);
         query.setParameter(1, resumeId);
         query.setParameter(2, sessionUserId);
-
         Integer id = null;
         Boolean isScrap = null;
         try {
@@ -139,5 +162,28 @@ public class OfferRepository {
         );
 
         return responseDTO;
+    }
+
+    @Transactional
+    public void save(OfferRequest.SaveDTO requestDTO, Integer status) {
+        String q = """
+                insert into offer_tb(jobs_id, resume_id, status, created_at) values(?,?,?, now())
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, requestDTO.getJobsId());
+        query.setParameter(2, requestDTO.getResumeId());
+        query.setParameter(3, status);
+        query.executeUpdate();
+    }
+
+    @Transactional
+    public void deleteById(Object jobsId, OfferRequest.DeleteDTO resumeId) {
+        String q = """
+                delete from OFFER_TB where jobs_id = ? and resume_id = ?
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, jobsId);
+        query.setParameter(2, resumeId.getResumeId());
+        query.executeUpdate();
     }
 }

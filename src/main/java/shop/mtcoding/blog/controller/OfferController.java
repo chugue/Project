@@ -32,42 +32,16 @@ public class OfferController {
     private final OfferRepository offerRepository;
     private final HttpSession session;
 
-    @GetMapping("/comp/{id}/apply")
-    public String offer(@PathVariable Integer id,
-                        @RequestParam(required = false, defaultValue = "1") Integer jobsId,
-                        @RequestParam(required = false, defaultValue = "1") Integer resumeId,
-                        HttpServletRequest request) {
+    @PostMapping("/resume/offer/save")
+    public String save(OfferRequest.SaveDTO saveDTO) {
+        offerRepository.save(saveDTO, 1);
 
-        User sessionComp = (User) session.getAttribute("sessionComp");
-        request.setAttribute("userId", sessionComp.getId());
-        System.out.println("jobs : " + jobsId);
-        List<OfferRequest.CompOfterDTO> offerList = offerRepository.findAllByJobsId(jobsId);
-
-        for (int i = 0; i < offerList.size(); i++) {
-            OfferRequest.CompOfterDTO dto = offerList.get(i);
-            dto.setSkillList(applyRepository.findAllSkillById(dto.getId()));
-        }
-
-        request.setAttribute("offerList", offerList);
-
-        List<JobResponse.JobListByUserId> jobList = offerRepository.findAllByUserId(id);
-        System.out.println(jobList);
-
-        for (int i = 0; i < jobList.size(); i++) {
-            JobResponse.JobListByUserId dto = jobList.get(i);
-            dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
-        }
-
-        request.setAttribute("jobList", jobList);
-
-        return "/comp/apply";
+        return "redirect:/resume/resumeDetail/" + saveDTO.getResumeId();
     }
 
-    @PostMapping("/resume/offer/save")
-    public String save(OfferRequest.SaveDTO requestDTO) {
-        User sessionUser = (User) session.getAttribute("sessionComp");
-        offerRepository.save(requestDTO, sessionUser.getId());
-
-        return "redirect:/resume/resumeDetail/" + requestDTO.getResumeId();
+    @PostMapping("/resume/offer/{id}/delete")
+    public String delete1(@PathVariable Integer id, OfferRequest.DeleteDTO DeleteDTO) {
+        offerRepository.deleteById(session.getAttribute("jobsId2"), DeleteDTO);
+        return "redirect:/resume/resumeDetail/" + DeleteDTO.getResumeId();
     }
 }

@@ -1,492 +1,110 @@
-{{> /layout/header}}
+{{> layout/header}}
+<div class="mx-auto pt-80">
+    <div class="new-flex-wrapper">
+        <div class="new-container">
 
-<style>
-    .card {
-        padding: 20px;
-    }
+            {{> layout/sidebar}}
+            <!--이력서 관리-->
+            <div class="my-4 layer2-right-container"
+                 style="flex: 0 0 auto; width: calc(100% - 240px); padding:  0 !important;">
+                <div class="components">
+                    <div>
+                        <!--지원현황-->
+                        <h6><b>지원현황<div class="layer2-right-container"
+                                        style="flex: 0 0 auto; width: calc(100% - 240px);">
 
-    .card img {
-        margin: 0 auto;
-        display: block;
-    }
-
-    .apply-present .col-4::after {
-        content: '';
-        display: block;
-        width: 1px;
-        height: 80px;
-        background-color: #222;
-        color: #222;
-        margin-top: -60px;
-    }
-
-    .apply-present .col-4:nth-child(1)::after {
-        display: none;
-    }
-
-    .user-img:hover {
-        filter: brightness(70%);
-    }
-
-    .sub-menu {
-        color: #222;
-    }
-
-    .info.row {
-        gap: 20px;
-        display: grid;
-        grid-template-columns: auto auto auto;
-    }
-</style>
-
-
-<div style="margin-top: 130px; margin-bottom: 50px" class="mx-auto">
-    <div>
-        <div class="row">
-            <!--지원 및 제안-->
-            <div class="col-3 px-4" style="text-align: center; width: 250px; margin-left: 180px">
-                <div class="mb-3">
-                    <div class="fs-4">마이홈</div>
-                </div>
-
-                <div class="card">
-                    <div class="card-body">
-                        <div class="relative mb-3">
-                            <div>
-                                <a href="/user/profileUpdateForm"
-                                    onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                    <div class="user-img">
-                                        <img src="/images/aboutme_img.jpg" class="rounded" alt="Cinque Terre"
-                                            style="max-width: 80px;">
-
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <h6 class="card-subtitle text-muted">심유주님</h6>
-                            <hr>
-                            <ul class="nav flex-column nav-pills">
-                                <li class="nav-item">
-                                    <a href="/user/userHome" class="sub-menu a p-1 mb-1 btn btn-mint"
-                                       aria-current="page">마이홈</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/resume/{{sessionUser.id}}/manageResume" class="nav-link sub-menu a p-1 mb-1"
-                                       aria-current="page">이력서 관리</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/user/{{sessionUser.id}}/offer" class="nav-link sub-menu a p-1 mb-1">지원 / 제안</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/user/{{sessionUser.id}}/scrap" class="nav-link sub-menu a p-1 mb-1">스크랩</a>
-                                </li>
-                                <hr>
-                                <li class="nav-item">
-                                    <a href="/user/{{sessionUser.id}}/updateForm" class="nav-link sub-menu a p-1 mb-1">정보수정</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link sub-menu a p-1" href="/">로그아웃</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-8 my-4 pe-5">
-                <!--지원현황-->
-                <h6><b>지원현황<div class="my-4 layer2-right-container" style="flex: 0 0 auto; width: calc(100% - 300px);">
                         </div></b></h6>
-                <div class="card mb-4">
-                    <div class="card-body mt-3">
-                        <div class="apply-present row " style="font-weight: 900; font-size: 16px;">
-                            <div class="col-4 text-center">
-                                <div class="apply">총지원</div>
-                                <div class="count">3개</div>
-                            </div>
-                            <div class="col-4 text-center">
-                                <div class="waiting">대기중</div>
-                                <div class="count">0개</div>
-                            </div>
-                            <div class="col-4 text-center">
-                                <div class="">결과발표</div>
-                                <div class="count">0개</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--지원현황-->
-
-                <h6><b>나의 대표 이력서<div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
-                        </div></b></h6>
-                <!--이력서 삭제, 수정 카드-->
-                <div class="card mb-4 mt-1">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-9 mt-2">
-                                <a href="/resume/resumeDetail"
-                                    onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                    <h5 class="card-title" style="text-align: left;">
-                                        백엔드 개발자 지원합니다.
-                                    </h5>
-                                    <!--기술스킬-->
-                                    <div class="d-flex">
-                                        <div class="skill-wrap">
-                                            <span class="badge bg-warning">JavaScript</span>
-                                            <span class="badge bg-primary">HTML/CSS</span>
-                                            <span class="badge bg-success">Webpack</span>
-                                        </div>
+                        <div class="card" style=" border-color: #2cb457; color: #2cb457; margin-bottom: 80px;">
+                            <div class="card-body mt-3">
+                                <div class="apply-present row " style="font-weight: 900; font-size: 16px;">
+                                    <div class="col-4 text-center">
+                                        <div class="apply">총지원</div>
+                                        <div class="count">3개</div>
                                     </div>
-
-                                    <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle text-muted">
-                                            경력무관
-                                        </h6>
+                                    <div class="col-4 text-center">
+                                        <div class="waiting">대기중</div>
+                                        <div class="count">0개</div>
                                     </div>
-                                    <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle text-muted">
-                                            미들(4~8년)
-                                        </h6>
+                                    <div class="col-4 text-center">
+                                        <div class="">결과발표</div>
+                                        <div class="count">0개</div>
                                     </div>
-                                    <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle text-muted">
-                                            판교분당
-                                        </h6>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-3">
-                                <div class="row">
-                                    <input type="hidden" value="" name="" id="">
-                                    <div style="float: right;">
-                                        <a href="/resume/updateResumeForm">
-                                            <button type="submit" class="btn btn-mint" style="float: right;"
-                                                    onclick="">이력서 수정</button>
-                                        </a>
-
-                                    </div>
-
-                                    <div style="float: right;">
-                                        <button type="submit" class="btn btn-outline-mint mb-2" data-bs-toggle="modal"
-                                            data-bs-target="#dModal" style="float: right;" onclick="">이력서 삭제</button>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-<!--                <div class="mb-3 mt-3">-->
-<!--                    <h6><b>관심카테고리(직무별) </b></h6>-->
-<!--                    <div class="">-->
-<!--                        <div class="card">-->
-<!--                            <div class="card-body mt-3">-->
-<!--                                <table class="table" style="-ms-flex-item-align: center; width:100%">-->
-<!--                                    <tbody>-->
-<!--                                        <tr>-->
-<!--                                            <td>-->
-<!--                                                <div class="form-check text-align">-->
-<!--                                                    <label class="form-check-label">-->
-<!--                                                        <input class="form-check-input" type="checkbox" name="interest"-->
-<!--                                                            value="서버 개발자">-->
-<!--                                                        서버 개발자-->
-<!--                                                    </label>-->
-<!--                                                </div>-->
-<!--                                            </td>-->
-<!--                                            <td>-->
-<!--                                                <div class="form-check text-align">-->
-<!--                                                    <label class="form-check-label">-->
-<!--                                                        <input class="form-check-input" type="checkbox" name="interest"-->
-<!--                                                            value="백엔드 개발자"> 백엔드 개발자-->
-<!--                                                    </label>-->
-<!--                                                </div>-->
-<!--                                            </td>-->
-<!--                                            <td>-->
-<!--                                                <div class="form-check text-align">-->
-<!--                                                    <label class="form-check-label">-->
-<!--                                                        <input class="form-check-input" type="checkbox" name="interest"-->
-<!--                                                            value="프론트엔드 개발자">프론트엔드 개발자-->
-
-<!--                                                    </label>-->
-<!--                                                </div>-->
-<!--                                            </td>-->
-<!--                                        </tr>-->
-<!--                                        <tr>-->
-<!--                                            <td>-->
-<!--                                                <div class="form-check text-align">-->
-<!--                                                    <label class="form-check-label">-->
-<!--                                                        <input class="form-check-input" type="checkbox" name="interest"-->
-<!--                                                            value="안드로이드 개발자">안드로이드 개발자-->
-
-<!--                                                    </label>-->
-<!--                                                </div>-->
-<!--                                            </td>-->
-<!--                                            <td>-->
-<!--                                                <div class="form-check text-align">-->
-<!--                                                    <label class="form-check-label">-->
-<!--                                                        <input class="form-check-input" type="checkbox" name="interest"-->
-<!--                                                            value="IOS 개발자"> IOS 개발자-->
-<!--                                                    </label>-->
-<!--                                                </div>-->
-<!--                                            </td>-->
-<!--                                            <td>-->
-<!--                                                <div class="form-check text-align">-->
-<!--                                                    <label class="form-check-label">-->
-<!--                                                        <input class="form-check-input" type="checkbox" name="interest"-->
-<!--                                                            value="풀스택 개발자"> 풀스택 개발자-->
-<!--                                                    </label>-->
-<!--                                                </div>-->
-<!--                                            </td>-->
-<!--                                        </tr>-->
-<!--                                        <td>-->
-<!--                                            <div class="form-check text-align">-->
-<!--                                                <label class="form-check-label">-->
-<!--                                                    <input class="form-check-input" type="checkbox" name="interest"-->
-<!--                                                        value="빅데이터 엔지니어"> 빅데이터 엔지니어-->
-<!--                                                </label>-->
-<!--                                            </div>-->
-<!--                                        </td>-->
-<!--                                        <td>-->
-<!--                                            <div class="form-check text-align">-->
-<!--                                                <label class="form-check-label">-->
-<!--                                                    <input class="form-check-input" type="checkbox" name="interest"-->
-<!--                                                        value="임베디드 개발자"> 임베디드 개발자-->
-
-<!--                                                </label>-->
-<!--                                            </div>-->
-<!--                                        </td>-->
-<!--                                        <td>-->
-<!--                                            <div class="form-check text-align">-->
-<!--                                                <label class="form-check-label">-->
-<!--                                                    <input class="form-check-input" type="checkbox" name="interest"-->
-<!--                                                        value="devops 개발자">devops 개발자-->
-<!--                                                </label>-->
-<!--                                            </div>-->
-<!--                                        </td>-->
-
-<!--                                        </tr>-->
-<!--                                    </tbody>-->
-<!--                                </table>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--                <div class="my-4">-->
-<!--                    <h6><b>추천 공고</b></h6>-->
-<!--                    <div class="info row">-->
-<!--                        <div class="card">-->
-<!--                            <a href="/jobs/jobsDetail"-->
-<!--                                onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">-->
-<!--                                <img class="card-img-top" src="/images/logo.png" alt="" srcset=""-->
-<!--                                    style="height: 5em; width: 180px; padding:5px; text-align: center;">-->
-<!--                                <div class="card-body">-->
-
-<!--                                    <div class="mb-2 ft-16">[compName]</div>-->
-<!--                                    <div class="point-ft ft-22 fw-600 mb-10">프론트엔드 개발자</div>-->
-<!--                                    <div class="skill-wrap">-->
-<!--                                        <span class="badge bg-warning">JavaScript</span>-->
-<!--                                        <span class="badge bg-primary">HTML/CSS</span>-->
-<!--                                        <span class="badge bg-success">Webpack</span>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;career, address info&ndash;&gt;-->
-<!--                                    <div class="d-flex">-->
-<!--                                        <div class="career">인턴</div>-->
-<!--                                        <div class="mr-5 ml-5">|</div>-->
-<!--                                        <div class="address">판교분당</div>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;career, address info&ndash;&gt;-->
-
-<!--                                    <div class="d-flex justify-content-end">-->
-<!--                                        &lt;!&ndash;공고 마감일&ndash;&gt;-->
-<!--                                        <div class="d-day mr-10">D-10</div>-->
-<!--                                        &lt;!&ndash;공고 마감일&ndash;&gt;-->
-
-<!--                                        &lt;!&ndash;공고 스크랩&ndash;&gt;-->
-<!--                                        <button type="button" aria-label="북마크" class="btn-scrap">-->
-<!--                                            <div class="scrap">-->
-<!--                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"-->
-<!--                                                    xmlns="http://www.w3.org/2000/svg">-->
-<!--                                                    <path fill-rule="evenodd" clip-rule="evenodd"-->
-<!--                                                        d="M4.75 2.5a.25.25 0 0 0-.25.25v9.91l3.023-2.489a.75.75 0 0 1 .954 0l3.023 2.49V2.75a.25.25 0 0 0-.25-.25h-6.5zM3 2.75C3 1.784 3.784 1 4.75 1h6.5c.966 0 1.75.784 1.75 1.75v11.5a.75.75 0 0 1-1.227.579L8 11.722l-3.773 3.107A.75.75 0 0 1 3 14.25V2.75z"-->
-<!--                                                        fill="#eaecee"></path>-->
-<!--                                                </svg>-->
-<!--                                            </div>-->
-<!--                                        </button>-->
-<!--                                        &lt;!&ndash;공고 스크랩&ndash;&gt;-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </a>-->
-<!--                        </div>-->
-
-<!--                        <div class="card">-->
-<!--                            <a href="/jobs/jobsDetail"-->
-<!--                                onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">-->
-<!--                                <img class="card-img-top" src="/images/logo.png" alt="" srcset=""-->
-<!--                                    style="height: 5em; width: 180px; padding:5px; text-align: center;">-->
-<!--                                <div class="card-body">-->
-
-<!--                                    <div class="mb-2 ft-16">[compName]</div>-->
-<!--                                    <div class="point-ft ft-22 fw-600 mb-10">프론트엔드 개발자</div>-->
-<!--                                    <div class="skill-wrap">-->
-<!--                                        <span class="badge bg-warning">JavaScript</span>-->
-<!--                                        <span class="badge bg-primary">HTML/CSS</span>-->
-<!--                                        <span class="badge bg-success">Webpack</span>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;career, address info&ndash;&gt;-->
-<!--                                    <div class="d-flex">-->
-<!--                                        <div class="career">인턴</div>-->
-<!--                                        <div class="mr-5 ml-5">|</div>-->
-<!--                                        <div class="address">판교분당</div>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;career, address info&ndash;&gt;-->
-
-<!--                                    <div class="d-flex justify-content-end">-->
-<!--                                        &lt;!&ndash;공고 마감일&ndash;&gt;-->
-<!--                                        <div class="d-day mr-10">D-10</div>-->
-<!--                                        &lt;!&ndash;공고 마감일&ndash;&gt;-->
-
-<!--                                        &lt;!&ndash;공고 스크랩&ndash;&gt;-->
-<!--                                        <button type="button" aria-label="북마크" class="btn-scrap">-->
-<!--                                            <div class="scrap">-->
-<!--                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"-->
-<!--                                                    xmlns="http://www.w3.org/2000/svg">-->
-<!--                                                    <path fill-rule="evenodd" clip-rule="evenodd"-->
-<!--                                                        d="M4.75 2.5a.25.25 0 0 0-.25.25v9.91l3.023-2.489a.75.75 0 0 1 .954 0l3.023 2.49V2.75a.25.25 0 0 0-.25-.25h-6.5zM3 2.75C3 1.784 3.784 1 4.75 1h6.5c.966 0 1.75.784 1.75 1.75v11.5a.75.75 0 0 1-1.227.579L8 11.722l-3.773 3.107A.75.75 0 0 1 3 14.25V2.75z"-->
-<!--                                                        fill="#eaecee"></path>-->
-<!--                                                </svg>-->
-<!--                                            </div>-->
-<!--                                        </button>-->
-<!--                                        &lt;!&ndash;공고 스크랩&ndash;&gt;-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </a>-->
-<!--                        </div>-->
-
-<!--                        <div class="card">-->
-<!--                            <a href="/jobs/jobsDetail"-->
-<!--                                onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">-->
-<!--                                <img class="card-img-top" src="/images/logo.png" alt="" srcset=""-->
-<!--                                    style="height: 5em; width: 180px; padding:5px; text-align: center;">-->
-<!--                                <div class="card-body">-->
-
-<!--                                    <div class="mb-2 ft-16">[compName]</div>-->
-<!--                                    <div class="point-ft ft-22 fw-600 mb-10">프론트엔드 개발자</div>-->
-<!--                                    <div class="skill-wrap">-->
-<!--                                        <span class="badge bg-warning">JavaScript</span>-->
-<!--                                        <span class="badge bg-primary">HTML/CSS</span>-->
-<!--                                        <span class="badge bg-success">Webpack</span>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;career, address info&ndash;&gt;-->
-<!--                                    <div class="d-flex">-->
-<!--                                        <div class="career">인턴</div>-->
-<!--                                        <div class="mr-5 ml-5">|</div>-->
-<!--                                        <div class="address">판교분당</div>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;career, address info&ndash;&gt;-->
-
-<!--                                    <div class="d-flex justify-content-end">-->
-<!--                                        &lt;!&ndash;공고 마감일&ndash;&gt;-->
-<!--                                        <div class="d-day mr-10">D-10</div>-->
-<!--                                        &lt;!&ndash;공고 마감일&ndash;&gt;-->
-
-<!--                                        &lt;!&ndash;공고 스크랩&ndash;&gt;-->
-<!--                                        <button type="button" aria-label="북마크" class="btn-scrap">-->
-<!--                                            <div class="scrap">-->
-<!--                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"-->
-<!--                                                    xmlns="http://www.w3.org/2000/svg">-->
-<!--                                                    <path fill-rule="evenodd" clip-rule="evenodd"-->
-<!--                                                        d="M4.75 2.5a.25.25 0 0 0-.25.25v9.91l3.023-2.489a.75.75 0 0 1 .954 0l3.023 2.49V2.75a.25.25 0 0 0-.25-.25h-6.5zM3 2.75C3 1.784 3.784 1 4.75 1h6.5c.966 0 1.75.784 1.75 1.75v11.5a.75.75 0 0 1-1.227.579L8 11.722l-3.773 3.107A.75.75 0 0 1 3 14.25V2.75z"-->
-<!--                                                        fill="#eaecee"></path>-->
-<!--                                                </svg>-->
-<!--                                            </div>-->
-<!--                                        </button>-->
-<!--                                        &lt;!&ndash;공고 스크랩&ndash;&gt;-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </a>-->
-<!--                        </div>-->
-
-<!--                        <div class="card">-->
-<!--                            <a href="/jobs/jobsDetail"-->
-<!--                                onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">-->
-<!--                                <img class="card-img-top" src="/images/logo.png" alt="" srcset=""-->
-<!--                                    style="height: 5em; width: 180px; padding:5px; text-align: center;">-->
-<!--                                <div class="card-body">-->
-
-<!--                                    <div class="mb-2 ft-16">[compName]</div>-->
-<!--                                    <div class="point-ft ft-22 fw-600 mb-10">프론트엔드 개발자</div>-->
-<!--                                    <div class="skill-wrap">-->
-<!--                                        <span class="badge bg-warning">JavaScript</span>-->
-<!--                                        <span class="badge bg-primary">HTML/CSS</span>-->
-<!--                                        <span class="badge bg-success">Webpack</span>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;career, address info&ndash;&gt;-->
-<!--                                    <div class="d-flex">-->
-<!--                                        <div class="career">인턴</div>-->
-<!--                                        <div class="mr-5 ml-5">|</div>-->
-<!--                                        <div class="address">판교분당</div>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;career, address info&ndash;&gt;-->
-
-<!--                                    <div class="d-flex justify-content-end">-->
-<!--                                        &lt;!&ndash;공고 마감일&ndash;&gt;-->
-<!--                                        <div class="d-day mr-10">D-10</div>-->
-<!--                                        &lt;!&ndash;공고 마감일&ndash;&gt;-->
-
-<!--                                        &lt;!&ndash;공고 스크랩&ndash;&gt;-->
-<!--                                        <button type="button" aria-label="북마크" class="btn-scrap">-->
-<!--                                            <div class="scrap">-->
-<!--                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"-->
-<!--                                                    xmlns="http://www.w3.org/2000/svg">-->
-<!--                                                    <path fill-rule="evenodd" clip-rule="evenodd"-->
-<!--                                                        d="M4.75 2.5a.25.25 0 0 0-.25.25v9.91l3.023-2.489a.75.75 0 0 1 .954 0l3.023 2.49V2.75a.25.25 0 0 0-.25-.25h-6.5zM3 2.75C3 1.784 3.784 1 4.75 1h6.5c.966 0 1.75.784 1.75 1.75v11.5a.75.75 0 0 1-1.227.579L8 11.722l-3.773 3.107A.75.75 0 0 1 3 14.25V2.75z"-->
-<!--                                                        fill="#eaecee"></path>-->
-<!--                                                </svg>-->
-<!--                                            </div>-->
-<!--                                        </button>-->
-<!--                                        &lt;!&ndash;공고 스크랩&ndash;&gt;-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </a>-->
-<!--                        </div>-->
-
-
-
-<!--                    </div>-->
-
-                </div>
-                <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalLabel">비밀번호 인증</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                        <!--지원현황-->
+                        <div class="components-div p-tb-10 d-flex justify-content-between">
+                            <b style="font-size:1rem;">전체</b>
+                            <div>
+                                <button type="button" class="btn btn-mint offer-table-btn" style="margin: 0;"><a
+                                        href="/resume/{{id}}/writeResumeForm">이력서 작성</a></button>
                             </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="mb-3">
-                                        <label for="inputPassword" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="inputPassword"
-                                            aria-describedby="passwordHelp"
-                                            onkeypress="if(event.keyCode=='13'){event.preventDefault(); checkPS(`${principal.userId}`);}">
-                                        <div id="passwordHelp" class="form-text">현재 비밀번호를 입력해 주세요.</div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onclick="">Check</button>
-                            </div>
+
                         </div>
+                    </div>
+                    <div class="components">
+
+                        {{#resumeList}}
+                            <div class="card mb-4 mt-3">
+                                <div class="card-body" style=" padding: 0 !important;">
+                                    <div class="row">
+                                        <div class="col-7 mt-2">
+                                            <h5 class="card-title" style="text-align: left;">
+                                                {{title}}
+                                            </h5>
+                                            <!--기술스킬-->
+                                            <div class="d-flex">
+                                                <div class="new-skill-box">
+                                                    {{#skillList}}
+                                                        <div class="{{color}}">{{name}}</div>
+                                                    {{/skillList}}
+                                                </div>
+
+                                            </div>
+                                            <div class="m-2" style="float: left;">
+                                                <h6 class="card-subtitle text-muted">
+                                                    {{edu}}
+                                                </h6>
+                                            </div>
+                                            <div class="m-2" style="float: left;">
+                                                <h6 class="card-subtitle text-muted">
+                                                    {{career}}
+                                                </h6>
+                                            </div>
+                                            <div class="m-2" style="float: left;">
+                                                <h6 class="card-subtitle text-muted">
+                                                    {{area}}
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="d-flex" style="justify-content: flex-end;">
+                                                <input type="hidden" value="" name="" id="">
+                                                <div class="mb-2 mr-10" style="">
+                                                    <form action="/resume/{{id}}/updateResumeForm" method="get">
+                                                        <button type="submit" class="btn btn-mint">
+                                                            이력서 수정
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <div class="mb-2" style="">
+                                                    <form action="/resume/{{id}}/delete" method="post">
+                                                        <button type="submit" class="btn btn-outline-mint mb-2">
+                                                            이력서 삭제
+                                                        </button>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/resumeList}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-{{> /layout/footer}}
+{{> layout/footer}}
