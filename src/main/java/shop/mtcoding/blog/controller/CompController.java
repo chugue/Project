@@ -399,7 +399,7 @@ public class CompController {
             request.setAttribute("scrap", scrapDetailDTO);
         }
 
-
+        //nullnnulll
         return "/comp/compResumeDetail";
     }
 }
