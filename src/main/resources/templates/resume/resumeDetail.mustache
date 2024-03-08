@@ -272,19 +272,23 @@
                                         <input type="hidden" name="resumeId" value="{{resume.id}}">
                                         <button type="submit" class="btn btn-mint w-100 mb-10">스크랩 취소</button>
                                     </form>
-                                    <button id="scrap-${rDto.resumeId}" type="button" class="btn btn-outline-mint w-100"
-                                            onclick="">제안하기
-                                    </button>
                                     {{/scrap.isScrap}}
+                                    {{#offer}}
+                                    <form>
+                                        <button type="button" class="btn btn-outline-mint w-100">제안 취소</button>
+                                    </form>
+                                    {{/offer}}
                                     {{^scrap.isScrap}}
                                     <form action="/resume/scrap/save" method="post" enctype="application/x-www-form-urlencoded">
                                         <input type="hidden" name="resumeId" value="{{id}}">
                                         <button type="submit" class="btn btn-mint w-100 mb-10">스크랩</button>
                                     </form>
-                                    <button id="scrap-${rDto.resumeId}" type="button" class="btn btn-outline-mint w-100"
-                                            onclick="">제안하기
-                                    </button>
                                     {{/scrap.isScrap}}
+                                    {{^offer}}
+                                    <form action="/resume/offer/save" method="post" enctype="application/x-www-form-urlencoded">
+                                        <button type="button" class="btn btn-outline-mint w-100">제안하기</button>
+                                    </form>
+                                    {{/offer}}
                                 </div>
                             </div>
                         </div>

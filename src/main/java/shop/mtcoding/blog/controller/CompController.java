@@ -37,19 +37,10 @@ public class CompController {
     private final JobsRepository jobsRepository;
     private final ScrapRepository scrapRepository;
     private final ApplyRepository applyRepository;
-    private final OfferRepository offerRepository;
     private final HttpSession session;
 
 
     private final ResumeRepository resumeRepository;
-
-    @GetMapping("/comp/{id}/apply")
-    public String apply(OfferRequest.CompOfterDTO compOfterDTO, HttpServletRequest request) {
-        User sessionUser = (User) session.getAttribute("sessionComp");
-        request.setAttribute("id", sessionUser.getId());
-
-        return "/comp/apply";
-    }
   
   
     @GetMapping("/comp/{id}/comphome")
