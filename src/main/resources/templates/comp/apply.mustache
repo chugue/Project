@@ -1,59 +1,11 @@
 {{> layout/compheader}}
 
-<div style="margin-top: 130px" class="mx-auto">
+<div style="margin-top: 130px; min-height: 600px;" class="mx-auto">
     <div>
         <div style="display: flex; justify-content: center; max-width: 1600px; margin: 0 auto;">
-            <div class="px-5" style="text-align: center; flex: 0 0 auto; width: 300px;">
-                <div class="mb-3">
-                    <div class="fs-4">제안</div>
-                </div>
+            {{> layout/sidebar}}
 
-                <div class="card">
-                    <div style="width: 100%;">
-                        <div class="relative mb-3">
-                            <div>
-                                <a href="/user/profileUpdateForm"
-                                   onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                    <div class="user-img">
-                                        <img src="/images/Kakao.png" class="rounded" alt="Cinque Terre"
-                                             style="max-width: 80px;">
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h6 class="card-subtitle text-muted">카카오</h6>
-                            <hr>
-                            <ul class="nav flex-column nav-pills">
-                                <li class="nav-item">
-                                    <a class="nav-link sub-menu a p-1 mb-1" aria-current="page"
-                                       href="/comp/{{userId}}/comphome">공고 관리</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="sub-menu a p-1 mb-1 btn btn-mint">지원 / 제안</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link sub-menu a p-1" href="/comp/{{userId}}/scrap">스크랩</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link sub-menu a p-1" href="/comp/talent">매칭리스트</a>
-                                </li>
-                                <hr>
-                                <li class="nav-item">
-                                    <a class="nav-link sub-menu a p-1 mb-1" href="/user/update" data-bs-toggle="modal"
-                                       data-bs-target="#modal">정보수정</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link  sub-menu a p-1" href="/">로그아웃</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="my-4 layer2-right-container" style="flex: 0 0 auto; width: calc(100% - 300px);">
+            <div id="content" class="my-4 layer2-right-container" style="flex: 0 0 auto; width: calc(100% - 300px);">
                 <div class="components">
                     <div class="components-div p-tb-10 d-flex justify-content-between">
                         <div class="font">전체</div>

@@ -12,6 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 import shop.mtcoding.blog.dto.user.UserRequest;
 import shop.mtcoding.blog.model.profile.ProfileRepository;
 import shop.mtcoding.blog.model.profile.ProfileRequest;
+import shop.mtcoding.blog.model.resume.ResumeRepository;
+import shop.mtcoding.blog.model.resume.ResumeRequest;
 import shop.mtcoding.blog.model.user.User;
 import shop.mtcoding.blog.model.user.UserRepository;
 
@@ -28,6 +30,7 @@ public class UserController {
     private final UserRepository userRepository;
     private final ProfileRepository profileRepository;
     private final HttpSession session;
+    private final ResumeRepository resumeRepository;
 
 
     @PostMapping("/user/join/{role}")
@@ -75,14 +78,15 @@ public class UserController {
         return "/user/loginForm";
     }
 
-    @GetMapping("/user/offer")
-    public String offer() {
+    @GetMapping("/user/{id}/offer")
+    public String offer(@PathVariable Integer id) {
         return "/user/offer";
     }
 
 
-    @GetMapping("/user/scrap")
-    public String scrap() {
+    @GetMapping("/user/{id}/scrap")
+    public String scrap(@PathVariable Integer id) {
+
         return "/user/scrap";
     }
 
@@ -91,8 +95,23 @@ public class UserController {
         return "/user/updateForm";
     }
 
-    @GetMapping("/user/userHome")
-    public String userHome() {
+    @GetMapping("/user/{id}/userHome")
+    public String userHome(@PathVariable Integer id, HttpServletRequest request) {
+
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId(id);
+        System.out.println(request); // 이거 스킬 안넣었을때 리스트
+
+        for (int i = 0; i < resumeList.size(); i++) {
+            //우리가 아까만든 생성자에 resumeList 값들이 들어간다
+            ResumeRequest.UserViewDTO dto = resumeList.get(i);
+            dto.setSkillList(resumeRepository.findAllByResumeId(dto.getId()));
+        }
+
+        request.setAttribute("resumeList", resumeList);
+        System.out.println(request); // 이건 스킬추카하고 나서 리스트
+//        List<SkillResponse.ResumeSkillDTO> resumeSkillList = resumeRepository.findAllByResumeId(id);
+
         return "/user/userHome";
     }
 

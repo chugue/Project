@@ -1,9 +1,9 @@
 {{> /layout/compheader}}
 
-    <div class="ml-80 mr-80 px-3 pt-140" style="margin: 0 auto; width:80%;">
+    <div class="ml-80 mr-80 pt-140" style=" width: 1500px; margin: 0 auto;">
         <!-- 가운데 탭-->
-        <div class="row px-2">
-            <div class="col-3">
+        <div style=" display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; grid-gap: 20px;">
+            <div>
                 <!--<button type="button" class="btn btn-mint w-100 ">지역별</button>-->
                 <select class="form-select tab btn-outline-mint" name="sidoName" id="sidoName">
                     <option selected disabled>지역별</option>
@@ -27,7 +27,7 @@
                 </select>
                 </td>
             </div>
-            <div class="col-3">
+            <div>
                 <!--<button type="button" class="btn btn-outline-mint w-100">기술별</button>-->
                 <select class="form-select tab btn-outline-mint" name="" id="">
                     <option selected disabled>기술별</option>
@@ -43,7 +43,7 @@
                     <option value="">React</option>
                 </select>
             </div>
-            <div class="col-3">
+            <div>
                 <!--<button type="button" class="btn btn-outline-mint w-100">직무별</button>-->
                 <select class="form-select tab btn-outline-mint" name="" id="">
                     <option selected disabled>직무별</option>
@@ -58,7 +58,7 @@
                     <option value="devops 개발자">devops 개발자</option>
                 </select>
             </div>
-            <div class="col-3">
+            <div>
                 <!--<button type="button" class="btn btn-outline-mint w-100">직무별</button>-->
                 <select class="form-select tab btn-outline-mint" name="" id="">
                     <option selected disabled>경력별</option>
@@ -73,7 +73,6 @@
                     <option value="1년차">7년차</option>
                     <option value="1년차">8년차</option>
                     <option value="1년차">8년차 이상</option>
-
                 </select>
             </div>
         </div>
