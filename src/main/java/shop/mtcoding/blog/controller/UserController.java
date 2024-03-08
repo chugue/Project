@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import shop.mtcoding.blog.dto.user.UserRequest;
 import shop.mtcoding.blog.model.profile.ProfileRepository;
@@ -16,6 +17,7 @@ import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.resume.ResumeRequest;
 import shop.mtcoding.blog.model.user.User;
 import shop.mtcoding.blog.model.user.UserRepository;
+import shop.mtcoding.blog.util.ApiUtil;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -31,6 +33,18 @@ public class UserController {
     private final ProfileRepository profileRepository;
     private final HttpSession session;
     private final ResumeRepository resumeRepository;
+
+    //아이디 중복체크 용. 이메일로 회원가입해서 email을 해줌
+    @GetMapping("/api/user/username-same-check")
+    public @ResponseBody ApiUtil<?> usernameSameCheck(String email) {
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            return new ApiUtil<>(true);
+        } else {
+            return new ApiUtil<>(false);
+        }
+
+    }
 
 
     @PostMapping("/user/join/{role}")
