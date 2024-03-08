@@ -24,6 +24,12 @@ select {
     padding: 10px 30px;
     width: 100%;
 }
+.btn-m {
+    border: 1px solid var(--btn-color);
+    color: var(--mint-color);
+    padding: 10px;
+    width: 100%;
+}
 
 .btn.on {
     background-color: var(--mint-color);

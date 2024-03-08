@@ -338,6 +338,7 @@ public class CompController {
 
         }
 
+        //테스트용 주석
         System.out.println(viewDTOList);
 
         session.setAttribute("readResumeList", viewDTOList);
@@ -399,7 +400,7 @@ public class CompController {
             request.setAttribute("scrap", scrapDetailDTO);
         }
 
-
+        //nullnnulll
         return "/comp/compResumeDetail";
     }
 }
