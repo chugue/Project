@@ -29,8 +29,6 @@ public class MainController {
     @GetMapping("/")
     public String index(HttpServletRequest request, @RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") String page) {
         int currentPage = Integer.parseInt(page);
-
-
         int totalPosts = jobsRepository.findAllV2().size();
         boolean lastPage = paging.lastPage(currentPage, totalPosts);
         boolean firstPage = paging.firstPage(currentPage);
