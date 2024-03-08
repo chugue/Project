@@ -108,6 +108,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}/offer")
+
     public String offer(@PathVariable Integer id,
                         @RequestParam(required = false, defaultValue = "1") Integer resumeId,
                         HttpServletRequest request) {
@@ -138,12 +139,13 @@ public class UserController {
 
     @GetMapping("/user/{id}/scrap")
     public String scrap(@PathVariable Integer id) {
-
         return "/user/scrap";
     }
 
-    @GetMapping("/user/updateForm")
-    public String updateForm() {
+    @GetMapping("/user/{id}/updateForm")
+    public String updateForm(@PathVariable int id) {
+//        User user = (User) userRepository.updateById(id);
+
         return "/user/updateForm";
     }
 
@@ -163,7 +165,6 @@ public class UserController {
         request.setAttribute("resumeList", resumeList);
         System.out.println(request); // 이건 스킬추카하고 나서 리스트
 //        List<SkillResponse.ResumeSkillDTO> resumeSkillList = resumeRepository.findAllByResumeId(id);
-
         return "/user/userHome";
     }
 

@@ -1,9 +1,11 @@
 {{> layout/header}}
+
 <div class="mx-auto pt-80">
     <div class=" my-5 py-5 new-container">
-        <div class="row">
 
+        <div class="row">
            {{> layout/sidebar}}
+
             <!--이력서 관리-->
             <div class="my-4 layer2-right-container" style="flex: 0 0 auto; width: calc(100% - 300px);">
                 <div class="components">
@@ -78,10 +80,10 @@
                                     <!--                                    </a>-->
                                 </div>
 
-                                <div class="col-5">
-                                    <div class="d-flex" style="margin-left: 33%">
+                                <div class="col-5 d-flex" style="justify-content: end">
+                                    <div class="d-flex" style="flex-wrap: nowrap;">
                                         <input type="hidden" value="" name="" id="">
-                                        <div class="mb-2 mr-10" style="">
+                                        <div class="mb-2 mr-10" style="flex-grow: 1;">
                                             <form action="/resume/{{id}}/updateResumeForm" method="get">
                                                 <button type="submit" class="btn btn-mint">
                                                     이력서 수정
@@ -89,7 +91,7 @@
                                             </form>
 
                                         </div>
-                                        <div class="mb-2" style="">
+                                        <div class="mb-2" style="flex-grow: 1;">
                                             <form action="/resume/{{id}}/delete" method="post">
                                                 <button type="submit" class="btn btn-outline-mint mb-2">
                                                     이력서 삭제

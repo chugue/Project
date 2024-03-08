@@ -42,7 +42,7 @@ public class UserRepository {
     }
 
     @Transactional
-    public void updateById(){}
+    public void updateById(Integer id){}
 
     @Transactional
     public void save(UserRequest.UserAllDTO requestDTO) {
