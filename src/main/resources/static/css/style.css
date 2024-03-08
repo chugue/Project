@@ -24,6 +24,12 @@ select {
     padding: 10px 30px;
     width: 100%;
 }
+.btn-m {
+    border: 1px solid var(--btn-color);
+    color: var(--mint-color);
+    padding: 10px;
+    width: 100%;
+}
 
 .btn.on {
     background-color: var(--mint-color);
@@ -67,7 +73,6 @@ select {
 
 /*헤더*/
 #header {
-    _background: transparent;
     z-index: 1000;
     position: relative;
     height: 85px;
@@ -75,11 +80,23 @@ select {
     top: 0;
     background: #fff;
     border-bottom: 1px solid #ccc;
-    padding: 0 100px;
 
-
+    padding: 0;
+    display: flex;
+    justify-content: center;
 }
-
+nav{
+    width: 1500px;
+    margin: 0 auto;
+}
+.navbar>.container-fluid{
+    padding: 0;
+    width: 1500px;
+    margin: 0 auto;
+}
+.navbar>.container-fluid img{
+    width: 70%;
+}
 #header.fix {
     position: fixed;
     width: 100% !important;
@@ -164,12 +181,15 @@ select {
     gap: 20px;
     display: grid;
     grid-template-columns: auto auto auto;
+    width: 1500px;
+    margin: 0 auto;
 }
 
 
 /*푸터*/
 #footer {
     border-top: 1px solid #ccc;
+
 }
 
 /*top 버튼*/
@@ -244,8 +264,8 @@ body {
     display: block;
     width: 1px;
     height: 80px;
-    background-color: #222;
-    color: #222;
+    background-color: #2cb457;
+    color: #2cb457;
     margin-top: -60px;
 }
 
@@ -381,9 +401,10 @@ table th {
 
 .navbar {
     position: fixed;
-    top: 0;
     width: 100%;
     z-index: 999;
+    height: 85px;
+    padding: 0;
 }
 
 .div_category:hover {
@@ -410,7 +431,7 @@ table th {
 
 .nav-pills>.nav-item>.active {
     color: rgb(255, 255, 255);
-    background-color: rgb(77, 143, 77)
+    background-color: #2cb457;
 }
 
 .display-none {
@@ -425,4 +446,10 @@ table th {
     display: inline;
     background-color: #2cb457;
     border: none;
+}
+
+.new-flex-wrapper{
+    display: flex;
+    flex-direction: column;
+    padding: 100px 0;
 }

@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.blog.dto.scrap.ScrapResponse;
 import shop.mtcoding.blog.model.apply.ApplyResponse;
 import shop.mtcoding.blog.model.comp.CompRequest;
+
 import shop.mtcoding.blog.model.jobs.JobResponse;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
+
 import shop.mtcoding.blog.model.offer.OfferRepository;
 import shop.mtcoding.blog.model.offer.OfferResponse;
 import shop.mtcoding.blog.model.resume.Resume;
@@ -33,6 +35,7 @@ public class ResumeController {
     private final ResumeRepository resumeRepository;
     private final ScrapRepository scrapRepository;
     private final OfferRepository offerRepository;
+
     private final JobsRepository jobsRepository;
 
 

@@ -6,15 +6,52 @@ import lombok.RequiredArgsConstructor;
 import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import shop.mtcoding.blog.model.jobs.JobResponse;
+import shop.mtcoding.blog.model.jobs.Jobs;
 import shop.mtcoding.blog.model.skill.SkillRequest;
 
+import java.util.Collection;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Repository
 public class ResumeRepository {
-
     private final EntityManager em;
+
+    public List<ResumeResponse.ResumeUserDTO> findAllWithUserV2() {
+        String q = """
+                select rt.id, rt.user_id, rt.title, rt.area, rt.edu, rt.career, rt.introduce, rt.port_link, rt.created_at, ut.my_name 
+                from resume_tb rt inner join user_tb ut 
+                on rt.user_id = ut.id 
+                order by rt.id desc 
+                """;
+
+        Query query = em.createNativeQuery(q);
+        // 엔티티랑 다른 모양의 쿼리를 직접 DTO로 만들어서 매핑하기 위한 툴
+        JpaResultMapper mapper = new JpaResultMapper();
+        // mapper.list ( 쿼리, 결과를 위한 DTO)로 만들고 결과가 여러개라면 List<DTO>로 생산후 반환
+        List<ResumeResponse.ResumeUserDTO> result = mapper.list(query, ResumeResponse.ResumeUserDTO.class);
+        return result;
+    }
+
+    public List<ResumeResponse.ResumeUserDTO> findAllWithUserV2(String keyword) {
+        String q = """
+                select rt.*, ut.my_name 
+                from resume_tb rt inner join user_tb ut 
+                on rt.user_id = ut.id 
+                where rt.title like ? or ut.my_name like ? order by rt.id desc ;
+                """;
+
+        Query query = em.createNativeQuery(q, Resume.class);
+        query.setParameter(1, "%" + keyword + "%");
+        query.setParameter(2, "%" + keyword + "%");
+
+        JpaResultMapper mapper = new JpaResultMapper();
+        List<ResumeResponse.ResumeUserDTO> result = mapper.list(query, ResumeResponse.ResumeUserDTO.class);
+
+        return result;
+    }
+
 
     public List<Resume> findAll() {
         String q = """
@@ -31,15 +68,15 @@ public class ResumeRepository {
     public List<Object[]> findAll(Integer userId) {
 
 
-       String q = """
-               SELECT r.id, r.user_Id, r.title, r.edu, r.area, s.resume_Id,r.career, s.name 
-               FROM resume_tb r
-               inner join user_tb u
-               ON r.user_id = u.id
-               inner join skill_tb s
-               on r.id = s.resume_id
-               where u.id = ?;
-               """;
+        String q = """
+                SELECT r.id, r.user_Id, r.title, r.edu, r.area, s.resume_Id,r.career, s.name 
+                FROM resume_tb r
+                inner join user_tb u
+                ON r.user_id = u.id
+                inner join skill_tb s
+                on r.id = s.resume_id
+                where u.id = ?;
+                """;
 
 
         Query query = em.createNativeQuery(q);
@@ -64,9 +101,9 @@ public class ResumeRepository {
 
 
     // DTO 타입으로 스킬리스트빼고 전부 들고오는 매서드
-    public List<ResumeRequest.UserViewDTO> findAllUserId(Integer userId){
+    public List<ResumeRequest.UserViewDTO> findAllUserId(Integer userId) {
         Query query = em.createNativeQuery("select rt.id ,rt.title, rt.edu, rt.career, rt.area from resume_tb rt  where user_id =?");
-        query.setParameter(1,userId);
+        query.setParameter(1, userId);
 
         JpaResultMapper mapper = new JpaResultMapper();
         List<ResumeRequest.UserViewDTO> result = mapper.list(query, ResumeRequest.UserViewDTO.class);
@@ -75,16 +112,15 @@ public class ResumeRepository {
     }
 
     //SkillDTO 타입으로 이력서테이블에 들어가있는 스킬 찾는매서드
-    public List<SkillRequest.ResumeSkillDTO> findAllByResumeId(Integer id){
+    public List<SkillRequest.ResumeSkillDTO> findAllByResumeId(Integer id) {
         Query query = em.createNativeQuery(" select st.name,st.color from skill_tb st inner join resume_tb rt on st.resume_id = rt.id where rt.id =?");
-        query.setParameter(1,id);
+        query.setParameter(1, id);
 
         JpaResultMapper mapper = new JpaResultMapper(); // 이거안쓰면 DTO 타입으로 못받아오고 Object 로 가져와야함
-        List<SkillRequest.ResumeSkillDTO> resumeSKillList = mapper.list(query,SkillRequest.ResumeSkillDTO.class);
+        List<SkillRequest.ResumeSkillDTO> resumeSKillList = mapper.list(query, SkillRequest.ResumeSkillDTO.class);
 
         return resumeSKillList;
     }
-
 
 
     // 탬플릿에서 유저 못찾고 있는데 ..
@@ -111,8 +147,8 @@ public class ResumeRepository {
         //스킬 insert
         for (int i = 0; i < requestDTO.getSkill().size(); i++) {
             Query addSkillquery = em.createNativeQuery("insert into skill_tb(role,resume_id,name) values (1,?,?)");
-            addSkillquery.setParameter(1,newResumeid);
-            addSkillquery.setParameter(2,requestDTO.getSkill().get(i));
+            addSkillquery.setParameter(1, newResumeid);
+            addSkillquery.setParameter(2, requestDTO.getSkill().get(i));
 
             addSkillquery.executeUpdate();
         }

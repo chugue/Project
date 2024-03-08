@@ -1,57 +1,10 @@
 {{> layout/header}}
 <div class="mx-auto pt-80">
-    <div class=" my-5 py-5" style="max-width:1500px; margin: 0 auto">
+    <div class=" my-5 py-5 new-container">
         <div class="row">
-            <div class="px-5" style="text-align: center; flex: 0 0 auto; width: 300px;">
-                <div class="mb-3">
-                    <div class="fs-4">이력서 관리</div>
-                </div>
-                <div class="card">
-                    <div style="width: 100%;">
-                        <div class="relative mb-3">
-                            <div>
-                                <a href="/user/profileUpdateForm"
-                                   onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                    <div class="user-img">
-                                        <img src="/images/aboutme_img.jpg" class="rounded" alt="Cinque Terre"
-                                             style="max-width: 80px;">
 
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <h6 class="card-subtitle text-muted">심유주님</h6>
-                            <hr>
-                            <ul class="nav flex-column nav-pills">
-                                <li class="nav-item">
-                                    <a href="/user/userHome" class="nav-link sub-menu a p-1 mb-1"
-                                       aria-current="page">마이 홈</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/resume/manageResume" class="sub-menu a p-1 mb-1 btn btn-mint"
-                                       aria-current="page">이력서 관리</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/user/{{userId}}/offer" class="nav-link sub-menu a p-1 mb-1">제안</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/user/scrap" class="nav-link sub-menu a p-1 mb-1">스크랩</a>
-                                </li>
-                                <hr>
-                                <li class="nav-item">
-                                    <a href="/user/updateForm" class="nav-link sub-menu a p-1 mb-1">정보수정</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link  sub-menu a p-1" href="/">로그아웃</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           {{> layout/sidebar}}
             <!--이력서 관리-->
-
             <div class="my-4 layer2-right-container" style="flex: 0 0 auto; width: calc(100% - 300px);">
                 <div class="components">
                     <div class="components-div p-tb-10 d-flex justify-content-between">
@@ -147,7 +100,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     {{/resumeList}}
