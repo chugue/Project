@@ -35,7 +35,7 @@ public class CompRequest {
       private String edu;
       private String career;
       private String area;
-      private List<SkillRequest.JobSkillDTO> skillList = new ArrayList<>();
+      private List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
   }
   
   @Data

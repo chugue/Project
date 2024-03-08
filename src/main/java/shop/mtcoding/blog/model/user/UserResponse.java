@@ -1,10 +1,5 @@
-package shop.mtcoding.blog.model.jobs;
+package shop.mtcoding.blog.model.user;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import shop.mtcoding.blog.model.skill.Skill;
@@ -12,11 +7,9 @@ import shop.mtcoding.blog.model.skill.SkillRequest;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
-public class JobResponse {
-
+public class UserResponse {
 
     @NoArgsConstructor
     @Data
@@ -49,29 +42,19 @@ public class JobResponse {
         }
     }
 
-
     @Data
-    public static class JobListByUserId{
+    public static class UserListByUserId{
         private Integer id;
         private String title;
-        private String compName;
-        private String task;
+        private String area;
         private String career;
         private List<SkillRequest.JobSkillDTO> skillList;
 
-        public JobListByUserId(Integer id, String title, String compName, String task, String career) {
+        public UserListByUserId(Integer id, String title, String area, String career) {
             this.id = id;
             this.title = title;
-            this.compName = compName;
-            this.task = task;
+            this.area = area;
             this.career = career;
         }
     }
-
-
-
-
-
-
-
 }

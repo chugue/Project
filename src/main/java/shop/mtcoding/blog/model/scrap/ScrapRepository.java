@@ -17,6 +17,19 @@ public class ScrapRepository {
 
     private final EntityManager em;
 
+    // select * from resume_tb where id in (select resume_id from scrap_tb where user_id = 6)
+    public List<Resume> findByUserIdWithResume(Integer id){
+        String q = """
+                select * from resume_tb where id in (select resume_id from scrap_tb where user_id = ?)
+                """;
+
+        Query query = em.createNativeQuery(q, Resume.class);
+        query.setParameter(1, id);
+        List<Resume> resumeList = query.getResultList();
+
+        return resumeList;
+    }
+
     public List<Scrap> findByUserId(Integer id) {
         String q = """
                 SELECT * FROM SCRAP_TB where user_id = ?;
@@ -29,7 +42,7 @@ public class ScrapRepository {
         return scrapList;
     }
 
-    public ScrapResponse.DetailDTO findScrap(int resumeId) {
+    public ScrapResponse.DetailDTO findScrap(Integer resumeId) {
         String q = """
                 SELECT * FROM scrap_tb WHERE resume_id = ?;
                 """;
@@ -49,7 +62,7 @@ public class ScrapRepository {
         return responseDTO;
     }
 
-    public ScrapResponse.DetailDTO findScrap(int resumeId, int sessionUserId) {
+    public ScrapResponse.DetailDTO findScrap(Integer resumeId, Integer sessionUserId) {
         String q = """
                 SELECT id, 
                 case when user_id is null then false else true 

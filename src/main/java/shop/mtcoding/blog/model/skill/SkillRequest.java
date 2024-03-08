@@ -63,6 +63,8 @@ public class SkillRequest {
         private String color;
     }
 
+
+
     @Data
     public static class ApplyskillDTO{
         private String name;

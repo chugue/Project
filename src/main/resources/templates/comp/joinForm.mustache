@@ -10,7 +10,7 @@
             <form style="width: 350px; align-items: normal" action="/comp/join/2" method="post" onsubmit="return valid()">
                 <div class="d-flex form-group mt-2 mb-2">
                     <input type="email" name="email" class="form-control" placeholder="Enter email" id="email" value="kim@nate.com">
-                    <button type="button" class="badge bg-secondary ms-2" onclick="emailCheckBtn()">중복확인</button>
+                    <button type="button" class="badge bg-secondary ms-2" onclick="emailSameCheck()">중복확인</button>
                 </div>
 
                 <div class="form-group mb-2">
@@ -53,13 +53,13 @@
 
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="flexCheckChecked1">
-                    <label class="form-check-label" for="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked1">
                         (필수) 이용약관 동의
                     </label>
                 </div>
                 <div class="form-check mb-4">
                     <input class="form-check-input" type="checkbox" id="flexCheckChecked2">
-                    <label class="form-check-label" for="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked2">
                         (필수) 개인정보 수집 및 이용 동의
                     </label>
                 </div>
@@ -72,4 +72,45 @@
         </div>
     </div>
 </div>
+
+<!--중복체크 스크립트-->
+<script>
+    let isSameCheck = false;
+
+    // 아이디 필드가 변경되면 중복 체크 상태를 초기화
+    $("#email").on("change", function () {
+        isSameCheck = false;
+    });
+
+    function valid() {
+        if (isSameCheck == false) {
+            alert("아이디 중복 체크를 해야합니다");
+            return false;
+        }
+        return true;
+    }
+
+    function emailSameCheck() {
+        let email = $("#email").val();
+
+        $.ajax({
+            url: "/api/user/username-same-check?email=" + email,
+            type: "get"
+        }).done((res) => {
+            console.log(res);
+            if (res.body == true) {
+                isSameCheck = true;
+                alert("가입 가능한 아이디입니다");
+            } else {
+                isSameCheck = false;
+                alert("중복된 아이디가 존재합니다");
+            }
+        }).fail((res) => {
+            alert(res.responseJSON.msg);
+        });
+    }
+
+
+</script>
+
 {{> layout/footer}}

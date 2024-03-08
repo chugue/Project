@@ -42,7 +42,7 @@ public class UserRepository {
     }
 
     @Transactional
-    public void updateById(){}
+    public void updateById(Integer id){}
 
     @Transactional
     public void save(UserRequest.UserAllDTO requestDTO) {
@@ -82,5 +82,23 @@ public class UserRepository {
             user = null;
         }
         return user;
+    }
+
+    //회원가입 시 중복확인을 위해 email 찾는 메소드
+    public User findByEmail(String email) {
+        String q = """
+                select * from user_tb where email = ?
+                """;
+
+        Query query = em.createNativeQuery(q, User.class);
+        query.setParameter(1, email);
+
+        try {
+            User user = (User) query.getSingleResult();
+            return user;
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 }

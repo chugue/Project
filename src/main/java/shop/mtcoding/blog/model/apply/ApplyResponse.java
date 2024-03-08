@@ -25,6 +25,4 @@ public class ApplyResponse {
             this.career = career;
         }
     }
-
-
 }

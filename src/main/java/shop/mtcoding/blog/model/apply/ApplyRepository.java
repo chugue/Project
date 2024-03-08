@@ -56,13 +56,6 @@ public class ApplyRepository {
 
 
 
-
-
-
-
-
-
-
     public void findById(){}
 
     @Transactional
