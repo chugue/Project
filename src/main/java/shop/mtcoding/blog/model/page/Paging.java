@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 import shop.mtcoding.blog.model.jobs.JobResponse;
 import shop.mtcoding.blog.model.jobs.Jobs;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
+import shop.mtcoding.blog.model.resume.Resume;
+import shop.mtcoding.blog.model.resume.ResumeRepository;
+import shop.mtcoding.blog.model.resume.ResumeResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +19,7 @@ import java.util.List;
 @Component
 public class Paging {
     private final JobsRepository jobsRepository;
+    private final ResumeRepository resumeRepository;
     final int SHOW_PAGES = 9; //화면에 표현하고 싶은 게시물개수 (이력서 or 공고)
     int currentPage;
     int prevPage;
@@ -88,5 +92,49 @@ public class Paging {
         int totalPosts = pageList.size();
         int currentPage =((totalPosts - postId)/SHOW_PAGES) + 1;
         return currentPage;
+    }
+
+    public boolean complastPage(int currentPage) {
+        boolean lastPage;
+        currentPage = currentPage - 1;
+        int totalPosts = resumeRepository.findAll().size();
+        lastPage = (totalPosts - (SHOW_PAGES * currentPage)) < SHOW_PAGES;
+        return lastPage;
+    }
+
+    public boolean compfirstPage(int page) {
+        boolean firstPage;
+        currentPage = page;
+        prevPage = currentPage - 1;
+        firstPage = prevPage == 0;
+        return firstPage;
+    }
+
+    public int compTotalPages() {
+        List<Resume> pageList = resumeRepository.findAll();
+        int totalPosts = pageList.size();
+        int remainder = totalPosts % SHOW_PAGES; //3
+        int division = totalPosts / SHOW_PAGES; // 1
+        int totalPages = (remainder <= SHOW_PAGES) ? division + 1 : division;
+
+        return totalPages;
+    }
+
+    public List<ResumeResponse.ResumeUserDTO> compShowPagesV2(int page) {
+        currentPage = page;
+        List<ResumeResponse.ResumeUserDTO> pageList = resumeRepository.findAllWithUserV2();
+        ArrayList<ResumeResponse.ResumeUserDTO> resumeList = new ArrayList<>();
+        int totalPosts = pageList.size();
+        int start = (SHOW_PAGES * currentPage) - SHOW_PAGES;
+        int end = SHOW_PAGES * currentPage;
+
+        // 현재 페이지에 필요한 공고만 조회해서 출력
+        for (int j = start; j < end; j++) {
+            if (j >= totalPosts) {
+                break;
+            }
+            resumeList.add(pageList.get(j));
+        }
+        return resumeList;
     }
 }

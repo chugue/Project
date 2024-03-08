@@ -21,27 +21,17 @@ public class Resume {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private Integer userId;
-
-
     private String title;
     // 희망 근무 지역
     private String area;
-
-
     private String edu;
-
     private String career;
-
     // 자기소개
-
     private String introduce;
     // 포트폴리오 링크
     private String portLink;
-
-    // private Boolean isPublic; // 이부분 오류나길래 일단 String 바꿔놓음
-
+//    private Boolean isPublic; // 이부분 오류나길래 일단 String 바꿔놓음
     private Timestamp createdAt;
 
 }
