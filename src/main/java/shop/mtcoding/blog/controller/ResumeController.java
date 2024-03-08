@@ -9,7 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.blog.dto.scrap.ScrapResponse;
+import shop.mtcoding.blog.model.apply.ApplyResponse;
 import shop.mtcoding.blog.model.comp.CompRequest;
+
+import shop.mtcoding.blog.model.jobs.JobResponse;
+import shop.mtcoding.blog.model.jobs.JobsRepository;
+
 import shop.mtcoding.blog.model.offer.OfferRepository;
 import shop.mtcoding.blog.model.offer.OfferResponse;
 import shop.mtcoding.blog.model.resume.Resume;
@@ -31,12 +36,12 @@ public class ResumeController {
     private final ScrapRepository scrapRepository;
     private final OfferRepository offerRepository;
 
+    private final JobsRepository jobsRepository;
+
 
     @GetMapping("/resume/resumeDetail/{id}")
     public String resumeDetail (@PathVariable Integer id, HttpServletRequest request) {
         User sessionComp = (User) session.getAttribute("sessionComp");
-
-
         Resume resumeDTO = resumeRepository.findById(id);
         request.setAttribute("resume", resumeDTO);
 
@@ -49,8 +54,13 @@ public class ResumeController {
         } else {
             ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id, sessionComp.getId());
             request.setAttribute("scrap", scrapDetailDTO);
-            OfferResponse.OfferDetailDTO offerDetailDTO = offerRepository.findOffer(id, sessionComp.getId());
+            OfferResponse.OfferDetailDTO offerDetailDTO = offerRepository.findOffer(id, session.getAttribute("jobsId"));
             request.setAttribute("offer", offerDetailDTO);
+
+//            request.setAttribute("jobsId2", session.getAttribute("jobsId"));
+
+            List<JobResponse.JobListByUserId> jobsList = jobsRepository.findAllByUserId(sessionComp.getId());
+            request.setAttribute("jobsList", jobsList);
         }
         return "/resume/resumeDetail";
     }
@@ -59,19 +69,20 @@ public class ResumeController {
 
     @GetMapping("/resume/{id}/manageResume")
     public String manageResume(@PathVariable Integer id,HttpServletRequest request) {
-//        User sessionUser = (User) session.getAttribute("sessionUser");
-//        List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId(id);
-//        System.out.println(request); // 이거 스킬 안넣었을때 리스트
-//
-//        for (int i = 0; i < resumeList.size(); i++) {
-//            //우리가 아까만든 생성자에 resumeList 값들이 들어간다
-//            ResumeRequest.UserViewDTO dto = resumeList.get(i);
-//            dto.setSkillList(resumeRepository.findAllByResumeId(dto.getId()));
-//        }
-//
-//        request.setAttribute("resumeList", resumeList);
-//        System.out.println(request); // 이건 스킬추카하고 나서 리스트
-////        List<SkillResponse.ResumeSkillDTO> resumeSkillList = resumeRepository.findAllByResumeId(id);
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        request.setAttribute("userId", sessionUser.getId());
+        List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId(id);
+        System.out.println(request); // 이거 스킬 안넣었을때 리스트
+
+        for (int i = 0; i < resumeList.size(); i++) {
+            //우리가 아까만든 생성자에 resumeList 값들이 들어간다
+            ResumeRequest.UserViewDTO dto = resumeList.get(i);
+            dto.setSkillList(resumeRepository.findAllByResumeId(dto.getId()));
+        }
+
+        request.setAttribute("resumeList", resumeList);
+        System.out.println(request); // 이건 스킬추카하고 나서 리스트
+//        List<SkillResponse.ResumeSkillDTO> resumeSkillList = resumeRepository.findAllByResumeId(id);
 
         return "/resume/manageResume";
     }

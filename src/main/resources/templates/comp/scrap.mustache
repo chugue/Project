@@ -21,30 +21,25 @@
                             <div class="col-9 mt-2">
                                 <a href="#">
                                     <h5 class="card-title" style="text-align: left;">
-                                        백엔드 개발자 지원합니다.
+                                        {{title}}
                                     </h5>
                                     <!--기술스킬-->
-                                    <div class="d-flex">
-                                        <div class="skill-wrap">
-                                            <span class="badge bg-warning">JavaScript</span>
-                                            <span class="badge bg-primary">HTML/CSS</span>
-                                            <span class="badge bg-success">Webpack</span>
-                                        </div>
-                                    </div>
+<!--                                    <div class="d-flex">-->
+<!--                                        <div class="skill-wrap">-->
+<!--                                            <span class="badge bg-warning">JavaScript</span>-->
+<!--                                            <span class="badge bg-primary">HTML/CSS</span>-->
+<!--                                            <span class="badge bg-success">Webpack</span>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
 
                                     <div class="m-2" style="float: left;">
                                         <h6 class="card-subtitle text-muted">
-                                            경력무관
+                                            {{career}}
                                         </h6>
                                     </div>
                                     <div class="m-2" style="float: left;">
                                         <h6 class="card-subtitle text-muted">
-                                            미들(4~8년)
-                                        </h6>
-                                    </div>
-                                    <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle text-muted">
-                                            판교분당
+                                            {{area}}
                                         </h6>
                                     </div>
                                 </a>
@@ -62,7 +57,8 @@
 <!--                        여기 지워지워지워-->
                     </div>
                 </div>
-                {{/scrapList}}
+                {{/resumeList}}
+
             </div>
         </div>
 </div>
