@@ -90,13 +90,11 @@ public class JobsRepository {
 
         String q = """
                 select
-                    jt.id as user_id, ut.comp_name, jt.title, jt.task, jt.career
+                jt.id as user_id, ut.comp_name, jt.title, jt.task, jt.career
                 from jobs_tb jt
                 join user_tb ut
                 on jt.user_id = ut.id
-              
                 where ut.id = ?
-                
                     """;
         Query query = em.createNativeQuery(q);
         query.setParameter(1, id);

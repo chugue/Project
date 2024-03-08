@@ -42,15 +42,6 @@ public class CompController {
 
 
     private final ResumeRepository resumeRepository;
-
-    @GetMapping("/comp/{id}/apply")
-    public String apply(OfferRequest.CompOfterDTO compOfterDTO, HttpServletRequest request) {
-        User sessionUser = (User) session.getAttribute("sessionComp");
-        request.setAttribute("id", sessionUser.getId());
-
-        return "/comp/apply";
-    }
-  
   
     @GetMapping("/comp/{id}/comphome")
     public String compHome(@PathVariable Integer id, @RequestParam(required = false ,defaultValue = "1") Integer jobsId,HttpServletRequest request) {
@@ -58,6 +49,8 @@ public class CompController {
         // 내 공고리스트에 지원한 이력서 리스트
 
         List<ApplyResponse.ApplyByJobsDTO> applyList = applyRepository.findAllByJobsId(jobsId);
+
+
 
 //        applyList.forEach(dto -> {
 //            dto.setSkillList(applyRepository.findAllSkillById(dto.getId()));
@@ -67,6 +60,7 @@ public class CompController {
             ApplyResponse.ApplyByJobsDTO dto = applyList.get(i);
             dto.setSkillList(applyRepository.findAllSkillById(dto.getId()));
         }
+
 
         request.setAttribute("compResumeList", applyList);
 
@@ -88,6 +82,10 @@ public class CompController {
 
 
         request.setAttribute("jobList", jobList);
+
+
+        session.setAttribute("jobsId", jobsId);
+
 
 //        System.out.println(jobList);
 
@@ -180,6 +178,33 @@ public class CompController {
 //         }
 
         return "/comp/comphome";
+    }
+
+    @GetMapping("/comp/{id}/apply")
+    public String offer(@PathVariable Integer id,
+                        @RequestParam(required = false, defaultValue = "1") Integer jobsId,
+                        HttpServletRequest request) {
+
+        User sessionComp = (User) session.getAttribute("sessionComp");
+        request.setAttribute("userId", sessionComp.getId());
+        List<OfferRequest.CompOfterDTO> offerList = offerRepository.findAllByJobsId(jobsId);
+
+        for (int i = 0; i < offerList.size(); i++) {
+            OfferRequest.CompOfterDTO dto = offerList.get(i);
+            dto.setSkillList(applyRepository.findAllSkillById(dto.getId()));
+        }
+        request.setAttribute("offerList", offerList);
+
+
+        List<JobResponse.JobListByUserId> jobList = offerRepository.findAllByUserId(id);
+
+        for (int i = 0; i < jobList.size(); i++) {
+            JobResponse.JobListByUserId dto = jobList.get(i);
+            dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
+        }
+        request.setAttribute("jobList", jobList);
+
+        return "/comp/apply";
     }
 
     @GetMapping("/comp/joinForm")

@@ -117,9 +117,10 @@
                             <tbody>
                             {{#offerList}}
                                 <tr class="offer-table">
-                                    <th scope="row">{{id}}</th>
+                                    <th scope="row">{{resumeId}}</th>
                                     <td>{{myName}}</td>
                                     <td>{{title}}</td>
+                                    <td>{{career}}</td>
                                     <td>
                                         <div class="new-skill-box">
                                             {{#skillList}}
@@ -129,7 +130,7 @@
                                     </td>
                                     <td>
                                         <div class="new-create-button">
-                                            <a href="/comp/{{id}}/compResumeDetail">
+                                            <a href="/resume/resumeDetail/{{resumeId}}">
                                                 <button type="button" class="btn btn-mint offer-table-btn">상세보기</button>
                                             </a>
                                         </div>

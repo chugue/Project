@@ -8,12 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import shop.mtcoding.blog.dto.scrap.ScrapRequest;
+import shop.mtcoding.blog.dto.scrap.ScrapResponse;
 import shop.mtcoding.blog.model.apply.ApplyRepository;
 import shop.mtcoding.blog.model.comp.CompRepository;
 import shop.mtcoding.blog.model.jobs.JobResponse;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
 import shop.mtcoding.blog.model.offer.OfferRepository;
 import shop.mtcoding.blog.model.offer.OfferRequest;
+import shop.mtcoding.blog.model.resume.Resume;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.scrap.ScrapRepository;
 import shop.mtcoding.blog.model.user.User;
@@ -29,37 +32,16 @@ public class OfferController {
     private final OfferRepository offerRepository;
     private final HttpSession session;
 
-    @GetMapping("/comp/{id}/apply")
-    public String offer(@PathVariable Integer id, @RequestParam(required = false, defaultValue = "1") Integer jobsId, HttpServletRequest request) {
-        User sessionComp = (User) session.getAttribute("sessionComp");
-        request.setAttribute("userId", sessionComp.getId());
+    @PostMapping("/resume/offer/save")
+    public String save(OfferRequest.SaveDTO saveDTO) {
+        offerRepository.save(saveDTO, session.getAttribute("jobsId2"), 1);
 
-        List<OfferRequest.CompOfterDTO> offerList = offerRepository.findAllByJobsId(jobsId);
-
-        for (int i = 0; i < offerList.size(); i++) {
-            OfferRequest.CompOfterDTO dto = offerList.get(i);
-            dto.setId(i + 1);
-            dto.setSkillList(applyRepository.findAllSkillById(dto.getId()));
-        }
-
-        request.setAttribute("offerList", offerList);
-
-        List<JobResponse.JobListByUserId> jobList = jobsRepository.findAllByUserId(id);
-        System.out.println(jobList);
-
-        for (int i = 0; i < jobList.size(); i++) {
-            JobResponse.JobListByUserId dto = jobList.get(i);
-            dto.setId(i + 1);
-            dto.setSkillList(jobsRepository.findAllSkillById(dto.getId()));
-        }
-
-        request.setAttribute("jobList", jobList);
-
-        return "/comp/apply";
+        return "redirect:/resume/resumeDetail/" + saveDTO.getResumeId();
     }
 
-    @PostMapping("")
-    public void delete() {
-
+    @PostMapping("/resume/offer/{id}/delete")
+    public String delete1(@PathVariable Integer id, OfferRequest.DeleteDTO DeleteDTO) {
+        offerRepository.deleteById(session.getAttribute("jobsId2"), DeleteDTO);
+        return "redirect:/resume/resumeDetail/" + DeleteDTO.getResumeId();
     }
 }
