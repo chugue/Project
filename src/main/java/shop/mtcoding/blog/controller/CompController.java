@@ -49,6 +49,7 @@ public class CompController {
     private final HttpSession session;
     private final SkillRepository skillRepository;
     private final ResumeRepository resumeRepository;
+    private final OfferRepository offerRepository;
     private final Paging paging;
   
     @GetMapping("/comp/compIndex")
