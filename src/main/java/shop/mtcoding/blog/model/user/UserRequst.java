@@ -43,6 +43,14 @@ public class UserRequst {
         private String homepage;
         private Integer role;
         private Timestamp createdAt;
+    }
 
+    @Data
+    public static class UpdateDTO{
+        private String password;
+        private String myName;
+        private String phone;
+        private Date birth;
+        private String address;
     }
 }

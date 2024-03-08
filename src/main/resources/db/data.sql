@@ -1,6 +1,6 @@
 -- 개인 유저
 insert into user_tb(email, my_name, password, phone, address, birth, role, created_at)
-values ('bluepig4b@naver.com','고구마','1234','010-9011-5822','부산광역시 부산진bluepig4b@naver.com구 범향빌딩405호','1999-05-06','1',now());
+values ('bluepig4b@naver.com','고구마','1234','010-9011-5822','부산광역시 부산진구 범향빌딩405호','1999-05-06','1',now());
 insert into user_tb(email, my_name, password, phone, address, birth, role, created_at)
 values ('blueocean@naver.com','맛있다','1234','010-1555-5842','부산광역시 부산진구 범향빌딩405호','1989-10-06','1',now());
 insert into user_tb(email, my_name, password, phone, address, birth, role, created_at)

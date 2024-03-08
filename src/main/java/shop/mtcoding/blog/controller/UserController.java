@@ -142,10 +142,18 @@ public class UserController {
         return "/user/scrap";
     }
 
-    @GetMapping("/user/{id}/updateForm")
-    public String updateForm(@PathVariable int id) {
-//        User user = (User) userRepository.updateById(id);
+    @GetMapping("/user/{id}/update")
+    public String updateForm(@PathVariable int id, UserRequst.UpdateDTO requestDTO) {
+        userRepository.updateById(id, requestDTO);
+        User user = userRepository.findById(id);
+        System.out.println(user.toString());
+        return "redirect:/user/"+ id +"/userHome";
+    }
 
+    @GetMapping("/user/{id}/updateForm")
+    public String updateForm(@PathVariable int id, HttpServletRequest request) {
+        User user = userRepository.findById(id);
+        request.setAttribute("user", user);
         return "/user/updateForm";
     }
 
