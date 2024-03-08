@@ -34,7 +34,7 @@ public class OfferController {
 
     @PostMapping("/resume/offer/save")
     public String save(OfferRequest.SaveDTO saveDTO) {
-        offerRepository.save(saveDTO, session.getAttribute("jobsId2"), 1);
+        offerRepository.save(saveDTO, 1);
 
         return "redirect:/resume/resumeDetail/" + saveDTO.getResumeId();
     }

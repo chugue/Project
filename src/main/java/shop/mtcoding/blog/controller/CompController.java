@@ -17,6 +17,7 @@ import shop.mtcoding.blog.model.offer.OfferRepository;
 import shop.mtcoding.blog.model.offer.OfferRequest;
 import shop.mtcoding.blog.model.jobs.JobResponse;
 import shop.mtcoding.blog.model.jobs.Jobs;
+import shop.mtcoding.blog.model.offer.OfferResponse;
 import shop.mtcoding.blog.model.resume.Resume;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.scrap.Scrap;
@@ -45,6 +46,8 @@ public class CompController {
   
     @GetMapping("/comp/{id}/comphome")
     public String compHome(@PathVariable Integer id, @RequestParam(required = false ,defaultValue = "1") Integer jobsId,HttpServletRequest request) {
+
+        //
 
         // 내 공고리스트에 지원한 이력서 리스트
 
@@ -84,7 +87,7 @@ public class CompController {
         request.setAttribute("jobList", jobList);
 
 
-        session.setAttribute("jobsId", jobsId);
+//        session.setAttribute("jobsId", jobsId);
 
 
 //        System.out.println(jobList);
@@ -196,10 +199,10 @@ public class CompController {
         request.setAttribute("offerList", offerList);
 
 
-        List<JobResponse.JobListByUserId> jobList = offerRepository.findAllByUserId(id);
+        List<OfferResponse.OfferListByUserId> jobList = offerRepository.findAllByUserId(id);
 
         for (int i = 0; i < jobList.size(); i++) {
-            JobResponse.JobListByUserId dto = jobList.get(i);
+            OfferResponse.OfferListByUserId dto = jobList.get(i);
             dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
         }
         request.setAttribute("jobList", jobList);
@@ -310,13 +313,11 @@ public class CompController {
     @GetMapping("/comp/{id}/scrap")
     public String scrap(@PathVariable Integer id, HttpServletRequest request) {
 
-        List<Scrap> scrapList = scrapRepository.findByUserId(id);
+        List<Resume> resumeList = scrapRepository.findByUserIdWithResume(id);
 
-        request.setAttribute("scrapList", scrapList);
+        request.setAttribute("resumeList", resumeList);
 
-
-
-        request.setAttribute("CompId", id);
+        request.setAttribute("compId", id);
 
         return "/comp/scrap";
     }

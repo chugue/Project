@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.blog.dto.scrap.ScrapResponse;
 import shop.mtcoding.blog.model.apply.ApplyResponse;
 import shop.mtcoding.blog.model.comp.CompRequest;
+import shop.mtcoding.blog.model.jobs.JobResponse;
+import shop.mtcoding.blog.model.jobs.JobsRepository;
 import shop.mtcoding.blog.model.offer.OfferRepository;
 import shop.mtcoding.blog.model.offer.OfferResponse;
 import shop.mtcoding.blog.model.resume.Resume;
@@ -31,6 +33,7 @@ public class ResumeController {
     private final ResumeRepository resumeRepository;
     private final ScrapRepository scrapRepository;
     private final OfferRepository offerRepository;
+    private final JobsRepository jobsRepository;
 
 
     @GetMapping("/resume/resumeDetail/{id}")
@@ -51,7 +54,10 @@ public class ResumeController {
             OfferResponse.OfferDetailDTO offerDetailDTO = offerRepository.findOffer(id, session.getAttribute("jobsId"));
             request.setAttribute("offer", offerDetailDTO);
 
-            session.setAttribute("jobsId2", session.getAttribute("jobsId"));
+//            request.setAttribute("jobsId2", session.getAttribute("jobsId"));
+
+            List<JobResponse.JobListByUserId> jobsList = jobsRepository.findAllByUserId(sessionComp.getId());
+            request.setAttribute("jobsList", jobsList);
         }
         return "/resume/resumeDetail";
     }
@@ -61,6 +67,7 @@ public class ResumeController {
     @GetMapping("/resume/{id}/manageResume")
     public String manageResume(@PathVariable Integer id,HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
+        request.setAttribute("userId", sessionUser.getId());
         List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId(id);
         System.out.println(request); // 이거 스킬 안넣었을때 리스트
 

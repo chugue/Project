@@ -29,10 +29,8 @@ public class OfferRequest {
 
     @Data
     public static class SaveDTO {
-        private Integer id;
         private Integer jobsId;
         private Integer resumeId;
-        private Integer status;
     }
 
     @Data

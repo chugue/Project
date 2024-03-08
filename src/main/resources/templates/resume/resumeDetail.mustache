@@ -259,6 +259,7 @@
         </form>
 
 
+
         <!--버튼-->
         <div class="col-3 ml-50">
             <div id="rButton" style="width: 12em;">
@@ -286,7 +287,12 @@
                                 </form>
                             {{/scrap.isScrap}}
                             {{^offer.isScrap}}
+
                                 <form action="/resume/offer/save" method="post" enctype="application/x-www-form-urlencoded">
+                                    {{#jobsList}}
+                                        {{title}} {{compName}}: <input type="radio" name="jobsId" value="{{id}}">
+                                    {{/jobsList}}
+
                                     <input type="hidden" name="resumeId" value="{{id}}">
                                     <button type="submit" class="btn btn-outline-mint w-100">제안하기</button>
                                 </form>
