@@ -72,18 +72,18 @@
                                        aria-current="page">마이홈</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/resume/manageResume" class="nav-link sub-menu a p-1 mb-1"
+                                    <a href="/resume/{{sessionUser.id}}/manageResume" class="nav-link sub-menu a p-1 mb-1"
                                        aria-current="page">이력서 관리</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/user/offer" class="nav-link sub-menu a p-1 mb-1">지원 / 제안</a>
+                                    <a href="/user/{{sessionUser.id}}/offer" class="nav-link sub-menu a p-1 mb-1">지원 / 제안</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/user/scrap" class="nav-link sub-menu a p-1 mb-1">스크랩</a>
+                                    <a href="/user/{{sessionUser.id}}/scrap" class="nav-link sub-menu a p-1 mb-1">스크랩</a>
                                 </li>
                                 <hr>
                                 <li class="nav-item">
-                                    <a href="/user/updateForm" class="nav-link sub-menu a p-1 mb-1">정보수정</a>
+                                    <a href="/user/{{sessionUser.id}}/updateForm" class="nav-link sub-menu a p-1 mb-1">정보수정</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link sub-menu a p-1" href="/">로그아웃</a>

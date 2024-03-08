@@ -40,22 +40,22 @@
                             <hr>
                             <ul class="nav flex-column nav-pills">
                                 <li class="nav-item">
-                                    <a href="/user/userHome" class="nav-link sub-menu a p-1 mb-1"
+                                    <a href="/user/{{sessionUser.id}}/userHome" class="nav-link sub-menu a p-1 mb-1"
                                        aria-current="page">마이 홈</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/resume/manageResume" class="nav-link sub-menu a p-1 mb-1"
+                                    <a href="/resume/{{sessionUser.id}}/manageResume" class="nav-link sub-menu a p-1 mb-1"
                                        aria-current="page">이력서 관리</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/user/offer" class="nav-link sub-menu a p-1 mb-1">지원 / 제안</a>
+                                    <a href="/user/{{sessionUser.id}}/offer" class="nav-link sub-menu a p-1 mb-1">지원 / 제안</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/user/scrap" class="sub-menu a p-1 mb-1 btn btn-mint">스크랩</a>
+                                    <a href="/user/{{sessionUser.id}}/scrap" class="sub-menu a p-1 mb-1 btn btn-mint">스크랩</a>
                                 </li>
                                 <hr>
                                 <li class="nav-item">
-                                    <a href="/user/updateForm" class="nav-link sub-menu a p-1 mb-1">정보수정</a>
+                                    <a href="/user/{{sessionUser.id}}/updateForm" class="nav-link sub-menu a p-1 mb-1">정보수정</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link sub-menu a p-1" href="/">로그아웃</a>

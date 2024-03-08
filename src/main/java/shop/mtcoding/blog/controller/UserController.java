@@ -89,24 +89,26 @@ public class UserController {
         return "/user/loginForm";
     }
 
-    @GetMapping("/user/offer")
-    public String offer() {
+    @GetMapping("/user/{id}/offer")
+    public String offer(@PathVariable Integer id) {
         return "/user/offer";
     }
 
 
-    @GetMapping("/user/scrap")
-    public String scrap() {
+    @GetMapping("/user/{id}/scrap")
+    public String scrap(@PathVariable Integer id) {
         return "/user/scrap";
     }
 
-    @GetMapping("/user/updateForm")
-    public String updateForm() {
+    @GetMapping("/user/{id}/updateForm")
+    public String updateForm(@PathVariable int id) {
+//        User user = (User) userRepository.updateById(id);
+
         return "/user/updateForm";
     }
 
-    @GetMapping("/user/userHome")
-    public String userHome() {
+    @GetMapping("/user/{id}/userHome")
+    public String userHome(@PathVariable Integer id, HttpServletRequest request) {
         return "/user/userHome";
     }
 
