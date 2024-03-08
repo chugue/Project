@@ -20,6 +20,7 @@ import java.util.List;
 public class Paging {
     private final JobsRepository jobsRepository;
     private final ResumeRepository resumeRepository;
+
     final int SHOW_PAGES = 9; //화면에 표현하고 싶은 게시물개수 (이력서 or 공고)
     int currentPage;
     int prevPage;
@@ -33,17 +34,15 @@ public class Paging {
         return firstPage;
     }
 
-    public boolean lastPage(int page) {
+    public boolean lastPage(int page, int totalPosts) {
         boolean lastPage;
         currentPage = page - 1;
-        int totalPosts = jobsRepository.findAllV2().size();
         lastPage = (totalPosts - (SHOW_PAGES * currentPage)) < SHOW_PAGES;
         return lastPage;
     }
 
-    public List<JobResponse.DTO> showPagesV2(int page) {
+    public List<JobResponse.DTO> showPagesV2(int page, List<JobResponse.DTO> pageList) {
         currentPage = page;
-        List<JobResponse.DTO> pageList = jobsRepository.findAllWithUserV2();
         ArrayList<JobResponse.DTO> jobsList = new ArrayList<>();
         int totalPosts = pageList.size();
         int start = (SHOW_PAGES * currentPage) - SHOW_PAGES;
@@ -59,9 +58,8 @@ public class Paging {
         return jobsList;
     }
 
-    public List<JobResponse.DTO> showPagesV2(int page, String keyword) {
+    public List<JobResponse.DTO> showPagesV2(int page, String keyword, List<JobResponse.DTO> pageList) {
         currentPage = page;
-        List<JobResponse.DTO> pageList = jobsRepository.findAllWithUserV2(keyword);
         ArrayList<JobResponse.DTO> jobsList = new ArrayList<>();
         int totalPosts = pageList.size();
         int start = (SHOW_PAGES * currentPage) - SHOW_PAGES;
@@ -77,19 +75,13 @@ public class Paging {
     }
 
 
-    public int totalPages() {
-        List<Jobs> pageList = jobsRepository.findAllV2();
-        int totalPosts = pageList.size();
+    public int totalPages(int totalPosts) {
         int remainder = totalPosts % SHOW_PAGES;
         int division = totalPosts / SHOW_PAGES;
-        int totalPages = (remainder <= SHOW_PAGES) ? division + 1 : division;
-
-        return totalPages;
+        return (remainder <= SHOW_PAGES) ? division + 1 : division;
     }
 
-    public int currentPage(int postId) {
-        List<Jobs> pageList = jobsRepository.findAllV2();
-        int totalPosts = pageList.size();
+    public int currentPage(int postId, int totalPosts) {
         int currentPage =((totalPosts - postId)/SHOW_PAGES) + 1;
         return currentPage;
     }

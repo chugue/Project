@@ -29,7 +29,7 @@ public class ScrapRepository {
         return scrapList;
     }
 
-    public ScrapResponse.DetailDTO findScrap(int resumeId) {
+    public ScrapResponse.DetailDTO findScrap(Integer resumeId) {
         String q = """
                 SELECT * FROM scrap_tb WHERE resume_id = ?;
                 """;
@@ -49,7 +49,7 @@ public class ScrapRepository {
         return responseDTO;
     }
 
-    public ScrapResponse.DetailDTO findScrap(int resumeId, int sessionUserId) {
+    public ScrapResponse.DetailDTO findScrap(Integer resumeId, Integer sessionUserId) {
         String q = """
                 SELECT id, 
                 case when user_id is null then false else true 

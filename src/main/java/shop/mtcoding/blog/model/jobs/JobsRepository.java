@@ -2,9 +2,7 @@ package shop.mtcoding.blog.model.jobs;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.qlrm.mapper.JpaResultMapper;
 import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -94,13 +92,11 @@ public class JobsRepository {
 
         String q = """
                 select
-                    jt.id as user_id, ut.comp_name, jt.title, jt.task, jt.career
+                jt.id as user_id, ut.comp_name, jt.title, jt.task, jt.career
                 from jobs_tb jt
                 join user_tb ut
                 on jt.user_id = ut.id
-              
                 where ut.id = ?
-                
                     """;
         Query query = em.createNativeQuery(q);
         query.setParameter(1, id);

@@ -29,9 +29,12 @@ public class MainController {
     @GetMapping("/")
     public String index(HttpServletRequest request, @RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") String page) {
         int currentPage = Integer.parseInt(page);
-        boolean lastPage = paging.lastPage(currentPage);
+
+
+        int totalPosts = jobsRepository.findAllV2().size();
+        boolean lastPage = paging.lastPage(currentPage, totalPosts);
         boolean firstPage = paging.firstPage(currentPage);
-        int totalPages = paging.totalPages();
+        int totalPages = paging.totalPages(totalPosts);
 
         List<Page> pageActive = new ArrayList<>();
 
@@ -48,7 +51,7 @@ public class MainController {
 
 
         if (keyword.isBlank()) { //isBlank면 검색 안함
-            List<JobResponse.DTO> pageList = paging.showPagesV2(currentPage);
+            List<JobResponse.DTO> pageList = paging.showPagesV2(currentPage, jobsRepository.findAllWithUserV2());
 
             pageList.forEach(dto -> {
                 List<Skill> skillList = skillRepository.findAllV2(dto.getId());
@@ -64,7 +67,7 @@ public class MainController {
             return "index";
 
         } else {    //검색하면 키워드를 던져줌
-            List<JobResponse.DTO> pageList = paging.showPagesV2(currentPage, keyword);
+            List<JobResponse.DTO> pageList = paging.showPagesV2(currentPage, jobsRepository.findAllWithUserV2(keyword));
 
             pageList.forEach(dto -> {
                 List<Skill> skillList = skillRepository.findAllV2(dto.getId());

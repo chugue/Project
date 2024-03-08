@@ -45,6 +45,7 @@ public class CompController {
     private final HttpSession session;
     private final SkillRepository skillRepository;
     private final ResumeRepository resumeRepository;
+
     private final Paging paging;
 
     @GetMapping("/comp/compIndex")
@@ -113,6 +114,7 @@ public class CompController {
 //        return "/comp/apply";
 //    }
 //
+
   
     @GetMapping("/comp/{id}/comphome")
     public String compHome(@PathVariable Integer id, @RequestParam(required = false ,defaultValue = "1") Integer jobsId,HttpServletRequest request) {
