@@ -6,15 +6,34 @@ import lombok.RequiredArgsConstructor;
 import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import shop.mtcoding.blog.model.jobs.JobResponse;
 import shop.mtcoding.blog.model.skill.SkillRequest;
 
+import java.util.Collection;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Repository
 public class ResumeRepository {
-
     private final EntityManager em;
+
+    public List<ResumeResponse.ResumeUserDTO> findAllWithUserV2(){
+        String q = """
+                select rt.id, rt.user_id, rt.title, rt.area, rt.edu, rt.career, rt.introduce, rt.port_link, rt.created_at, ut.my_name 
+                from resume_tb rt inner join user_tb ut 
+                on rt.user_id = ut.id 
+                order by rt.id desc 
+                """;
+
+        Query query = em.createNativeQuery(q);
+        // 엔티티랑 다른 모양의 쿼리를 직접 DTO로 만들어서 매핑하기 위한 툴
+        JpaResultMapper mapper = new JpaResultMapper();
+        // mapper.list ( 쿼리, 결과를 위한 DTO)로 만들고 결과가 여러개라면 List<DTO>로 생산후 반환
+        List<ResumeResponse.ResumeUserDTO> result = mapper.list(query, ResumeResponse.ResumeUserDTO.class);
+        return result;
+    }
+
+
 
     public List<Resume> findAll() {
         String q = """
