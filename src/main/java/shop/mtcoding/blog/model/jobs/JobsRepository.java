@@ -2,11 +2,11 @@ package shop.mtcoding.blog.model.jobs;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import shop.mtcoding.blog.model.skill.SkillRequest;
 
 import java.util.List;
 
@@ -17,12 +17,16 @@ public class JobsRepository {
 
     public List<JobResponse.DTO> findAllWithUserV2(){
         String q = """
-                select jt.id, jt.user_id, jt.area, jt.title, jt.edu, jt.career, jt.content, jt.dead_line, jt.task, jt.created_at, ut.comp_name from jobs_tb jt inner join user_tb ut on jt.user_id = ut.id order by jt.id desc 
+                select jt.id, jt.user_id, jt.area, jt.title, jt.edu, jt.career, jt.content, jt.dead_line, jt.task, jt.created_at, ut.comp_name 
+                from jobs_tb jt inner join user_tb ut 
+                on jt.user_id = ut.id 
+                order by jt.id desc 
                 """;
 
         Query query = em.createNativeQuery(q);
-
+        // 엔티티랑 다른 모양의 쿼리를 직접 DTO로 만들어서 매핑하기 위한 툴
         JpaResultMapper mapper = new JpaResultMapper();
+        // mapper.list ( 쿼리, 결과를 위한 DTO)로 만들고 결과가 여러개라면 List<DTO>로 생산후 반환
         List<JobResponse.DTO> result = mapper.list(query, JobResponse.DTO.class);
         return result;
     }
@@ -65,24 +69,64 @@ public class JobsRepository {
         return job;
     }
 
-    public List<Object[]> findAllByUserId(Integer userId) {
-        String q = """
+    public List<Object[]> findAllByUserId() {
+        String q = """  
                 select
-                    jt.id, ut.id as user_id, ut.comp_name, jt.title, jt.task, jt.career, st.name , st.color
-                from jobs_tb jt
-                join user_tb ut
-                on jt.user_id = ut.id
-                join skill_tb st
-                on jt.id = st.jobs_id
-                where ut.id = ?
-                order by id desc
+                    jt.id, ut.id as user_id, jt.title, jt.edu, jt.career, jt.area, jt.dead_line, st.name
+                    from jobs_tb jt
+                    join user_tb ut
+                    on jt.user_id = ut.id
+                    join skill_tb st
+                    on jt.id = st.jobs_id
+                    order by jt.id;
                     """;
         Query query = em.createNativeQuery(q);
-        query.setParameter(1, userId);
 
         List<Object[]> jobList = (List<Object[]>) query.getResultList();
         return jobList;
+
     }
+
+
+    public List<JobResponse.JobListByUserId> findAllByUserId(Integer id) {
+
+        String q = """
+                select
+                jt.id as user_id, ut.comp_name, jt.title, jt.task, jt.career
+                from jobs_tb jt
+                join user_tb ut
+                on jt.user_id = ut.id
+                where ut.id = ?
+                    """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, id);
+
+        JpaResultMapper mapper = new JpaResultMapper();
+        List<JobResponse.JobListByUserId> jobList = mapper.list(query,JobResponse.JobListByUserId.class);
+
+        return jobList;
+    }
+
+
+    public List<SkillRequest.JobSkillDTO> findAllSkillById(Integer id){
+        String q = """
+               select
+               st.name,st.color
+               from jobs_tb jt
+               join user_tb ut
+               on jt.user_id = ut.id
+               join skill_tb st
+               on st.jobs_id = jt.id
+               where jt.id =?
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1,id);
+
+        JpaResultMapper mapper = new JpaResultMapper();
+        return mapper.list(query,SkillRequest.JobSkillDTO.class);
+
+    }
+
 
     public Object[] findById(Integer jobId) {
         String q = """
@@ -167,6 +211,14 @@ public class JobsRepository {
 
     @Transactional
     public void deleteById (Integer compId,Integer jobId) {
+
+        // 먼저 관련된 이력서 신청 삭제
+
+        Query applyDeleteQuery = em.createNativeQuery("DELETE FROM apply_tb WHERE jobs_id = ?");
+        applyDeleteQuery.setParameter(1, jobId);
+        applyDeleteQuery.executeUpdate();
+
+        // Query resumeDeleteQuery = em.createNativeQuery("delete from skill_tb")
         //스킬 테이블에 있는 jobId 찾아서 삭제
         Query skillDeleteQuery = em.createNativeQuery("delete from skill_tb where jobs_id = ?");
         skillDeleteQuery.setParameter(1,jobId);
@@ -176,7 +228,11 @@ public class JobsRepository {
 
         jobDeleteQuery.setParameter(1,compId);
         jobDeleteQuery.setParameter(2,jobId);
+
         jobDeleteQuery.executeUpdate();
 
+        Query autoQuery = em.createNativeQuery("ALTER TABLE jobs_tb AUTO_INCREMENT = 1 SET @COUNT = 0;");
+
+        Long newJobsid = (Long) em.createNativeQuery("SELECT LAST_INSERT_ID()").getSingleResult();
     }
 }

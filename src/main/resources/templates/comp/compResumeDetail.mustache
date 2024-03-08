@@ -264,22 +264,14 @@
                         <div id="scrap-${rDto.resumeId}-render">
                             <div id="scrap-${rDto.resumeId}-remove">
                                 {{#scrap.isScrap}}
-                                    <form action="/comp/scrap/{{scrap.id}}/delete" method="post">
-                                        <input type="hidden" name="resumeId" value="{{resume.id}}">
-                                        <button type="submit" class="btn btn-mint w-100 mb-10">스크랩 취소</button>
+                                    <form>
+                                        <button type="submit" class="btn btn-outline-mint w-100">제안 취소하기</button>
                                     </form>
-                                    <button id="scrap-${rDto.resumeId}" type="button" class="btn btn-outline-mint w-100"
-                                            onclick="">제안하기
-                                    </button>
                                 {{/scrap.isScrap}}
                                 {{^scrap.isScrap}}
-                                    <form action="/comp/scrap/save" method="post" enctype="application/x-www-form-urlencoded">
-                                        <input type="hidden" name="resumeId" value="{{id}}">
-                                        <button type="submit" class="btn btn-mint w-100 mb-10">스크랩</button>
+                                    <form>
+                                        <button type="submit" class="btn btn-outline-mint w-100">제안 하기</button>
                                     </form>
-                                    <button id="scrap-${rDto.resumeId}" type="button" class="btn btn-outline-mint w-100"
-                                            onclick="">제안하기
-                                    </button>
                                 {{/scrap.isScrap}}
                             </div>
                         </div>

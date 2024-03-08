@@ -28,7 +28,7 @@
                                     <a class="sub-menu a p-1 mb-1 btn btn-mint" aria-current="page">공고 관리</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link sub-menu a p-1 mb-1" href="/comp/apply">지원 / 제안</a>
+                                    <a class="nav-link sub-menu a p-1 mb-1" href="/comp/{{id}}/apply">지원 / 제안</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link sub-menu a p-1" href="/comp/{{id}}/scrap">스크랩</a>
@@ -79,7 +79,7 @@
 
                             <tr class="offer-table">
 
-                                <td>{{number}}</td>
+                                <td>{{id}}</td>
                                 <td>
                                     <div>{{title}}</div>
                                     <div class="new-skill-box">
@@ -147,7 +147,8 @@
                                 </td>
                                 <td>
                                     <div class="new-create-button">
-                                        <a href="/comp/compResumeDetail/{{id}}">
+                                        <a href="/resume/resumeDetail/{{id}}"
+                                           onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                             <button type="button" class="btn btn-mint offer-table-btn">상세보기</button>
                                         </a>
                                     </div>

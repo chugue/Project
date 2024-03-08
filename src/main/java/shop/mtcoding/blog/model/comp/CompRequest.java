@@ -13,6 +13,7 @@ import java.util.List;
 
 public class CompRequest {
 
+
   @Data
   public static class JobsViewDTO{
       private Integer id;
@@ -21,7 +22,7 @@ public class CompRequest {
       private String title;
       private String task;
       private String career;
-      private List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
+      private List<SkillRequest.JobSkillDTO> skillList = new ArrayList<>();
       private Integer number;
   }
 
@@ -44,6 +45,6 @@ public class CompRequest {
       private String name;
       private String title;
       private String career;
-      private List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
+      private List<SkillRequest.JobSkillDTO> skillList = new ArrayList<>();
   }
 }

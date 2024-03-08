@@ -17,35 +17,31 @@ public class ScrapController {
 
     @PostMapping("/resume/scrap/save")
     public String save1(ScrapRequest.SaveDTO requestDTO) {
-        System.out.println("requestDTO : " + requestDTO);
         User sessionUser = (User) session.getAttribute("sessionComp");
         scrapRepository.save(requestDTO, sessionUser.getId());
 
         return "redirect:/resume/resumeDetail/" + requestDTO.getResumeId();
     }
 
-    @PostMapping("/resume/scrap/{id}/delete")
-    public String delete1(@PathVariable Integer id, ScrapRequest.SaveDTO saveDTO) {
-        System.out.println(saveDTO.getResumeId());
-        System.out.println("delete id : " + id);
-        scrapRepository.deleteById(id);
-        return "redirect:/resume/resumeDetail/" + saveDTO.getResumeId();
-    }
-
     @PostMapping("/comp/scrap/save")
     public String save2(ScrapRequest.SaveDTO requestDTO) {
-        System.out.println("requestDTO : " + requestDTO);
         User sessionUser = (User) session.getAttribute("sessionComp");
         scrapRepository.save(requestDTO, sessionUser.getId());
 
         return "redirect:/comp/compResumeDetail/" + requestDTO.getResumeId();
     }
 
+    @PostMapping("/resume/scrap/{id}/delete")
+    public String delete1(@PathVariable Integer id, ScrapRequest.SaveDTO saveDTO) {
+        scrapRepository.deleteById(id);
+
+        return "redirect:/resume/resumeDetail/" + saveDTO.getResumeId();
+    }
+
     @PostMapping("/comp/scrap/{id}/delete")
     public String delete2(@PathVariable Integer id, ScrapRequest.SaveDTO saveDTO) {
-        System.out.println(saveDTO.getResumeId());
-        System.out.println("delete id : " + id);
         scrapRepository.deleteById(id);
+
         return "redirect:/comp/compResumeDetail/" + saveDTO.getResumeId();
     }
 }

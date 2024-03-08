@@ -13,6 +13,6 @@ public class CompRepositoryTest {
 
     @Test
     public void findAll_test() {
-        compRepository.findAllByUserId(1);
+        compRepository.findAllByUserId();
     }
 }

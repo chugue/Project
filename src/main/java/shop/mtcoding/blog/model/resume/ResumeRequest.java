@@ -23,22 +23,32 @@ public class ResumeRequest {
         private String career;
         private String introduce;
         private String portLink;
-        private Boolean isPublic;
         private Timestamp createdAt;
+        private List<String> skill;
     }
 
+
+
     @Data
-    public static class UserViewDTO {
+    public static class UserViewDTO{
         private Integer id;
-        private Integer userId;
         private String title;
         private String edu;
         private String area;
-        private Integer resumeId;
         private String career;
-        private List<SkillRequest.UserskillDTO> skillList = new ArrayList<>();
-        private Integer number;
+
+
+        public UserViewDTO(Integer id, String title, String edu, String area, String career) {
+            this.id = id;
+            this.title = title;
+            this.edu = edu;
+            this.area = area;
+            this.career = career;
+        }
+
+        private List<SkillRequest.ResumeSkillDTO> skillList;
     }
+
 
     @Builder
     @Data

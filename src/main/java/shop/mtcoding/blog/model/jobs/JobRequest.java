@@ -8,13 +8,27 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import shop.mtcoding.blog.model.skill.SkillRequest;
 import shop.mtcoding.blog.model.skill.SkillResponse;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JobRequest {
+
+    @Data
+    public static class JobsViewDTO {
+        private Integer id;
+        private Integer userId;
+        private String title;
+        private String edu;
+        private String career;
+        private String area;
+        private Date deadLine;
+        private List<SkillRequest.JobsSkillDTO> skillList = new ArrayList<>();
+    }
 
     @Data
     public static class JobWriterDTO{

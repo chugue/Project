@@ -18,10 +18,17 @@ values ('yellopig@naver.com','상추','1234','010-8868-5232','부산광역시 �
 
 -- 이력서 테이블
 insert into resume_tb(user_id, title, area, edu, career, introduce, port_link,  created_at) values (1, '능력있고 성실한 개발자!', '판교분당', '고졸', '미들(4~8년)', '열심히 일하는 개발자가 되겠습니다.', 'naver.com/superjjangcoding',now());
-insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (1, '신입 개발자 지원합니다', '서울', '고졸', '신입', '안녕하십니까. 엄격한 아버지와 자상한 어머니의 밑에서 자라나 20대가 된 저는', 'nate.com/gugu',now());
-insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (2, '이력서 입니다.', '부산', '대졸', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin',now());
-insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (2, '이력서 입니다2.', '부산', '대졸', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin',now());
-insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (2, '이력서 입니다3.', '부산', '대졸', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin',now());
+insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (2, '신입 개발자 지원합니다', '서울', '고졸', '신입', '안녕하십니까. 엄격한 아버지와 자상한 어머니의 밑에서 자라나 20대가 된 저는', 'nate.com/gugu',now());
+insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (3, '이력서 입니다.', '부산', '대졸', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin',now());
+insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (4, '이력서 입니다2.', '부산', '대졸', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin',now());
+insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (5, '이력서 입니다2.', '부산', '대졸', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin',now());
+insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (6, '이력서 입니다2.', '부산', '대졸', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin',now());
+insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (7, '이력서 입니다2.', '부산', '대졸', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin',now());
+insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (4, '이력서 입니다2.', '부산', '대졸', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin',now());
+insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (6, '이력서 입니다2.', '부산', '대졸', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin',now());
+insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (1, '이력서 입니다2.', '부산', '대졸', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin',now());
+insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, created_at) values (4, '이력서 입니다2.', '부산', '대졸', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin',now());
+
 
 -- 공고 테이블
 INSERT INTO jobs_tb(user_id, area, title, edu, career, content, dead_line, task, created_at) VALUES (5, '부산', '배달의 민족 24년도 백엔드 신입 개발자 모집', '학력무관', '미들(4~8년)', '성실하고 열심히 일하실 분 모집!', '2024-03-10', '백엔드', NOW());
@@ -52,19 +59,21 @@ INSERT INTO jobs_tb(user_id, area, title, edu, career, content, dead_line, task,
 
 
 -- 스킬 테이블 (개인)
-insert into skill_tb (resume_id, name, role) values(1, 'java', 1);
-insert into skill_tb (resume_id, name, role) values(1, 'javaScript', 1);
+insert into skill_tb (resume_id, name, role) values(1, 'Java', 1);
+insert into skill_tb (resume_id, name, role) values(1, 'JavaScript', 1);
 insert into skill_tb (resume_id, name, role) values(1, 'HTML/CSS', 1);
 insert into skill_tb (resume_id, name, role) values(1, 'Webpack', 1);
-insert into skill_tb (resume_id, name, role) values(2, 'jQuery', 1);
+insert into skill_tb (resume_id, name, role) values(2, 'Jquery', 1);
 insert into skill_tb (resume_id, name, role) values(2, 'Oracle', 1);
 insert into skill_tb (resume_id, name, role) values(3, 'React', 1);
+insert into skill_tb (resume_id, name, role) values(6, 'Jquery', 1);
+insert into skill_tb (resume_id, name, role) values(6, 'JavaScript', 1);
 
 
 
 -- 스킬 테이블 (기업)
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'Java', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'jquery', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'Jquery', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'React', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(2, 'HTML/CSS', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'JavaScript', 2);
@@ -82,9 +91,8 @@ INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'Java', 2);
 insert into scrap_tb(user_id, resume_id, created_at) values(6, 1, now());
 insert into scrap_tb(user_id, resume_id, created_at) values(6, 2, now());
 insert into scrap_tb(user_id, resume_id, created_at) values(6, 3, now());
-
-insert into scrap_tb(user_id, resume_id, created_at) values(1, 1, now());
-insert into scrap_tb(user_id, resume_id, created_at) values(2, 2, now());
+insert into scrap_tb(user_id, resume_id, created_at) values(5, 4, now());
+insert into scrap_tb(user_id, resume_id, created_at) values(4, 3, now());
 
 
 -- 기업에 지원한 유저
@@ -94,3 +102,13 @@ insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(2,1,1,now()
 insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(1,2,1,now());
 insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(3,1,1,now());
 insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(2,3,1,now());
+
+
+-- 기업이 제안한 이력서
+-- 첫번째 이력서를 첫번째 공고가 제안함, 대기중
+insert into offer_tb(resume_id, jobs_id, status, created_at) values(1,1,1,now());
+insert into offer_tb(resume_id, jobs_id, status, created_at) values(2,1,1,now());
+insert into offer_tb(resume_id, jobs_id, status, created_at) values(3,2,1,now());
+insert into offer_tb(resume_id, jobs_id, status, created_at) values(4,2,1,now());
+insert into offer_tb(resume_id, jobs_id, status, created_at) values(5,3,1,now());
+insert into offer_tb(resume_id, jobs_id, status, created_at) values(6,3,1,now());

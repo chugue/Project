@@ -29,7 +29,6 @@
                                     <div class="user-img">
                                         <img src="/images/aboutme_img.jpg" class="rounded" alt="Cinque Terre"
                                              style="max-width: 80px;">
-
                                     </div>
                                 </a>
                             </div>
@@ -66,7 +65,9 @@
 
             <!--이력서 작성 폼-->
             <div class="container ft-18">
+
                 <form action="/resume/save" method="post" enctype="application/x-www-form-urlencoded">
+                    <input type="hidden" value="{{sessionUser.id}}" name="userId">
                     <div class="">
                         <!-- <div class="title">
                             <h2>이력서 작성</h2>
@@ -84,27 +85,30 @@
 
                                 <div class="resume-info-txt" style="width: calc(100% - 250px)">
 
+
                                     <table>
 
                                         <tr>
-                                            <th style="width: 150px">이름</th>
-                                            <td >김이름</td>
+
+                                            <th>이름</th>
+                                            <td>{{sessionUser.myName}}</td>
                                         </tr>
                                         <tr>
-                                            <th style="width: 150px">생년월일</th>
-                                            <td>2020-01-01</td>
+                                            <th>생년월일</th>
+                                            <td>{{sessionUser.birth}}</td>
                                         </tr>
                                         <tr>
-                                            <th style="width: 150px">연락처</th>
-                                            <td>010-2222-5555</td>
+                                            <th>연락처</th>
+                                            <td>{{sessionUser.phone}}</td>
                                         </tr>
                                         <tr>
-                                            <th style="width: 150px">E-mail</th>
-                                            <td>dsfsfd</td>
+                                            <th>E-mail</th>
+                                            <td>{{sessionUser.email}}</td>
                                         </tr>
                                         <tr>
-                                            <th style="width: 150px">주소</th>
-                                            <td>부산</td>
+                                            <th>주소</th>
+                                            <td>{{sessionUser.address}}</td>
+
                                         </tr>
 
 
@@ -258,29 +262,29 @@
                                         </div>
                                     </div>
 
-                                    <div class="card border-light mb-3">
-                                        <div class="card-header">이력서 공개 여부</div>
-                                        <div class="card-body">
-                                            <fieldset class="form-group">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="isPublic"
-                                                           id="isPublic"
-                                                           value=1 checked="">
-                                                    <label class="form-check-label" for="optionsRadios1">
-                                                        공개
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="isPublic"
-                                                           id="isPublic"
-                                                           value="0">
-                                                    <label class="form-check-label" for="optionsRadios2">
-                                                        비공개
-                                                    </label>
-                                                </div>
-                                            </fieldset>
-                                        </div>
-                                    </div>
+<!--                                    <div class="card border-light mb-3">-->
+<!--                                        <div class="card-header">이력서 공개 여부</div>-->
+<!--                                        <div class="card-body">-->
+<!--                                            <fieldset class="form-group">-->
+<!--                                                <div class="form-check">-->
+<!--                                                    <input class="form-check-input" type="radio" name="isPublic"-->
+<!--                                                           id="isPublic"-->
+<!--                                                           value=1 checked="">-->
+<!--                                                    <label class="form-check-label" for="optionsRadios1">-->
+<!--                                                        공개-->
+<!--                                                    </label>-->
+<!--                                                </div>-->
+<!--                                                <div class="form-check">-->
+<!--                                                    <input class="form-check-input" type="radio" name="isPublic"-->
+<!--                                                           id="isPublic"-->
+<!--                                                           value="0">-->
+<!--                                                    <label class="form-check-label" for="optionsRadios2">-->
+<!--                                                        비공개-->
+<!--                                                    </label>-->
+<!--                                                </div>-->
+<!--                                            </fieldset>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
 
                                 </div>
                             </div>
@@ -296,7 +300,7 @@
 <!--                                </button>-->
 <!--                            </div>-->
                             <div class="">
-                                <button type="submit" class="btn btn-mint w-100">이력서 저장</button>
+                                <button class="btn btn-mint w-100">이력서 저장</button>
                             </div>
                         </div>
                     </div>
@@ -306,6 +310,8 @@
             </div>
             <!--이력서 작성 폼-->
             </form>
+
+
         </div>
     </div>
 </div>

@@ -26,4 +26,9 @@ public class SkillRepository {
     }
 
 
+    public List<Skill> compfindAllV2(Integer id) {
+        Query query = em.createNativeQuery("select * from skill_tb where resume_id = ?", Skill.class);
+        query.setParameter(1, id);
+        return query.getResultList();
+    }
 }

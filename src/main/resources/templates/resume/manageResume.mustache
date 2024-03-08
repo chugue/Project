@@ -58,7 +58,7 @@
                         <div class="font mt-20"><h4>전체 </h4></div>
 
                         <div>
-                            <button type="button" class="btn btn-mint offer-table-btn"><a href="/resume/writeResumeForm">이력서 작성</a></button>
+                            <button type="button" class="btn btn-mint offer-table-btn"><a href="/resume/{{id}}/writeResumeForm">이력서 작성</a></button>
                         </div>
 
                     </div>
@@ -88,21 +88,22 @@
 <!--            </div>-->
 
 
-                {{#resumeUserList}}
+                    {{#resumeList}}
                     <div class="card mb-4 mt-3">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-7 mt-2">
                                     <!--                                    <a href="/resume/resumeDetail"-->
                                     <!--                                       onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">-->
-
                                     <h5 class="card-title" style="text-align: left;">
                                         {{title}}
                                     </h5>
                                     <!--기술스킬-->
                                     <div class="d-flex">
                                         <div class="new-skill-box">
-                                            으아악
+                                            {{#skillList}}
+                                               <div class="{{color}}">{{name}}</div>
+                                            {{/skillList}}
                                         </div>
 
                                     </div>
@@ -149,7 +150,7 @@
 
                         </div>
                     </div>
-                {{/resumeUserList}}
+                    {{/resumeList}}
 
             </div>
         </div>

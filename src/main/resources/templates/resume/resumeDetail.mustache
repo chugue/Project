@@ -154,6 +154,7 @@
                     </div>
 
 
+
                     <!--버튼-->
                     <div class="col-3">
                         <div id="rButton" style="width: 12em; margin-left: 150%; margin-top: -20%">
@@ -183,8 +184,13 @@
                                                     제안하기
                                                 </button>
                                             {{/scrap.isScrap}}
+                                             {{/scrap.isScrap}}
+                                    {{^offer}}
+                                    <form action="/resume/offer/save" method="post" enctype="application/x-www-form-urlencoded">
+                                        <button type="button" class="btn btn-outline-mint w-100">제안하기</button>
+                                    {{/offer}}
                                         </div>
-                                    </div>
+                                    </div
                                 </div>
                             </div>
                         </div>

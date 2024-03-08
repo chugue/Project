@@ -43,6 +43,16 @@ public class CompRepository {
 
     }
 
+
+
+
+
+
+
+
+
+
+
     @Transactional
     public void updateById(){}
 

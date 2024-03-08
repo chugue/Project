@@ -21,7 +21,8 @@
         <!--(기업)로그인 됐을때 보여질 navBar-->
         {{#sessionComp}}
             <div class="container-fluid">
-                <a href="/" class="navbar-brand"><img src="/images/logo.png"></a>
+
+                <a href="/comp/compIndex" class="navbar-brand"><img src="/images/logo.png"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapsibleNavbar">
                     <span class="navbar-toggler-icon"></span>
@@ -32,7 +33,7 @@
                             <a class="nav-link text-dark" href="/comp/jobsInfo">채용정보</a>
                         </li>
                         <li class="nav-item mx-3 fs-5">
-                            <a class="nav-link text-dark" href="/comp/readResume">공개이력서 열람</a>
+                            <a class="nav-link text-dark" href="/comp/readResume">공개이력서</a>
                         </li>
 
                         <li class="nav-item mx-3 fs-5">
@@ -53,7 +54,7 @@
 
         {{^sessionComp}}
             <div class="container-fluid">
-                <a href="/" class="navbar-brand"><img src="/images/logo.png"></a>
+                <a href="/comp/compIndex" class="navbar-brand"><img src="/images/logo.png"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapsibleNavbar">
                     <span class="navbar-toggler-icon"></span>
@@ -61,7 +62,7 @@
                 <div class="collapse navbar-collapse d-flex justify-content-between" id="collapsibleNavbar">
                     <ul class="navbar-nav d-flex justify-content-start">
                         <li class="nav-item mx-3 fs-5">
-                            <a class="nav-link text-dark" href="/jobs/info">채용정보</a>
+                            <a class="nav-link text-dark" href="/comp/jobsInfo">채용정보</a>
                         </li>
                         <li class="nav-item mx-3 fs-5">
                             <a class="nav-link text-dark" href="/user/login">이력서</a>
