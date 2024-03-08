@@ -59,19 +59,19 @@ public class ResumeController {
 
     @GetMapping("/resume/{id}/manageResume")
     public String manageResume(@PathVariable Integer id,HttpServletRequest request) {
-        User sessionUser = (User) session.getAttribute("sessionUser");
-        List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId(id);
-        System.out.println(request); // 이거 스킬 안넣었을때 리스트
-
-        for (int i = 0; i < resumeList.size(); i++) {
-            //우리가 아까만든 생성자에 resumeList 값들이 들어간다
-            ResumeRequest.UserViewDTO dto = resumeList.get(i);
-            dto.setSkillList(resumeRepository.findAllByResumeId(dto.getId()));
-        }
-
-        request.setAttribute("resumeList", resumeList);
-        System.out.println(request); // 이건 스킬추카하고 나서 리스트
-//        List<SkillResponse.ResumeSkillDTO> resumeSkillList = resumeRepository.findAllByResumeId(id);
+//        User sessionUser = (User) session.getAttribute("sessionUser");
+//        List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId(id);
+//        System.out.println(request); // 이거 스킬 안넣었을때 리스트
+//
+//        for (int i = 0; i < resumeList.size(); i++) {
+//            //우리가 아까만든 생성자에 resumeList 값들이 들어간다
+//            ResumeRequest.UserViewDTO dto = resumeList.get(i);
+//            dto.setSkillList(resumeRepository.findAllByResumeId(dto.getId()));
+//        }
+//
+//        request.setAttribute("resumeList", resumeList);
+//        System.out.println(request); // 이건 스킬추카하고 나서 리스트
+////        List<SkillResponse.ResumeSkillDTO> resumeSkillList = resumeRepository.findAllByResumeId(id);
 
         return "/resume/manageResume";
     }
