@@ -1,4 +1,4 @@
-{{> /layout/header}}
+{{> /layout/compheader}}
 <style>
     .my-border {
         background-color: #f8f8f8;
@@ -15,7 +15,7 @@
 
     <div class="container my-5 py-5 pt-80 d-flex">
         <!--이력서 작성 폼-->
-        <div class="container ft-18">
+        <div class="ft-18" style="display: flex; flex-direction: row; align-items: normal">
             {{> layout/sidebar}}
             {{#job}}
             <form action="/jobs/{{id}}/update" method="post">
@@ -181,6 +181,7 @@
                                                     value="React">React
                                             </label>
                                         </li>
+                                    </ul>
                                 </div>
 
 
