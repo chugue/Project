@@ -153,6 +153,7 @@ public class JobsController {
                 .task(String.valueOf(job[10]))
                 .deadLine(job[11] != null ? String.valueOf(job[11]) : null)  // job[11]이 deadLine에 해당합니다.
                 .businessNumber(String.valueOf(job[12]))
+                .photo(String.valueOf(job[13]))
                 .build();
 
         // row 세션에 담아

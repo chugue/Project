@@ -7,14 +7,14 @@ insert into user_tb(email, my_name, password, phone, address, birth, role, creat
 values ('kkkk@naver.com','임꺽정','1234','010-8787-5842','서울특별시 마포구 새창로2길 17','1989-10-06','1',now());
 
 -- 기업 유저
-insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, created_at)
-values ('blackpig4b@naver.com','감자','1234','010-1234-5822','부산광역시 부산진구 범향빌딩402호','1985-11-24','17-15618-1212','삼성','www.samsung.com','2',now());
-insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, created_at)
-values ('g@n','오이','1234','010-5678-5822','부산광역시 부산진구 범향빌딩403호','1985-11-24','18-15618-1212','네이버','www.naver.com','2',now());
-insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, created_at)
-values ('6@c','당근','1234','010-9824-5421','부산광역시 부산진구 범향빌딩402호','1985-11-24','606-17-12120','배민','www.bamin.com','2',now());
-insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, created_at)
-values ('y@n','상추','1234','010-8868-5232','부산광역시 부산진구 범향빌딩403호','1985-11-24','302-18-55710','쿠팡','www.coopang.com','2',now());
+insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, photo, created_at)
+values ('blackpig4b@naver.com','감자','1234','010-1234-5822','부산광역시 부산진구 범향빌딩402호','1985-11-24','17-15618-1212','삼성','www.samsung.com','2', '/images/sam.png',now());
+insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, photo, created_at)
+values ('g@n','오이','1234','010-5678-5822','부산광역시 부산진구 범향빌딩403호','1985-11-24','18-15618-1212','네이버','www.naver.com','2', '/images/naver.png', now());
+insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, photo, created_at)
+values ('6@c','당근','1234','010-9824-5421','부산광역시 부산진구 범향빌딩402호','1985-11-24','606-17-12120','배민','www.bamin.com','2', '/images/bemin.png', now());
+insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, photo, created_at)
+values ('y@n','상추','1234','010-8868-5232','부산광역시 부산진구 범향빌딩403호','1985-11-24','302-18-55710','쿠팡','www.coopang.com','2', '/images/coupang.png', now());
 
 -- 이력서 테이블
 insert into resume_tb(user_id, title, area, edu, career, introduce, port_link,  created_at)
@@ -30,9 +30,9 @@ values (2, '이력서 입니다2.', '부산', '대졸', '시니어(10년 이상)
 
 -- 공고 테이블
 INSERT INTO jobs_tb(user_id, area, title, edu, career, content, dead_line, task, created_at)
-VALUES (5, '부산', '배달의 민족 24년도 백엔드 신입 개발자 모집', '학력무관', '미들(4~8년)', '성실하고 열심히 일하실 분 모집!', '2024-03-10', '백엔드', NOW());
+VALUES (6, '부산', '배달의 민족 24년도 백엔드 신입 개발자 모집', '학력무관', '미들(4~8년)', '성실하고 열심히 일하실 분 모집!', '2024-03-10', '백엔드', NOW());
 INSERT INTO jobs_tb(user_id, area, title, edu, career, content, dead_line, task, created_at) VALUES (5, '서울', '24년도 04월 마감! Oracle 사용자', '4년제', '신입', '성실하고 열심히 일하실 분 모집!', '2024-05-22', '백엔드', NOW());
-INSERT INTO jobs_tb(user_id, area, title, edu, career, content, dead_line, task, created_at) VALUES (5, '울산', '프런트 엔드/백엔드 개발자 채용', '학력무관', '시니어(10년 이상)', '성실하고 열심히 일하실 분 모집!', '2024-04-09', '백엔드', NOW());
+INSERT INTO jobs_tb(user_id, area, title, edu, career, content, dead_line, task, created_at) VALUES (7, '울산', '프런트 엔드/백엔드 개발자 채용', '학력무관', '시니어(10년 이상)', '성실하고 열심히 일하실 분 모집!', '2024-04-09', '백엔드', NOW());
 -- INSERT INTO jobs_tb(user_id, area, title, edu, career, content, dead_line, task, created_at) VALUES (5, '부산', '함께 일하실 분 모집!', '학력무관', '신입', '성실하고 열심히 일하실 분 모집!', '2024-03-29', '백엔드', NOW());
 -- INSERT INTO jobs_tb(user_id, area, title, edu, career, content, dead_line, task, created_at) VALUES (4, '부산', '배달의 민족 24년도 백엔드 신입 개발자 모집', '학력무관', '미들(4~8년)', '성실하고 열심히 일하실 분 모집!', '2024-03-10', '백엔드', NOW());
 -- INSERT INTO jobs_tb(user_id, area, title, edu, career, content, dead_line, task, created_at) VALUES (4, '서울', '24년도 04월 마감! Oracle 사용자', '4년제', '신입', '성실하고 열심히 일하실 분 모집!', '2024-05-22', '백엔드', NOW());

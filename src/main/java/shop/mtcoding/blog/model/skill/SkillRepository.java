@@ -56,7 +56,7 @@ public class SkillRepository {
                 st.name, st.color 
                 from jobs_tb jt 
                 join skill_tb st 
-                  on st.jobs_id = jt.id 
+                on st.jobs_id = jt.id 
                 where jt.id = ?
                 """;
         Query query = em.createNativeQuery(q);

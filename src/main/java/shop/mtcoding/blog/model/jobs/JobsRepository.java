@@ -240,7 +240,7 @@ public class JobsRepository {
         String q = """
                 select 
                 ut.comp_name, jt.user_id, ut.address, ut.phone, jt.area, jt.edu, jt.career, jt.content,
-                jt.title, ut.homepage, jt.task, jt.dead_line, ut.business_number 
+                jt.title, ut.homepage, jt.task, jt.dead_line, ut.business_number, ut.photo  
                 from jobs_tb jt 
                 join user_tb ut 
                 on jt.user_id = ut.id 

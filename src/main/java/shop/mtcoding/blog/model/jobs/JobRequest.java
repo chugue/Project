@@ -102,5 +102,6 @@ public class JobRequest {
         private String task;
         private String deadLine;
         private String businessNumber;
+        private String photo;
     }
 }
