@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.multipart.MultipartFile;
-import shop.mtcoding.blog.dto.user.UserRequest;
 import shop.mtcoding.blog.model.apply.ApplyRepository;
-import shop.mtcoding.blog.model.jobs.JobResponse;
 import shop.mtcoding.blog.model.offer.OfferRepository;
-import shop.mtcoding.blog.model.offer.OfferRequest;
 import shop.mtcoding.blog.model.profile.ProfileRepository;
 import shop.mtcoding.blog.model.profile.ProfileRequest;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
@@ -26,7 +23,7 @@ import shop.mtcoding.blog.model.resume.ResumeRequest;
 import shop.mtcoding.blog.model.user.User;
 import shop.mtcoding.blog.model.user.UserRepository;
 
-import shop.mtcoding.blog.model.user.UserRequst;
+import shop.mtcoding.blog.model.user.UserRequest;
 import shop.mtcoding.blog.model.user.UserResponse;
 
 import shop.mtcoding.blog.util.ApiUtil;
@@ -116,10 +113,10 @@ public class UserController {
         User sessionUser = (User) session.getAttribute("sessionUser");
         request.setAttribute("userId", sessionUser.getId());
 
-        List<UserRequst.ResumeOfterDTO> offerList = offerRepository.findAllByJobsId2(resumeId);
+        List<UserRequest.ResumeOfterDTO> offerList = offerRepository.findAllByJobsId2(resumeId);
 
         for (int i = 0; i < offerList.size(); i++) {
-            UserRequst.ResumeOfterDTO dto = offerList.get(i);
+            UserRequest.ResumeOfterDTO dto = offerList.get(i);
             dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
         }
         request.setAttribute("offerList", offerList);
@@ -142,17 +139,22 @@ public class UserController {
         return "/user/scrap";
     }
 
-    @GetMapping("/user/{id}/update")
-    public String updateForm(@PathVariable int id, UserRequst.UpdateDTO requestDTO) {
+    @PostMapping("/user/{id}/update")
+    public String updateForm(@PathVariable Integer id, UserRequest.UpdateDTO requestDTO) {
         userRepository.updateById(id, requestDTO);
         User user = userRepository.findById(id);
-        System.out.println(user.toString());
+        String a = user.getMyName();
+        System.out.println(a);
         return "redirect:/user/"+ id +"/userHome";
     }
 
     @GetMapping("/user/{id}/updateForm")
     public String updateForm(@PathVariable int id, HttpServletRequest request) {
         User user = userRepository.findById(id);
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        if (sessionUser == user){
+            return "redirect:/loginForm";
+        }
         request.setAttribute("user", user);
         return "/user/updateForm";
     }

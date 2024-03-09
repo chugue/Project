@@ -6,7 +6,6 @@ import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import shop.mtcoding.blog.dto.user.UserRequest;
 
 import java.util.List;
 
@@ -101,7 +100,7 @@ public class UserRepository {
 
     }
     @Transactional
-    public void updateById(int id, UserRequst.UpdateDTO requestDTO) {
+    public void updateById(int id, UserRequest.UpdateDTO requestDTO) {
         String q = """
                 UPDATE user_tb
                 SET password = ?, my_name = ?, phone = ?,  birth = ?, address = ?
@@ -113,8 +112,7 @@ public class UserRepository {
         query.setParameter(3, requestDTO.getPhone());
         query.setParameter(4, requestDTO.getBirth());
         query.setParameter(5, requestDTO.getAddress());
-        query.setParameter(5, id);
+        query.setParameter(6, id);
         query.executeUpdate();
-
     }
 }

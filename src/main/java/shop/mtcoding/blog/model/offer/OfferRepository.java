@@ -6,9 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import shop.mtcoding.blog.model.jobs.JobResponse;
 import shop.mtcoding.blog.model.skill.SkillRequest;
-import shop.mtcoding.blog.model.user.UserRequst;
+import shop.mtcoding.blog.model.user.UserRequest;
 import shop.mtcoding.blog.model.user.UserResponse;
 
 import java.util.List;
@@ -75,7 +74,7 @@ public class OfferRepository {
         return result;
     }
 
-    public List<UserRequst.ResumeOfterDTO> findAllByJobsId2(Integer resumeId){
+    public List<UserRequest.ResumeOfterDTO> findAllByJobsId2(Integer resumeId){
         String q = """
                     select
                     ot.id, ut.comp_name, jt.title, jt.career, ot.jobs_id, ot.status
@@ -90,7 +89,7 @@ public class OfferRepository {
         query.setParameter(1, resumeId);
 
         JpaResultMapper mapper = new JpaResultMapper();
-        List<UserRequst.ResumeOfterDTO> result = mapper.list(query,UserRequst.ResumeOfterDTO.class);
+        List<UserRequest.ResumeOfterDTO> result = mapper.list(query, UserRequest.ResumeOfterDTO.class);
         return result;
     }
 
