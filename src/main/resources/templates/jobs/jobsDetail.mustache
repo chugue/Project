@@ -6,31 +6,17 @@
         padding-top: 0;
         margin-top: 0;
     }
-
-    .selected {
-        background-color: #c5f1c5;
-    }
-
-    /* .login-model{
-                height: 25em;
-            } */
 </style>
 
 <div class="mx-auto width-53 pt-140">
-
-    <!--이력서 작성 폼-->
     <div class="container d-flex ft-18">
         <form style="width: 100%;">
             <div class="">
-
-                <!-- <div class="title">
-                <h2>이력서 작성</h2>
-            </div>
-            <hr> -->
-
                 <div class=" mb-3 ft-18">
+                {{#jobs}}
                     <div class="card-header resume-info-hdtitle mt-3">기업 정보</div>
                     <hr>
+
                     <div class="card-body d-flex">
                         <div class="my-border resume-info-img col-3" style="text-align: center;">
                             <img class="" src="/images/logo.png" alt="" srcset="" style="width: 80%; height: auto;"
@@ -41,25 +27,23 @@
                             <table>
                                 <tr>
                                     <th>기업명</th>
-                                    <td>(주)grow</td>
+                                    <td>{{compName}}</td>
                                 </tr>
                                 <tr>
                                     <th>공고제목</th>
-                                    <td>백엔드개발자를 구합니다</td>
+                                    <td style="padding-left: 10px;">{{title}}</td>
                                 </tr>
                                 <tr>
                                     <th>연락처</th>
-                                    <td>010-000-0000</td>
+                                    <td>{{phone}}</td>
                                 </tr>
                                 <tr>
                                     <th>주소</th>
-                                    <td>부산시 00구 00로 000번길 00 000 apt</td>
+                                    <td>{{address}}</td>
                                 </tr>
                                 <tr>
                                     <th>근무지역</th>
-                                    <td>
-                                        서울.분당
-                                    </td>
+                                    <td style="padding-left: 10px;">{{area}}</td>
                                 </tr>
                             </table>
 
@@ -68,108 +52,41 @@
 
                     <div class="card border-light mb-3 mt-3">
                         <div class="card-header resume-info-hdtitle">학력 사항</div>
-                        <div class="card-body">
-                            대.졸
-                        </div>
+                        <div class="card-body">{{edu}}</div>
                     </div>
 
                     <div class="card border-light mb-3">
                         <div class="card-header resume-info-hdtitle">경력 사항</div>
-                        <div class="card-body">
-                            6년
-                        </div>
+                        <div class="card-body">{{career}}</div>
                     </div>
 
                     <div class="card border-light mb-3">
-                        <div class="card-header resume-info-hdtitle">보유 기술</div>
+                        <div class="card-header resume-info-hdtitle">필요 기술</div>
                         <div class="card-body">
-                            <div class="row my-3 my-border">
-
-                                <ul class="row technic">
-                                    <li class="col-2 form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" name="skill"
-                                                   value="Java" checked disabled>Java
-                                        </label>
-                                    </li>
-                                    <li class="col-2 form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" name="skill"
-                                                   value="Java" checked disabled>JavaScrip
-                                        </label>
-                                    </li>
-                                    <li class="col-2 form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" name="skill"
-                                                   value="Java" checked disabled>Spring
-                                        </label>
-                                    </li>
-                                    <li class="col-2 form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" name="skill"
-                                                   value="Java" checked disabled>HTML
-                                        </label>
-                                    </li>
-                            </div>
-
-
-                            <div class="card border-light mb-3">
-                                <div class="card-header">기업소개</div>
-                                <div class="card-body">
-                                    <img src="/images/jobdetail.png" alt="">
+                            <div class="my-3" style="background-color: #f8f8f8; padding: 20px">
+                                <div class="new-skill-box">
+                                    {{#skillList}}
+                                        <div class="{{color}}">{{name}}</div>
+                                    {{/skillList}}
                                 </div>
+                            </div>
+                            <div class="card border-light mb-3">
+                                <div class="card-header">본문</div>
+                                <div class="card-body">{{content}}</div>
                             </div>
 
                             <div class="card border-light mb-3">
                                 <div class="card-header">링크</div>
                                 <div class="card-body">
                                     <div class="form-group mb-2">
-                                        <a href="#" class="form-control ">www.naver.com</a>
-                                    </div>
-                                    <div class="form-group">
-                                        <a href="#" class="form-control ">www.naver.com</a>
+                                        <a href="#" class="form-control">{{homepage}}</a>
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="card border-light mb-3">
-                                <div class="card-header">제목</div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <input type="text" name="title" id="title" class="form-control"
-                                                   value="공고 타이틀용입니다" disabled>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- <div class="card border-light mb-3">
-                            <div class="card-header">이력서 공개 여부</div>
-                            <div class="card-body">
-                                <fieldset class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="state" id="state"
-                                            value=1 checked="">
-                                        <label class="form-check-label" for="optionsRadios1">
-                                            공개
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="state" id="state"
-                                            value="0">
-                                        <label class="form-check-label" for="optionsRadios2">
-                                            비공개
-                                        </label>
-                                    </div>
-                                </fieldset>
-                            </div>
-                        </div> -->
-
                         </div>
                     </div>
                 </div>
+                {{/jobs}}
             </div>
         </form>
 

@@ -14,6 +14,7 @@ import shop.mtcoding.blog.model.comp.CompRequest;
 import shop.mtcoding.blog.model.jobs.JobRequest;
 import shop.mtcoding.blog.model.jobs.Jobs;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
+import shop.mtcoding.blog.model.resume.ResumeRequest;
 import shop.mtcoding.blog.model.skill.Skill;
 import shop.mtcoding.blog.model.skill.SkillRepository;
 import shop.mtcoding.blog.model.skill.SkillRequest;
@@ -133,10 +134,32 @@ public class JobsController {
 
 
     @GetMapping("/jobs/jobsDetail/{id}")
-    public String jobsDetail(@PathVariable Integer id, @RequestParam(defaultValue = "0") Integer page) {
+    public String jobsDetail(@PathVariable Integer id, HttpServletRequest request) {
 
 
-        //List<>
+        Object[] job = jobsRepository.findByJobId(id);
+
+        JobRequest.JobsJoinDTO Checked = JobRequest.JobsJoinDTO.builder()
+                .compName(String.valueOf(job[0]))
+                .userId((Integer) job[1])
+                .address(String.valueOf(job[2]))
+                .phone(String.valueOf(job[3]))
+                .area(String.valueOf(job[4]))
+                .edu(String.valueOf(job[5]))
+                .career(String.valueOf(job[6]))
+                .content(String.valueOf(job[7]))
+                .title(String.valueOf(job[8]))
+                .homepage(String.valueOf(job[9]))
+                .task(String.valueOf(job[10]))
+                .deadLine(job[11] != null ? String.valueOf(job[11]) : null)  // job[11]이 deadLine에 해당합니다.
+                .businessNumber(String.valueOf(job[12]))
+                .build();
+
+        // row 세션에 담아
+        request.setAttribute("jobs", Checked);
+
+        List<SkillRequest.ApplyskillDTO> skillList = skillRepository.JobsSkill(id);
+        request.setAttribute("skillList", skillList);
 
         return "/jobs/jobsDetail";
     }

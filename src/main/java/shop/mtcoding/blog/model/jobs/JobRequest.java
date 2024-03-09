@@ -85,4 +85,22 @@ public class JobRequest {
     public static class JobDeleteDTO{
         private Integer userId;
     }
+
+    @Data
+    @Builder
+    public static class JobsJoinDTO {
+        private String compName;
+        private Integer userId;
+        private String address;
+        private String phone;
+        private String area;
+        private String edu;
+        private String career;
+        private String content;
+        private String title;
+        private String homepage;
+        private String task;
+        private String deadLine;
+        private String businessNumber;
+    }
 }

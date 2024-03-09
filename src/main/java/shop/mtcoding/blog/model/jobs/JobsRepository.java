@@ -235,4 +235,20 @@ public class JobsRepository {
 
         Long newJobsid = (Long) em.createNativeQuery("SELECT LAST_INSERT_ID()").getSingleResult();
     }
+
+    public Object[] findByJobId(Integer jobId) {
+        String q = """
+                select 
+                ut.comp_name, jt.user_id, ut.address, ut.phone, jt.area, jt.edu, jt.career, jt.content,
+                jt.title, ut.homepage, jt.task, jt.dead_line, ut.business_number 
+                from jobs_tb jt 
+                join user_tb ut 
+                on jt.user_id = ut.id 
+                where jt.id = ?;
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, jobId);
+        Object[] job = (Object[]) query.getSingleResult();
+        return job;
+    }
 }
