@@ -84,7 +84,7 @@ public class UserController {
                 return  "redirect:/comp/jobsInfo";
             }
         }
-        return "user/loginForm";
+        return "/user/loginForm";
     }
 
     @GetMapping("/logout")
@@ -105,7 +105,6 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}/offer")
-
     public String offer(@PathVariable Integer id,
                         @RequestParam(required = false, defaultValue = "1") Integer resumeId,
                         HttpServletRequest request) {

@@ -25,6 +25,13 @@ public class SkillRepository {
         return query.getResultList();
     }
 
+    public List<String> findALLNameByResumeId(int resumeId){
+        Query query = em.createNativeQuery("select name from skill_tb where resume_id = ?", String.class);
+        query.setParameter(1, resumeId);
+        return query.getResultList();
+    }
+
+
 
     public List<Skill> compfindAllV2(Integer id) {
         Query query = em.createNativeQuery("select * from skill_tb where resume_id = ?", Skill.class);

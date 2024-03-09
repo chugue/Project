@@ -1,4 +1,4 @@
-{{> /layout/header}}
+{{> layout/header}}
 
 <style>
     .my-border {
@@ -13,61 +13,12 @@
 
 <!--이력서 작성-->
 <div class="resume-info-wrap  pt-80">
-
     <div class="container my-5 py-5 pt-80 d-flex" style="flex-direction: row; align-items: flex-start !important;">
-
-        <div class="px-5" style="text-align:center; width:300px; align-items: flex-start;">
-            <div class="mb-3">
-                <div class="fs-4">공고 등록</div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <div class="relative mb-3">
-                        <div>
-                            <a href="/user/profileUpdateForm">
-                                <div class="user-img">
-                                    <img src="/images/logo.png" class="rounded" alt="Cinque Terre"
-                                        style="max-width: 80px;">
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div>
-                        <h6 class="card-subtitle text-muted">(주)grow</h6>
-                        <hr>
-                        <ul class="nav flex-column nav-pills">
-                            <li class="nav-item">
-                                <a class="nav-link a p-1 mb-1" href="/comp/comphome">지원 / 제안</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link a p-1 mb-1" aria-current="page"
-                                    href="/jobs/updateJobsForm">공고수정</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link a p-1 mb-1" href="/comp/scrap">스크랩</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link a p-1 mb-1 " href="/comp/talent">매칭리스트</a>
-                            </li>
-                            <hr>
-                            <li class="nav-item">
-                                <a class="nav-link a p-1 mb-1" href="/comp/updateForm" data-bs-toggle="modal"
-                                    data-bs-target="#modal">정보수정</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link a p-1" href="/">로그아웃</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        {{> layout/sidebar}}
         <!--공고 작성 폼-->
         <div class="container ft-18" style="width: calc(100% - 300px);">
             <form action="/jobs/save" method="post">
-               <input type="hidden" value="{{sessionComp.id}}" name="userId"/>
+                <input type="hidden" value="{{sessionComp.id}}" name="userId"/>
                 <div class="">
                     <!-- <div class="title">
                             <h2>이력서 작성</h2>
@@ -76,10 +27,12 @@
                     <div class=" mb-3 ft-18">
                         <div class="card-header resume-info-hdtitle">기본 정보</div>
 
-                        <div class="card-body d-flex" style=" align-items: flex-end; margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
-                            <div class="my-border resume-info-img col-3 mt-3" style="text-align: center; width: 200px; height: 200px; margin-top: 0 !important; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+                        <div class="card-body d-flex"
+                             style=" align-items: flex-end; margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+                            <div class="my-border resume-info-img col-3 mt-3"
+                                 style="text-align: center; width: 200px; height: 200px; margin-top: 0 !important; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
                                 <img class="" src="/images/logo.png" alt="" srcset="" style="width: 100%;"
-                                    id="photo">
+                                     id="photo">
                             </div>
 
                             <div class="resume-info-txt" style=" width: calc(100% - 230px); margin-left: 30px;">
@@ -90,15 +43,16 @@
                                     </tr>
                                     <tr>
                                         <th>공고제목</th>
-                                        <td><input class="form-control" style="height: 50px;" type="text" name="title" placeholder="제목을 작성해주세요" value="test"></td>
+                                        <td><input class="form-control" style="height: 50px;" type="text" name="title"
+                                                   placeholder="제목을 작성해주세요" value="test"></td>
                                     </tr>
 
                                     <tr>
                                         <th>근무 지역</th>
                                         <td>
                                             <select class="form-select" name="area" id="area">
-                                                <option  disabled>근무 지역을 선택해주세요</option>
-                                                <option  selected value="서울">서울</option>
+                                                <option disabled>근무 지역을 선택해주세요</option>
+                                                <option selected value="서울">서울</option>
                                                 <option value="부산">부산</option>
                                                 <option value="대구">대구</option>
                                                 <option value="인천">인천</option>
@@ -200,14 +154,15 @@
                                 <div class="card-header">내용</div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                            <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+                                        <textarea class="form-control" name="content" id="content" rows="3"></textarea>
                                     </div>
                                 </div>
                                 <div class="card-header">마감일</div>
                                 <div class="card-body">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <input type="date" name="deadLine" id="deadLine" class="form-control" style="height: 50px;">
+                                            <input type="date" name="deadLine" id="deadLine" class="form-control"
+                                                   style="height: 50px;">
                                         </div>
                                     </div>
                                 </div>
@@ -223,29 +178,27 @@
                                     </select>
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div>
-
-
-            <!--저장 버튼-->
-            <div class="rButton">
-                <div id="resume-remove" class="d-flex justify-content-center" style="align-items: center;">
-                    <div class="mr-10">
-                        <button id="" onclick="" type="button"
-                            class="btn btn-outline-mint w-100">임시<a href=""></a>
-                            저장</button>
-                    </div>
-                    <div class="">
-                        <button class="btn btn-mint w-100">공고등록</button>
+                <!--저장 버튼-->
+                <div class="rButton">
+                    <div id="resume-remove" class="d-flex justify-content-center" style="align-items: center;">
+                        <div class="mr-10">
+                            <button id="" onclick="" type="button"
+                                    class="btn btn-outline-mint w-100">임시<a href=""></a>
+                                저장
+                            </button>
+                        </div>
+                        <div class="">
+                            <button class="btn btn-mint w-100">공고등록</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <!--저장 버튼-->
             </form>
-            <!--저장 버튼-->
-
         </div>
         <!--이력서 작성 폼-->
-
     </div>
 </div>
-{{> /layout/footer}}
+{{> layout/footer}}

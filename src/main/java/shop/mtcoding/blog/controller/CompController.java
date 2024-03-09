@@ -127,7 +127,7 @@ public class CompController {
 
 
     @GetMapping("/comp/{id}/comphome")
-    public String compHome(@PathVariable Integer id, @RequestParam(required = false, defaultValue = "1") Integer jobsId, HttpServletRequest request) {
+    public String compHome(@PathVariable Integer id, @RequestParam(required = false, defaultValue = "0") Integer jobsId, HttpServletRequest request) {
 
         //
 
@@ -309,6 +309,7 @@ public class CompController {
 
     @GetMapping("/comp/profileUpdateForm")
     public String profileUpdateForm() {
+
         return "/comp/profileUpdateForm";
     }
 

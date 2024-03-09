@@ -7,99 +7,104 @@
 </style>
 
 <div class="mx-auto pt-80">
-        <div class="new-flex-wrapper">
-            <div class="new-container">
-                <!--지원 및 제안-->
-                {{> layout/sidebar}}
-
-
-                <!--지원 테이블-->
-                <div class="my-4  layer2-right-container">
-                    <div>
-                        <h6>
-                            <b>지원내역</b>
-                        </h6>
-                        <table class="table">
+    <div class="new-flex-wrapper">
+        <div class="new-container">
+            <!--지원 및 제안-->
+            {{> layout/sidebar}}
+            <div class="my-4 layer2-right-container" style="flex: 0 0 auto; width: calc(100% - 300px);">
+                <div class="components">
+                    <div class="components-div p-tb-10 d-flex justify-content-between">
+                        <div class="font">전체</div>
+                    </div>
+                    <div class="components-div">
+                        <table class="table table-hover offer-table scroll">
                             <thead>
-                            <tr class="table-success text-center">
-                                <th scope="col" style="width:10%">No.</th>
-                                <th scope="col" style="width:25%">공고명</th>
-                                <th scope="col" style="width:25%">이력서</th>
-                                <th scope="col" style="width:20%">포지션</th>
-                                <th scope="col" style="width:20%">상태</th>
+                            <tr>
+                                <th scope="col" style="width: 5%;">No</th>
+                                <th scope="col" style="width: 40%;">이력서 목록</th>
+                                <th scope="col" style="width: 15%;">주소</th>
+                                <th scope="col" style="width: 15%;">경력</th>
+                                <th scope="col" style="width: 25%;">제안 공고 확인</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="text-center">
-                                <th>1</th>
-                                <td><a href="/jobs/jobsDetail"
-                                       onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                    공고명 1</a></td>
-                                <td><a href="/resume/resumeDetail"
-                                       onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                    이력서 제목 1</a></td>
-                                <td>백엔드</td>
-                                <td>
-                                    <div class="badge btn-mint p-2">
-                                        <!--대기중 합격 불합격 상태표시 해야함-->
-                                        합격
-                                    </div>
-
-                                </td>
-                            </tr>
+                            {{^resumeList}}
+                                <div>현재 작성하신 이력서가 없습니다.</div>
+                            {{/resumeList}}
+                            {{#resumeList}}
+                                <tr class="offer-table">
+                                    <td>{{id}}</td>
+                                    <td>
+                                        <div>{{title}}</div>
+                                        <div class="new-skill-box">
+                                            {{#skillList}}
+                                                <div class="{{color}}">{{name}}</div>
+                                            {{/skillList}}
+                                        </div>
+                                    </td>
+                                    <td>{{area}}</td>
+                                    <td>{{career}}</td>
+                                    <td class="d-flex justify-content-between ">
+                                        <div class="new-create-button">
+                                            <a href="/user/{{sessionUser.id}}/offer?resumeId={{id}}">
+                                            <button type="button" class="btn btn-mint offer-table-btn">제안 공고 확인</button>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {{/resumeList}}
                             </tbody>
                         </table>
-
-                        <br>
+                    </div>
+                </div>
+                <div class="components" style="height: 50px;"></div>
+                <div class="components">
+                    <div class="font">제안 목록</div>
+                    <div>
                         <hr>
-
-                        <div class="my-4 pe-5" style=" width:100%; padding:0 !important;">
-                            <div>
-                                <h6><b>제안 내역
-                                    <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
-                                    </div>
-                                </b></h6>
-                                <table class="table" style="width:100%">
-                                    <thead>
-                                    <tr class="table-success text-center">
-                                        <th scope="col" style="width:10%">No.</th>
-                                        <th scope="col" style="width:25%">회사명</th>
-                                        <th scope="col" style="width:25%">공고명</th>
-                                        <th scope="col" style="width:20%">포지션</th>
-                                        <th scope="col" style="width:20%">상태</th>
-                                    </tr>
-
-                                    </thead>
-                                    <tbody>
-                                    <tr class="text-center">
-                                        <td>1</td>
-                                        <td>회사명</td>
-                                        <td><a href="/jobs/jobsDetail"
-                                               onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                            공고명 1</a></td>
-                                        <td>백엔드</td>
-                                        <td>
-                                            <div id="state-${sDto.suggestId}">
-                                                <div id="state-btn">
-                                                    <div class="badge btn-mint p-2">수락</div>
-                                                    <!--
-                                                <div class="badge bg-secondary p-2">대기중</div>
-                                                <div class="badge bg-danger p-2">거절</div>
-                                                -->
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    </div>
+                    <div>
+                        <table class="table table-hover offer-table scroll">
+                            <thead>
+                            <tr>
+                                <th class="center-align" scope="col" style="width: 5%;">No</th>
+                                <th class="center-align" scope="col" style="width: 10%;">회사명</th>
+                                <th class="center-align" scope="col" style="width: 30%;">공고제목</th>
+                                <th class="center-align" scope="col" style="width: 10%;">필요경력</th>
+                                <th class="center-align" scope="col" style="width: 60%;">필요 기술</th>
+                                <th class="center-align" scope="col" style="width: 12%;">공고 확인</th>
+                            </tr>
+                            </thead>
+                            {{#offerList}}
+                            <tbody>
+                                <tr class="offer-table">
+                                    <th scope="row">{{jobsId}}</th>
+                                    <td>{{compName}}</td>
+                                    <td>{{title}}</td>
+                                    <td>{{career}}</td>
+                                    <td>
+                                        <div class="new-skill-box">
+                                            {{#skillList}}
+                                                <div class="{{color}}">{{name}}</div>
+                                            {{/skillList}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="new-create-button">
+                                            <a href="/jobs/jobsDetail/{{jobsId}}">
+                                                <button type="button" class="btn btn-mint offer-table-btn">상세보기</button>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {{/offerList}}
+                            </tbody>
+                        </table>
                     </div>
 
                 </div>
 
             </div>
         </div>
-        <!-- row -->
-</div>
+    </div>
 {{> layout/footer}}

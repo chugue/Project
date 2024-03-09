@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import shop.mtcoding.blog.model.skill.SkillRequest;
+import shop.mtcoding.blog.model.skill.SkillResponse;
 import shop.mtcoding.blog.model.user.User;
 
 import java.sql.Timestamp;
@@ -49,8 +50,6 @@ public class ResumeRequest {
         private List<SkillRequest.ResumeSkillDTO> skillList;
     }
 
-
-    @Builder
     @Data
     public static class ResumeUpdateDTO {
         private String area;
@@ -61,10 +60,24 @@ public class ResumeRequest {
         private String title;
         // private Integer isPublic;
         private Integer id;
-
-//       private List<String> skills;
-
+        private List<String> skill;
     }
 
-
+    @Data
+    @Builder
+    public static class ResumeJoinDTO{
+        private Integer id;
+        private String myName;
+        private String address;
+        private String phone;
+        private String email;
+        private String birth;
+        private String edu;
+        private String career;
+        private String introduce;
+        private String title;
+        private String portLink;
+        private String area;
+        private SkillResponse.SkillCheckedDTO skillChecked;
+    }
 }

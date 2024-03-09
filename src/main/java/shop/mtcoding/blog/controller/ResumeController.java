@@ -12,6 +12,7 @@ import shop.mtcoding.blog.dto.scrap.ScrapResponse;
 import shop.mtcoding.blog.model.apply.ApplyResponse;
 import shop.mtcoding.blog.model.comp.CompRequest;
 
+import shop.mtcoding.blog.model.jobs.JobRequest;
 import shop.mtcoding.blog.model.jobs.JobResponse;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
 
@@ -21,10 +22,13 @@ import shop.mtcoding.blog.model.resume.Resume;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.resume.ResumeRequest;
 import shop.mtcoding.blog.model.scrap.ScrapRepository;
+import shop.mtcoding.blog.model.skill.SkillRepository;
 import shop.mtcoding.blog.model.skill.SkillRequest;
+import shop.mtcoding.blog.model.skill.SkillResponse;
 import shop.mtcoding.blog.model.user.User;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -35,7 +39,7 @@ public class ResumeController {
     private final ResumeRepository resumeRepository;
     private final ScrapRepository scrapRepository;
     private final OfferRepository offerRepository;
-
+    private final SkillRepository skillRepository;
     private final JobsRepository jobsRepository;
 
 
@@ -103,8 +107,34 @@ public class ResumeController {
             return "redirect:/loginForm";
         }
 
-        Resume resumeDTO = resumeRepository.findById(id);
-        request.setAttribute("resume", resumeDTO);
+        Object[] resume = resumeRepository.findByResumeId(id);
+
+        List<String> skillNames = skillRepository.findALLNameByResumeId(id);
+
+
+        ResumeRequest.ResumeJoinDTO skillChecked = ResumeRequest.ResumeJoinDTO.builder()
+                .id((Integer) resume[0])
+                .myName(String.valueOf(resume[1]))
+                .address(String.valueOf(resume[2]))
+                .phone(String.valueOf(resume[3]))
+                .email(String.valueOf(resume[4]))
+                .birth(String.valueOf(resume[5]))
+                .edu(String.valueOf(resume[6]))
+                .career(String.valueOf(resume[7]))
+                .introduce(String.valueOf(resume[8]))
+                .title(String.valueOf(resume[9]))
+                .portLink(String.valueOf(resume[10]))
+                .area(String.valueOf(resume[11]))
+                .skillChecked(new SkillResponse.SkillCheckedDTO(skillNames))
+                .build();
+
+        // row 세션에 담아
+        request.setAttribute("resume", skillChecked);
+        skillChecked.getSkillChecked().isJava();
+
+
+
+        // 머스테치에 세션 데이터값 넣어주기
 
         return "/resume/updateResumeForm";
     }
@@ -113,7 +143,7 @@ public class ResumeController {
     // 수정 업데이트 지우지 마세요
     // yz/0305 수정하기
     @PostMapping("/resume/{id}/update")
-    public String update(@PathVariable int id, ResumeRequest.ResumeUpdateDTO requestDTO) {
+    public String update(@PathVariable Integer id, ResumeRequest.ResumeUpdateDTO requestDTO) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser == null) {
             return "redirect:/loginForm";
@@ -121,14 +151,13 @@ public class ResumeController {
         // 업데이트 메서드 실행
         resumeRepository.updateById(requestDTO, id);
 
-        return "redirect:/resume/" + sessionUser.getId() + "/manageResume";
+        return "redirect:/user/" + sessionUser.getId() + "/userHome";
     }
 
     // 글쓰기 --------------
     @PostMapping("/resume/save")
     public String save(ResumeRequest.ResumeWriterDTO requestDTO) {
 
-        User sessionUser = (User) session.getAttribute("sessionUser");
         resumeRepository.save(requestDTO);
 
 
