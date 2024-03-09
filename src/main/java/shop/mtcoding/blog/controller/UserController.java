@@ -87,7 +87,7 @@ public class UserController {
                 return  "redirect:/comp/jobsInfo";
             }
         }
-        return "user/loginForm";
+        return "/user/loginForm";
     }
 
     @GetMapping("/logout")
