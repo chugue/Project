@@ -125,7 +125,6 @@ public class JobsController {
 
         session.setAttribute("jobsList", viewDTOList);
 
-
         return "/jobs/info";
     }
 

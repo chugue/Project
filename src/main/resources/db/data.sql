@@ -70,7 +70,6 @@ INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'JavaScript', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'Java', 2);
 
 
-
 -- 스크랩 테이블
 -- insert into scrap_tb(user_id, resume_id, created_at) values(1, 1, now());
 -- insert into scrap_tb(user_id, resume_id, created_at) values(2, 1, now());

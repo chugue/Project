@@ -91,8 +91,8 @@ public class ResumeRepository {
     @Transactional
     public void save(ResumeRequest.ResumeWriterDTO requestDTO) {
         String q = """
-                insert into resume_tb(id,user_id,title, area, edu, career, introduce, port_link, created_at) 
-                values (?,?,?,?,?,?,?,?,now());
+                insert into resume_tb(id,user_id,title, area, edu, career, introduce, port_link,imgFileName,created_at) 
+                values (?,?,?,?,?,?,?,?,?,now());
                 """;
         Query query = em.createNativeQuery(q);
         query.setParameter(1, requestDTO.getId());
@@ -103,7 +103,7 @@ public class ResumeRepository {
         query.setParameter(6, requestDTO.getCareer());
         query.setParameter(7, requestDTO.getIntroduce());
         query.setParameter(8, requestDTO.getPortLink());
-
+        query.setParameter(9, requestDTO.getImgFileName());
         query.executeUpdate();
 
         Long newResumeid = (Long) em.createNativeQuery("SELECT LAST_INSERT_ID()").getSingleResult();

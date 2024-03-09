@@ -71,7 +71,9 @@ public class ResumeController {
 
     @GetMapping("/resume/{id}/writeResumeForm")
     public String writeResumeForm() {
+        User user = (User) session.getAttribute("sessionUser");
 
+        System.out.println(user);
         return "/resume/writeResumeForm";
     }
 

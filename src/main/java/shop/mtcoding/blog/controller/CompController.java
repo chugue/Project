@@ -3,6 +3,7 @@ package shop.mtcoding.blog.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.blog.dto.scrap.ScrapResponse;
@@ -40,18 +41,9 @@ public class CompController {
     private final OfferRepository offerRepository;
     private final HttpSession session;
 
-
     private final ResumeRepository resumeRepository;
 
-    @GetMapping("/comp/{id}/apply")
-    public String apply(OfferRequest.CompOfterDTO compOfterDTO, HttpServletRequest request) {
-        User sessionUser = (User) session.getAttribute("sessionComp");
-        request.setAttribute("id", sessionUser.getId());
 
-        return "/comp/apply";
-    }
-  
-  
     @GetMapping("/comp/{id}/comphome")
     public String compHome(@PathVariable Integer id, @RequestParam(required = false ,defaultValue = "1") Integer jobsId,HttpServletRequest request) {
 
@@ -65,6 +57,7 @@ public class CompController {
 
         for (int i = 0; i < applyList.size(); i++) {
             ApplyResponse.ApplyByJobsDTO dto = applyList.get(i);
+
             dto.setSkillList(applyRepository.findAllSkillById(dto.getId()));
         }
 
@@ -178,9 +171,18 @@ public class CompController {
 //            }
 //
 //         }
+        User user = userRepository.findById(((User) session.getAttribute("sessionComp")).getId());
+        request.setAttribute("imgFileName", user.getImgFileName());
+
 
         return "/comp/comphome";
     }
+
+
+
+
+
+
 
     @GetMapping("/comp/joinForm")
     public String compJoinForm() {
@@ -198,7 +200,11 @@ public class CompController {
     }
 
     @GetMapping("/comp/profileUpdateForm")
-    public String profileUpdateForm() {
+    public String profileUpdateForm(HttpServletRequest request) {
+        User user = userRepository.findById(((User) session.getAttribute("sessionComp")).getId());
+        request.setAttribute("imgFileName", user.getImgFileName());
+
+
         return "/comp/profileUpdateForm";
     }
 

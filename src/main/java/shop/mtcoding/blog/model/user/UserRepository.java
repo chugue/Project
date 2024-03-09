@@ -83,4 +83,15 @@ public class UserRepository {
         }
         return user;
     }
+
+    @Transactional
+    public User updateImgFileName (String imgFileName, Integer id){
+        String q = "update user_tb set img_file_name = ? where id = ?";
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, imgFileName);
+        query.setParameter(2, id);
+        query.executeUpdate();
+
+        return findById(id);
+    }
 }

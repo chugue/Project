@@ -33,7 +33,6 @@ public class OfferController {
     public String offer(@PathVariable Integer id, @RequestParam(required = false, defaultValue = "1") Integer jobsId, HttpServletRequest request) {
         User sessionComp = (User) session.getAttribute("sessionComp");
         request.setAttribute("userId", sessionComp.getId());
-
         List<OfferRequest.CompOfterDTO> offerList = offerRepository.findAllByJobsId(jobsId);
 
         for (int i = 0; i < offerList.size(); i++) {

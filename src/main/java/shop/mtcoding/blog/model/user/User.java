@@ -3,6 +3,7 @@ package shop.mtcoding.blog.model.user;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -38,7 +39,9 @@ public class User {
     private Integer role;
     @Column(nullable = false)
     private Timestamp createdAt;
-
+    @Column(nullable = false)
+    @ColumnDefault("'Kakao.png'")
+    private String imgFileName;
 }
 
 

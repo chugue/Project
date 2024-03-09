@@ -43,6 +43,7 @@ public class JobRequest {
         private String task;
         private Timestamp createdAt;
         private List<String> skill;
+        private String imgFileName;
     }
 
     @Data

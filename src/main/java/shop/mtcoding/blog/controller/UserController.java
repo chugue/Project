@@ -50,6 +50,7 @@ public class UserController {
             if (role == 1) {
                 session.setAttribute("sessionUser", user);
                 return "redirect:/";
+
             } else if (role == 2) {
                 session.setAttribute("sessionComp", user);
                 return  "redirect:/comp/jobsInfo";

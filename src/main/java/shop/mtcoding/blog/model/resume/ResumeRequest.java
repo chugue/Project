@@ -25,6 +25,8 @@ public class ResumeRequest {
         private String portLink;
         private Timestamp createdAt;
         private List<String> skill;
+        private String imgFileName;
+
     }
 
 
