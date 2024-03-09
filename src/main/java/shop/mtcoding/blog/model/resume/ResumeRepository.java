@@ -96,6 +96,23 @@ public class ResumeRepository {
         return resume;
     }
 
+    public Object[] findByResumeId(Integer resumeId) {
+        String q = """
+                select 
+                rt.id, ut.my_name, ut.address, ut.phone, ut.email, 
+                ut. birth, rt.edu, rt.career, rt.introduce, rt.title, 
+                rt.port_link, rt.area 
+                from resume_tb rt 
+                join user_tb ut 
+                on rt.user_id = ut.id 
+                where rt.id = ?;
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, resumeId);
+        Object[] resume = (Object[]) query.getSingleResult();
+        return resume;
+    }
+
 
     // DTO 타입으로 스킬리스트빼고 전부 들고오는 매서드
     public List<ResumeRequest.UserViewDTO> findAllUserId(Integer userId) {
@@ -149,7 +166,6 @@ public class ResumeRepository {
 
             addSkillquery.executeUpdate();
         }
-
     }
 
 
@@ -174,7 +190,18 @@ public class ResumeRepository {
         query.setParameter(7, id);
 
         query.executeUpdate();
-        System.out.println("query: " + query);
 
+        Query skillDeleteQueary = em.createNativeQuery("delete from skill_tb where resume_id = ?;");
+        skillDeleteQueary.setParameter(1,id);
+
+        skillDeleteQueary.executeUpdate();
+
+        for (int i = 0; i < requestDTO.getSkill().size(); i++) {
+            Query skillInsertQuery = em.createNativeQuery("insert into skill_tb(resume_id, name, role) values(?,?,2)");
+            skillInsertQuery.setParameter(1,id);
+            skillInsertQuery.setParameter(2,requestDTO.getSkill().get(i));
+
+            skillInsertQuery.executeUpdate();
+        }
     }
 }

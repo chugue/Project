@@ -3,6 +3,7 @@ package shop.mtcoding.blog.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.blog.dto.scrap.ScrapResponse;
@@ -32,6 +33,7 @@ import shop.mtcoding.blog.model.user.User;
 import shop.mtcoding.blog.model.user.UserRepository;
 import shop.mtcoding.blog.model.user.UserRequest;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +50,13 @@ public class CompController {
     private final ResumeRepository resumeRepository;
     private final OfferRepository offerRepository;
     private final Paging paging;
+
+    @PostMapping("/comp/{id}/update")
+    public String updateForm(@PathVariable Integer id, CompRequest.UpdateDTO requestDTO) {
+        compRepository.updateById(id, requestDTO);
+
+        return "redirect:/comp/"+ id +"/comphome";
+    }
   
     @GetMapping("/comp/compIndex")
     public String compIndex(HttpServletRequest request, @RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") String page) {
@@ -118,7 +127,7 @@ public class CompController {
 
 
     @GetMapping("/comp/{id}/comphome")
-    public String compHome(@PathVariable Integer id, @RequestParam(required = false, defaultValue = "1") Integer jobsId, HttpServletRequest request) {
+    public String compHome(@PathVariable Integer id, @RequestParam(required = false, defaultValue = "0") Integer jobsId, HttpServletRequest request) {
 
         //
 
@@ -300,6 +309,7 @@ public class CompController {
 
     @GetMapping("/comp/profileUpdateForm")
     public String profileUpdateForm() {
+
         return "/comp/profileUpdateForm";
     }
 
@@ -404,8 +414,12 @@ public class CompController {
         return "/comp/talent";
     }
 
-    @GetMapping("/comp/updateForm")
-    public String updateForm() {
+    @GetMapping("/comp/{id}/updateForm")
+    public String updateForm(@PathVariable int id, HttpServletRequest request) {
+
+        User user = (User) userRepository.findById(id);
+
+        request.setAttribute("user", user);
         return "/comp/updateForm";
     }
 
