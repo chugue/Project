@@ -102,11 +102,10 @@
                                 <td>
                                     <div class="new-create-button">
 
-                                        <a href="/resume/resumeDetail/{{id}}">
-
-
-                                            <button type="button" class="btn btn-mint offer-table-btn">상세보기</button>
-                                        </a>
+                                        <form action="/comp/{{id}}/compResumeDetail">
+                                            <input type="hidden" name="jobsId" value="{{jobsId}}">
+                                            <button type="submit" class="btn btn-mint offer-table-btn">상세보기</button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>

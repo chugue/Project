@@ -20,6 +20,8 @@ import shop.mtcoding.blog.model.offer.OfferResponse;
 import shop.mtcoding.blog.model.page.Page;
 import shop.mtcoding.blog.model.page.Paging;
 
+import shop.mtcoding.blog.model.pass.PassRepository;
+import shop.mtcoding.blog.model.pass.PassRequest;
 import shop.mtcoding.blog.model.resume.Resume;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.resume.ResumeResponse;
@@ -50,6 +52,29 @@ public class CompController {
     private final ResumeRepository resumeRepository;
     private final OfferRepository offerRepository;
     private final Paging paging;
+    private final PassRepository passRepository;
+
+
+    @GetMapping("/comp/{id}/compResumeDetail")
+    public String compResumeDetail(@PathVariable Integer id,@RequestParam("jobsId") Integer jobsId, HttpServletRequest request) {
+        User sessionComp = (User) session.getAttribute("sessionComp");
+
+        System.out.println(jobsId);
+        Resume resumeDTO = resumeRepository.findById(id);
+        PassRequest.PassResumeJobsDTO requestDTO = passRepository.findByIdResumeJobs(id, jobsId);
+
+        request.setAttribute("resume", resumeDTO);
+
+        if (sessionComp == null) {
+            ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id);
+            request.setAttribute("scrap", scrapDetailDTO);
+        } else {
+            ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id, sessionComp.getId());
+            request.setAttribute("scrap", scrapDetailDTO);
+        }
+
+        return "/comp/compResumeDetail";
+    }
 
     @PostMapping("/comp/{id}/update")
     public String updateForm(@PathVariable Integer id, CompRequest.UpdateDTO requestDTO) {
@@ -428,28 +453,5 @@ public class CompController {
         return "/comp/jobsInfo";
     }
 
-    @GetMapping("/comp/{id}/compResumeDetail")
-    public String compResumeDetail(@PathVariable Integer id, HttpServletRequest request) {
-        User sessionComp = (User) session.getAttribute("sessionComp");
 
-
-        //상세보기 처리필요 -----------------
-
-
-        // ------------------------------------------------------------------------------------------
-
-        Resume resumeDTO = resumeRepository.findById(id);
-        request.setAttribute("resume", resumeDTO);
-
-        if (sessionComp == null) {
-            ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id);
-            request.setAttribute("scrap", scrapDetailDTO);
-        } else {
-            ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id, sessionComp.getId());
-            request.setAttribute("scrap", scrapDetailDTO);
-        }
-
-        //nullnnulll
-        return "/comp/compResumeDetail";
-    }
 }

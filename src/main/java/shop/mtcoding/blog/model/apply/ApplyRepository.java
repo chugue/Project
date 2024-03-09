@@ -19,7 +19,7 @@ public class ApplyRepository {
     public List<ApplyResponse.ApplyByJobsDTO> findAllByJobsId(Integer jobsId){
         String q = """
                 select
-                  at.id, ut.my_name, rt.title, rt.career
+                  at.id, ut.my_name, rt.title, rt.career, at.jobs_id
                 from apply_tb at
                 join resume_tb rt
                   on at.resume_id = rt.id

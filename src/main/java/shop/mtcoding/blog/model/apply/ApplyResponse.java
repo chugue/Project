@@ -16,13 +16,15 @@ public class ApplyResponse {
         private String myName;
         private String title;
         private String career;
+        private Integer jobsId;
         private List<SkillRequest.ApplyskillDTO> skillList;
 
-        public ApplyByJobsDTO(Integer id, String myName, String title, String career) {
+        public ApplyByJobsDTO(Integer id, String myName, String title, String career, Integer jobsId) {
             this.id = id;
             this.myName = myName;
             this.title = title;
             this.career = career;
+            this.jobsId = jobsId;
         }
     }
 }
