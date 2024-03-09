@@ -108,7 +108,6 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}/offer")
-
     public String offer(@PathVariable Integer id,
                         @RequestParam(required = false, defaultValue = "1") Integer resumeId,
                         HttpServletRequest request) {
