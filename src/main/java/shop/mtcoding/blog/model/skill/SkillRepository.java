@@ -66,6 +66,22 @@ public class SkillRepository {
         return mapper.list(query, SkillRequest.ApplyskillDTO.class);
     }
 
+    public List<SkillRequest.ApplyskillDTO> resumeSkill(Integer id) {
+        String q = """
+                select 
+                st.name, st.color 
+                from resume_tb rt 
+                join skill_tb st 
+                on st.resume_id = rt.id 
+                where rt.id = ?
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, id);
+
+        JpaResultMapper mapper = new JpaResultMapper();
+        return mapper.list(query, SkillRequest.ApplyskillDTO.class);
+    }
+
     public List<Skill> compfindAllV2(Integer id) {
         Query query = em.createNativeQuery("select * from skill_tb where resume_id = ?", Skill.class);
         query.setParameter(1, id);

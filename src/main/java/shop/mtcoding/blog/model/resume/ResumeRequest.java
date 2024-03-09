@@ -80,4 +80,21 @@ public class ResumeRequest {
         private String area;
         private SkillResponse.SkillCheckedDTO skillChecked;
     }
+
+    @Data
+    @Builder
+    public static class resumeDetailDTO {
+        private Integer id;
+        private String myName;
+        private String address;
+        private String phone;
+        private String email;
+        private String birth;
+        private String edu;
+        private String career;
+        private String introduce;
+        private String title;
+        private String portLink;
+        private String area;
+    }
 }
