@@ -63,7 +63,7 @@
             oncomplete: function(data) {
                 // 주소 검색 결과 처리 로직
                 document.getElementById('address').value = data.roadAddress; // 도로명 주소
-                document.getElementById('siNm').value = data.siNm; // 시 이름
+                window.close();
             },
             width: width, // 팝업 창의 너비
             height: height // 팝업 창의 높이

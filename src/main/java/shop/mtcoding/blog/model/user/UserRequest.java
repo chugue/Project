@@ -89,4 +89,15 @@ public class UserRequest {
         private Integer role;
         private Timestamp createdAt;
     }
+    @Data
+    public static class CompUpdateDTO{
+        private String myName;
+        private String password;
+        private String phone;
+        private String compName;
+        private String homepage;
+        private Date birth;
+        private String address;
+
+    }
 }
