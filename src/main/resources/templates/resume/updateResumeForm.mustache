@@ -24,7 +24,9 @@
                             <hr>
                             <div class="card-body d-flex">
                                 <div class="resume-info-img col-3 mt-3" style="text-align: center;">
-                                    <img class="" src="/images/aboutme_img.jpg" alt="" srcset="" style="width: 80%; height: auto;" id="photo">
+                                    <img class="" src="/images/aboutme_img.jpg" alt="" srcset=""
+                                         style="width: 80%; height: auto;" id="photo">
+
                                 </div>
                                 <div class="resume-info-txt">
                                     <table>
@@ -87,84 +89,134 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card border-light mb-3">
-                            <div class="card-header resume-info-hdtitle">보유 기술</div>
-                            <div class="card-body">
-                                <div class="row my-3 my-border">
-                                    <ul class="row technic">
-                                        <li class="col-2 form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" name="skill"
-                                                       {{#skillChecked.java}}checked{{/skillChecked.java}}
-                                                       value="Java">Java
+                            <div class="card border-light mb-3">
+                                <div class="card-header resume-info-hdtitle">보유 기술</div>
+                                <div class="card-body">
+                                    <div class="row my-3 my-border">
 
-                                            </label>
-                                        </li>
-                                        <li class="col-2 form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" name="skill"
-                                                       {{#skillChecked.javaScript}}checked{{/skillChecked.javaScript}}
-                                                       value="JavaScript">JavaScript
-                                            </label>
-                                        </li>
-                                        <li class="col-2 form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" name="skill"
-                                                       {{#skillChecked.spring}}checked{{/skillChecked.spring}}
-                                                       value="Spring">Spring
-                                            </label>
-                                        </li>
-                                        <li class="col-2 form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" name="skill"
-                                                       {{#skillChecked.htmlCss}}checked{{/skillChecked.htmlCss}}
-                                                       value="HTML/CSS">HTML/CSS
-                                            </label>
-                                        </li>
-                                        <li class="col-2 form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" name="skill"
-                                                       {{#skillChecked.jquery}}checked{{/skillChecked.jquery}}
-                                                       value="Jquery">Jquery
-                                            </label>
-                                        </li>
-                                        <li class="col-2 form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" name="skill"
-                                                       {{#skillChecked.jsp}}checked{{/skillChecked.jsp}}
-                                                       value="JSP">JSP
-                                            </label>
-                                        </li>
-                                        <li class="col-2 form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" name="skill"
-                                                       {{#skillChecked.vueJs}}checked{{/skillChecked.vueJs}}
-                                                       value="Vue.js">Vue.js
-                                            </label>
-                                        </li>
-                                        <li class="col-2 form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" name="skill"
-                                                       {{#skillChecked.oracle}}checked{{/skillChecked.oracle}}
-                                                       value="Oracle">Oracle
-                                            </label>
-                                        </li>
-                                        <li class="col-2 form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" name="skill"
-                                                       {{#skillChecked.mySql}}checked{{/skillChecked.mySql}}
-                                                       value="MysQL">MysQL
-                                            </label>
-                                        </li>
-                                        <li class="col-2 form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" name="skill"
-                                                       {{#skillChecked.react}}checked{{/skillChecked.react}}
-                                                       value="React">React
-                                            </label>
-                                        </li>
-                                    </ul>
+                                        <ul class="row technic">
+                                            <li class="col-2 form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="Java">Java
+                                                </label>
+                                            </li>
+                                            <li class="col-2 form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="JavaScrip">JavaScrip
+                                                </label>
+                                            </li>
+                                            <li class="col-2 form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="Spring">Spring
+                                                </label>
+                                            </li>
+                                            <li class="col-2 form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="HTML">HTML
+                                                </label>
+                                            </li>
+                                            <li class="col-2 form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="jquery">jquery
+                                                </label>
+                                            </li>
+                                            <li class="col-2 form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="JSP">JSP
+                                                </label>
+                                            </li>
+                                            <li class="col-2 form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="Vue.js">Vue.js
+                                                </label>
+                                            </li>
+                                            <li class="col-2 form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="Oracle">Oracle
+                                                </label>
+                                            </li>
+                                            <li class="col-2 form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="MysQL">MysQL
+                                                </label>
+                                            </li>
+                                            <li class="col-2 form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="React">React
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+
+                                    <div class="card border-light mb-3">
+                                        <div class="card-header">자기소개서</div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <textarea class="form-control" name="introduce" id="introduce"
+                                                          rows="3">introduce</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card border-light mb-3">
+                                        <div class="card-header">링크</div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <input type="text" name="portLink" id="portLink" class="form-control"
+                                                       value="portLink">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="card border-light mb-3">
+                                        <div class="card-header">제목</div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <input type="text" name="title" id="title" class="form-control"
+                                                           value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+<!--
+                                    <div class="card border-light mb-3">
+                                        <div class="card-header">이력서 공개 여부</div>
+                                        <div class="card-body">
+                                            <fieldset class="form-group">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="isPublic"
+                                                           id="isPublic"
+                                                           value=1 checked="">
+                                                    <label class="form-check-label" for="optionsRadios1">
+                                                        공개
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="isPublic"
+                                                           id="isPublic"
+                                                           value="0">
+                                                    <label class="form-check-label" for="optionsRadios2">
+                                                        비공개
+                                                    </label>
+                                                </div>
+                                            </fieldset>
+
+                                        </div>
+                                    </div>
+                                    -->
                                 </div>
                             </div>
                         </div>
