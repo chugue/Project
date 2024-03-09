@@ -44,21 +44,40 @@ public class CompRepository {
     }
 
 
-
-
-
-
-
-
-
-
-
     @Transactional
-    public void updateById(){}
+    public void updateById(int id, CompRequest.UpdateDTO requestDTO) {
+        String q = """
+                UPDATE user_tb
+                SET my_name = ?, password = ?,  comp_name = ?, phone = ?,  address = ?, birth = ?,  homepage = ?
+                WHERE id =?
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, requestDTO.getMyName());
+        query.setParameter(2, requestDTO.getPassword());
+        query.setParameter(3, requestDTO.getCompName());
+        query.setParameter(4, requestDTO.getPhone());
+        query.setParameter(5, requestDTO.getAddress());
+        query.setParameter(6, requestDTO.getBirth());
+        query.setParameter(7, requestDTO.getHomepage());
+        query.setParameter(8, id);
+        query.executeUpdate();
+
+    }
 
     @Transactional
     public void save() {}
 
     @Transactional
     public void deleteById () {}
+
+    public User findById(Integer id) {
+        String q = """
+                SELECT *
+                FROM user_tb
+                WHERE id = ?
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, id);
+       return (User) query.getSingleResult();
+    }
 }

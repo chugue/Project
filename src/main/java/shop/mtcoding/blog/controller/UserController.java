@@ -139,6 +139,7 @@ public class UserController {
         return "/user/scrap";
     }
 
+
     @PostMapping("/user/{id}/update")
     public String updateForm(@PathVariable Integer id, UserRequest.UpdateDTO requestDTO) {
         userRepository.updateById(id, requestDTO);
