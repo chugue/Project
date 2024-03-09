@@ -1,6 +1,4 @@
 
-
-
 {{#sessionUser}}
     <aside class="px-5" style="text-align: center; flex: 0 0 auto; padding: 0 !important; width: 220px; margin-right:20px; ">
         <div class="mb-3">
@@ -32,9 +30,9 @@
                         <li class="nav-item">
                             <a id="offer" href="/user/{{id}}/offer" class="nav-link sub-menu a p-1 mb-1">지원/제안</a>
                         </li>
-                        <li class="nav-item">
-                            <a id="scrap" href="/user/{{id}}/scrap" class="nav-link sub-menu a p-1 mb-1">스크랩</a>
-                        </li>
+<!--                        <li class="nav-item">-->
+<!--                            <a id="scrap" href="/user/{{id}}/scrap" class="nav-link sub-menu a p-1 mb-1">스크랩</a>-->
+<!--                        </li>-->
                         <hr>
                         <li class="nav-item">
                             <a href="/user/{{id}}/updateForm" class="nav-link sub-menu a p-1 mb-1">정보수정</a>
@@ -48,8 +46,6 @@
         </div>
     </aside>
 {{/sessionUser}}
-
-
 
 {{#sessionComp}}
     <aside class="px-5" style="text-align: center; flex: 0 0 auto; padding: 0 !important; width: 220px; margin-right:20px; ">
@@ -76,12 +72,12 @@
                         <li class="nav-item">
                             <a id="compHome" class="nav-link sub-menu a p-1 mb-1" href="/comp/{{id}}/comphome">공고 관리</a>
                         </li>
-<!--                        <li class="nav-item">-->
-<!--                            <a id="apply" class="nav-link sub-menu a p-1 mb-1" href="/comp/{{id}}/apply">지원 / 제안</a>-->
-<!--                        </li>-->
                         <li class="nav-item">
-                            <a id="scrap" class="nav-link sub-menu a p-1" href="/comp/{{id}}/scrap">스크랩</a>
+                            <a id="apply" class="nav-link sub-menu a p-1 mb-1" href="/comp/{{id}}/apply">지원 / 제안</a>
                         </li>
+<!--                        <li class="nav-item">-->
+<!--                            <a id="scrap" class="nav-link sub-menu a p-1" href="/comp/{{id}}/scrap">스크랩</a>-->
+<!--                        </li>-->
                         <!--                    <li class="nav-item">-->
                         <!--                        <a class="nav-link sub-menu a p-1" href="/comp/talent">매칭리스트</a>-->
                         <!--                    </li>-->
@@ -98,7 +94,6 @@
         </div>
     </aside>
 {{/sessionComp}}
-
 
 <script>
 

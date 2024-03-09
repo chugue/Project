@@ -195,7 +195,7 @@ public class JobsController {
     @PostMapping("/jobs/save")
     public String save(JobRequest.JobWriterDTO jobWriterDTO){
         jobsRepository.save(jobWriterDTO);
-//        session.setAttribute("jobList",jobWriterDTO);
+        //  session.setAttribute("jobList",jobWriterDTO);
 
         return "redirect:/comp/"+ jobWriterDTO.getUserId()+"/comphome";
     }

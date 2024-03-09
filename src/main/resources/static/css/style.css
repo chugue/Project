@@ -170,6 +170,7 @@ nav{
 
 .card-header {
     background-color: #fff;
+    font-weight: 700;
 }
 
 .remember {
@@ -447,9 +448,49 @@ table th {
     background-color: #2cb457;
     border: none;
 }
-
+.new-head{
+    display: flex;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 30px;
+    border-radius: 10px;
+}
 .new-flex-wrapper{
     display: flex;
     flex-direction: column;
     padding: 100px 0;
+}
+.new-info-txt-wrapper{
+    display: flex;
+}
+.new-input-wrapper{
+    width: 50%;
+}
+new-info-txt-wrapper{
+    display: flex;
+}
+.new-wrapper-contnent .new-title{
+    font-weight: 700;
+    font-size: 16px;
+    color: #666;
+}
+.new-wrapper-contnent .new-content{
+    width: 70%;
+    margin-bottom: 20px;
+}
+.new-wrapper-contnent .new-content.bold{
+    font-size: 40px;
+    font-weight: 700;
+    padding-top: 20px;
+}
+.new-wrapper-contnent{
+    display: flex;
+    flex-direction: column;
+}
+.new-title-name{}
+
+.new-content-name{}
+
+.new-body{
+    border: 1px solid #ddd;
 }
