@@ -6,7 +6,6 @@ import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import shop.mtcoding.blog.dto.user.UserRequest;
 
 import java.util.List;
 
@@ -41,8 +40,7 @@ public class UserRepository {
         return user;
     }
 
-    @Transactional
-    public void updateById(Integer id){}
+
 
     @Transactional
     public void save(UserRequest.UserAllDTO requestDTO) {
@@ -100,5 +98,21 @@ public class UserRepository {
             return null;
         }
 
+    }
+    @Transactional
+    public void updateById(int id, UserRequest.UpdateDTO requestDTO) {
+        String q = """
+                UPDATE user_tb
+                SET password = ?, my_name = ?, phone = ?,  birth = ?, address = ?
+                WHERE id =?
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, requestDTO.getPassword());
+        query.setParameter(2, requestDTO.getMyName());
+        query.setParameter(3, requestDTO.getPhone());
+        query.setParameter(4, requestDTO.getBirth());
+        query.setParameter(5, requestDTO.getAddress());
+        query.setParameter(6, id);
+        query.executeUpdate();
     }
 }

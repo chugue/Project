@@ -6,17 +6,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.blog.dto.scrap.ScrapResponse;
-import shop.mtcoding.blog.dto.user.UserRequest;
-import shop.mtcoding.blog.model.apply.Apply;
 import shop.mtcoding.blog.model.apply.ApplyRepository;
 import shop.mtcoding.blog.model.apply.ApplyResponse;
 import shop.mtcoding.blog.model.comp.CompRepository;
 import shop.mtcoding.blog.model.comp.CompRequest;
-import shop.mtcoding.blog.model.offer.Offer;
 import shop.mtcoding.blog.model.offer.OfferRepository;
 import shop.mtcoding.blog.model.offer.OfferRequest;
 import shop.mtcoding.blog.model.jobs.JobResponse;
-import shop.mtcoding.blog.model.jobs.Jobs;
 
 import shop.mtcoding.blog.model.offer.OfferResponse;
 
@@ -34,6 +30,7 @@ import shop.mtcoding.blog.model.skill.SkillRepository;
 import shop.mtcoding.blog.model.skill.SkillRequest;
 import shop.mtcoding.blog.model.user.User;
 import shop.mtcoding.blog.model.user.UserRepository;
+import shop.mtcoding.blog.model.user.UserRequest;
 
 import java.util.ArrayList;
 import java.util.List;
