@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import shop.mtcoding.blog.model.apply.ApplyRequest;
 import shop.mtcoding.blog.model.skill.SkillRequest;
 import shop.mtcoding.blog.model.user.UserRequest;
 import shop.mtcoding.blog.model.user.UserResponse;
@@ -92,6 +93,10 @@ public class OfferRepository {
         List<UserRequest.ResumeOfterDTO> result = mapper.list(query, UserRequest.ResumeOfterDTO.class);
         return result;
     }
+
+
+
+
 
     public List<SkillRequest.JobSkillDTO> findAllSkillById(Integer id){
         String q = """

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import shop.mtcoding.blog.model.apply.ApplyRepository;
+import shop.mtcoding.blog.model.apply.ApplyRequest;
 import shop.mtcoding.blog.model.jobs.JobRequest;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
@@ -68,5 +69,22 @@ public class ApplyController {
         request.setAttribute("resumeList", resumeList);
         System.out.println(11111);
         return "/jobs/jobsDetail";
+    }
+
+    @GetMapping("/resume/{jobId}/applyList")
+    public String resumeApplyList (@PathVariable Integer jobId, @RequestParam("resumeId") Integer resumeId, HttpServletRequest request){
+
+        List<ApplyRequest.ApplyResumeJobsDTO2> applyResumeJobsDTOList= applyRepository.findAllByResumeId(resumeId);
+
+        User user = (User) session.getAttribute("sessionUser");
+        List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId((user.getId()));
+        List<SkillRequest.ApplyskillDTO> skillList = skillRepository.JobsSkill(jobId);
+        // row 세션에 담아
+        request.setAttribute("jobsId", jobId);
+        request.setAttribute("jobs", applyResumeJobsDTOList);
+        request.setAttribute("skillList", skillList );
+        request.setAttribute("resumeList", resumeList);
+        System.out.println(11111);
+        return "/user/"+ user.getId() +"/userhome";
     }
 }

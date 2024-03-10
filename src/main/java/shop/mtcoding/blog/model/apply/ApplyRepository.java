@@ -9,6 +9,7 @@ import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.blog.model.skill.SkillRequest;
+import shop.mtcoding.blog.model.user.UserRequest;
 
 import java.util.List;
 
@@ -117,5 +118,21 @@ public class ApplyRepository {
         query.setParameter(1, resumeId);
         query.setParameter(2, jobsId);
         return (Object[]) query.getSingleResult();
+    }
+
+    public List<ApplyRequest.ApplyResumeJobsDTO2> findAllByResumeId(Integer resumeId){
+        String q = """
+                    SELECT j.*, r.id, a.status
+                    FROM jobs_tb j
+                    JOIN apply_tb a ON j.id = a.jobs_id
+                    JOIN resume_tb r ON a.resume_id = r.id
+                    WHERE resume_id = ?;
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, resumeId);
+
+        JpaResultMapper mapper = new JpaResultMapper();
+        List<ApplyRequest.ApplyResumeJobsDTO2> result = mapper.list(query, ApplyRequest.ApplyResumeJobsDTO2.class);
+        return result;
     }
 }

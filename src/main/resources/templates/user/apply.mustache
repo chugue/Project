@@ -46,8 +46,10 @@
                                     <td>{{career}}</td>
                                     <td class="d-flex justify-content-between ">
                                         <div class="new-create-button">
-                                            <a href="/user/{{sessionUser.id}}/offer?resumeId={{id}}">
-                                            <button type="button" class="btn btn-mint offer-table-btn">지원 공고 확인</button>
+                                            <form action="/resume/{{sessionUser.id}}/applyList">
+                                                <input type="hidden" name="resumeId" value="{{id}}">
+                                                <button type="submit" class="btn btn-mint offer-table-btn">지원 공고 확인</button>
+                                            </form>
                                             </a>
                                         </div>
                                     </td>
