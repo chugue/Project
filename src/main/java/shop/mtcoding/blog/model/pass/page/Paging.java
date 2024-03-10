@@ -1,4 +1,4 @@
-package shop.mtcoding.blog.model.page;
+package shop.mtcoding.blog.model.pass.page;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

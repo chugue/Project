@@ -3,6 +3,7 @@ package shop.mtcoding.blog.model.user;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -34,6 +35,9 @@ public class User {
     @Column(nullable = false)
     private Timestamp createdAt;
 
+    @Column
+    @ColumnDefault("'176c65b3-5f38-4cea-88be-f2e4dcb82016_naver.jpg'")
+    private String imgFileName;
 }
 
 

@@ -4,13 +4,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import shop.mtcoding.blog.model.jobs.JobResponse;
-import shop.mtcoding.blog.model.jobs.Jobs;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
-import shop.mtcoding.blog.model.page.Page;
-import shop.mtcoding.blog.model.page.Paging;
+import shop.mtcoding.blog.model.pass.page.Page;
+import shop.mtcoding.blog.model.pass.page.Paging;
 import shop.mtcoding.blog.model.skill.Skill;
 import shop.mtcoding.blog.model.skill.SkillRepository;
 
