@@ -67,9 +67,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {{#offerList}}
+                            {{#applyList}}
                                 <tr class="offer-table">
-                                    <th scope="row">{{resumeId}}</th>
+                                    <th scope="row">{{id}}</th>
                                     <td>{{myName}}</td>
                                     <td>{{title}}</td>
                                     <td>{{career}}</td>
@@ -83,14 +83,14 @@
                                     <td>
                                         <div class="new-create-button">
 
-                                            <a href="/resume/resumeDetail/{{resumeId}}">
-
-                                                <button type="button" class="btn btn-mint offer-table-btn">상세보기</button>
-                                            </a>
+                                            <form action="/resume/resumeDetail/{{id}}">
+                                                <input type="hidden" name="jobsId" value="{{jobsId}}">
+                                                <button type="submit" class="btn btn-mint offer-table-btn">상세보기</button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
-                            {{/offerList}}
+                            {{/applyList}}
                             </tbody>
                         </table>
                     </div>

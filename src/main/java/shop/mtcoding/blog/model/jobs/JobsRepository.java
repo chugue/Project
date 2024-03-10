@@ -19,8 +19,7 @@ public class JobsRepository {
         String q = """
                 select jt.id, jt.user_id, jt.area, jt.title, jt.edu, jt.career, jt.content, jt.dead_line, jt.task, jt.created_at, ut.comp_name 
                 from jobs_tb jt inner join user_tb ut 
-                on jt.user_id = ut.id 
-                order by jt.id desc 
+                on jt.user_id = ut.id;
                 """;
 
         Query query = em.createNativeQuery(q);
@@ -36,12 +35,11 @@ public class JobsRepository {
                 SELECT j.*, u.comp_name 
                 FROM jobs_tb j join user_tb u 
                 on j.user_id = u.id 
-                where j.title like ? or u.comp_name like ? order by j.id desc;
+                where j.title like ? or u.comp_name;
                 """;
 
         Query query = em.createNativeQuery(q, Jobs.class);
         query.setParameter(1, "%" + keyword + "%");
-        query.setParameter(2, "%" + keyword + "%");
 
         JpaResultMapper mapper = new JpaResultMapper();
         List<JobResponse.DTO> result = mapper.list(query, JobResponse.DTO.class);
