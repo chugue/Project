@@ -11,7 +11,7 @@
         <div class="new-container">
             <!--지원 및 제안-->
             {{> layout/sidebar}}
-            <div class="my-4 layer2-right-container" style="flex: 0 0 auto; width: calc(100% - 300px);">
+            <div class="my-4 layer2-right-container" style="flex: 0 0 auto; width: calc(100% - 270px);">
                 <div class="components">
                     <div class="components-div p-tb-10 d-flex justify-content-between">
                         <div class="font mb-3">전체</div>
@@ -36,7 +36,7 @@
                                 <tr class="offer-table" style="text-align: center">
                                     <!--이력서 id-->
                                     <td>{{id}}</td>
-                                    <!--보유스킬-->
+                                    <!--타이틀, 보유스킬-->
                                     <td>
                                         <div style="text-align: start">{{title}}</div>
                                         <div class="new-skill-box">
@@ -50,7 +50,7 @@
                                     <!--경력-->
                                     <td>{{career}}</td>
                                     <!--제안 공고 확인 버튼-->
-                                    <td class="col-3"  style="text-align: center">
+                                    <td class="col-3" style="text-align: center">
                                         <div class="new-create-button">
                                             <a href="/user/{{sessionUser.id}}/offer?resumeId={{id}}">
                                             <button type="button" class="btn btn-mint offer-table-btn">제안 공고 확인</button>
