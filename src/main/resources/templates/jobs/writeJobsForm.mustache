@@ -1,4 +1,4 @@
-{{> layout/header}}
+{{> layout/compheader}}
 
 <style>
     .my-border {
@@ -13,11 +13,11 @@
 
 <!--이력서 작성-->
 <div class="resume-info-wrap  pt-80">
-    <div class="container my-5 py-5 pt-80 d-flex" style="flex-direction: row; align-items: flex-start !important;">
-        {{> layout/compsidebar}}
+    <div class="new-container my-5 py-5 pt-80 d-flex" style="flex-direction: row; align-items: flex-start !important;">
+        {{> layout/sidebar}}
         <!--공고 작성 폼-->
-        <div class="container ft-18" style="width: calc(100% - 300px);">
-            <form action="/jobs/save" method="post">
+        <div class="container" style="width: calc(100% - 270px); padding: 0">
+            <form action="/jobs/save" method="post" style="width:100%;">
                 <input type="hidden" value="{{sessionComp.id}}" name="userId"/>
                 <div class="">
                     <!-- <div class="title">
@@ -25,7 +25,7 @@
                         </div>
                         <hr> -->
                     <div class=" mb-3 ft-18">
-                        <div class="card-header resume-info-hdtitle">기본 정보</div>
+                        <div class="card-header resume-info-hdtitle"style=" font-size: 22px; font-weight: 700; margin-bottom: 15px;">기본 정보</div>
 
                         <div class="card-body d-flex"
                              style=" align-items: flex-end; margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
@@ -71,8 +71,8 @@
                             </div>
                         </div>
 
-                        <div class="card border-light mb-3" style="boder-color:1px solid #ddd !important;">
-                            <div class="card-header resume-info-hdtitle">학력 사항</div>
+                        <div class="card new-body mb-3" style="boder-color:1px solid #ddd !important;">
+                            <div class="card-header resume-info-hdtitle">학력 사항<span style="color: red">(필수)</span></div>
                             <div class="card-body">
                                 <div class="form-group">
                                     <select class="form-select" name="edu" id="edu">
@@ -85,7 +85,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="card-header resume-info-hdtitle">경력 사항</div>
+                            <div class="card-header resume-info-hdtitle">경력 사항<span style="color: red">(필수)</span></div>
                             <div class="card-body">
                                 <div class="form-group">
                                     <select class="form-select" name="career" id="career">
@@ -103,7 +103,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="card-header resume-info-hdtitle">필요 기술</div>
+                            <div class="card-header resume-info-hdtitle">필요 기술<span style="color: red">(필수)</span></div>
                             <div class="card-body">
                                 <div class="row my-3 my-border">
                                     <ul class="row technic">
@@ -151,13 +151,13 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="card-header">내용</div>
+                                <div class="card-header resume-info-hdtitle">내용<span style="color: red">(필수)</span></div>
                                 <div class="card-body">
                                     <div class="form-group">
                                         <textarea class="form-control" name="content" id="content" rows="3"></textarea>
                                     </div>
                                 </div>
-                                <div class="card-header">마감일</div>
+                                <div class="card-header resume-info-hdtitle">마감일<span style="color: red">(필수)</span></div>
                                 <div class="card-body">
                                     <div class="form-group">
                                         <div class="form-group">
@@ -166,7 +166,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-header">업무</div>
+                                <div class="card-header resume-info-hdtitle">업무<span style="color: red">(필수)</span></div>
                                 <div class="card-body">
                                     <select class="form-select" name="task" id="task">
                                         <option disabled>경력 사항을 선택해주세요</option>

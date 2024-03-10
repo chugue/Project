@@ -350,7 +350,7 @@ public class CompController {
         userRepository.save(requestDTO);
         List<User> userList = userRepository.findAll();
         System.out.println(userList);
-        return "redirect:/";
+        return "redirect:/user/loginForm";
     }
 
     @GetMapping("/comp/profileUpdateForm")
