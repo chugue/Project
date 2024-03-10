@@ -219,6 +219,46 @@
 
 
 <!--버튼-->
+</div>
+</div>
+</div>
+<div class="side-button-container">
+    <div class="side-button">
+        <div id="rButton" style="width: 12em;">
+            <br>
+            <div class="row p-1">
+                <div>
+                    <div id="scrap-${rDto.resumeId}-render">
+                        <div id="scrap-${rDto.resumeId}-remove">
+                            {{#scrap.isScrap}}
+                                <form action="/resume/scrap/{{scrap.id}}/delete" method="post">
+                                    <input type="hidden" name="resumeId" value="{{resume.id}}">
+                                    <button type="submit" class="btn btn-mint w-100 mb-10">스크랩 취소</button>
+                                </form>
+                            {{/scrap.isScrap}}
+                            {{#offer.isScrap}}
+                                <form action="/resume/offer/{{scrap.id}}/delete" method="post">
+                                    <input type="hidden" name="resumeId" value="{{resume.id}}">
+                                    <button type="submit" class="btn btn-outline-mint w-100">제안 취소</button>
+                                </form>
+                            {{/offer.isScrap}}
+                            {{^scrap.isScrap}}
+                                <form action="/resume/scrap/save" method="post"
+                                      enctype="application/x-www-form-urlencoded">
+                                    <input type="hidden" name="resumeId" value="{{id}}">
+                                    <button type="submit" class="btn btn-mint w-100 mb-10">합격</button>
+                                </form>
+                            {{/scrap.isScrap}}
+                            {{^offer.isScrap}}
+
+                                <form action="/resume/offer/save" method="post"
+                                      enctype="application/x-www-form-urlencoded">
+
+
+                                    <input type="hidden" name="resumeId" value="{{id}}">
+                                    <button type="submit" class="btn btn-outline-mint w-100">불합격</button>
+                                </form>
+                            {{/offer.isScrap}}
 
 
 
