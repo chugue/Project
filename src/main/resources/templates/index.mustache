@@ -249,18 +249,19 @@
         <!--페이징-->
         <div class="pages">
             <ul class="pagination justify-content-center pb-50">
-                <li class="page-item {{#firstPage}}disabled{{/firstPage}}">
-                    <a class="page-link" href="?page={{prevPage}}&keyword={{keyword}}">Previous</a></li>
+                <li class="page-item {{#firstPage}}disabled prev{{/firstPage}}">
+                    <a class="page-link" href="?page={{prevPage}}&keyword={{keyword}}"><i class="fa-solid fa-angle-left"></i></a></li>
                 {{#pages}}
                     <li class="page-item {{#isActive}}active{{/isActive}}"><a class="page-link"
                                                                               href="?page={{number}}&keyword={{keyword}}">{{number}}</a></li>
                 {{/pages}}
-                <li class="page-item {{#lastPage}}disabled{{/lastPage}}">
-                    <a class="page-link" href="?page={{nextPage}}&keyword={{keyword}}">Next</a>
+                <li class="page-item {{#lastPage}}disabled next{{/lastPage}}">
+                    <a class="page-link" href="?page={{nextPage}}&keyword={{keyword}}"><i class="fa-solid fa-angle-right"></i></a>
                 </li>
             </ul>
         </div>
     </div>
+
 </div>
 
 <!--고객센터-->
