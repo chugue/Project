@@ -40,12 +40,13 @@
         width: 200px;
     }
 
-    .text{
+    .text {
         color: #00CA5E;
         text-align: center;
         padding: 5px;
     }
-    hr{
+
+    hr {
         margin: 10px 30px;
     }
 
@@ -159,29 +160,37 @@
             <div id="scrap-${rDto.resumeId}-remove">
             <!--                                {{#scrap.isScrap}}-->
                 <!--                                    <form action="/comp/scrap/{{scrap.id}}/delete" method="post">-->
-                <!--                                        <input type="hidden" name="resumeId" value="{{resume.id}}">-->
+                <!--                                        <input type="hidden" name="resumeId" value="">-->
                 <!--                                        <button type="submit" class="btn btn-mint w-100 mb-10">스크랩 취소</button>-->
                 <!--                                    </form>-->
                 <!--                                    <button id="scrap-${rDto.resumeId}" type="button" class="btn btn-outline-mint w-100">지원하기</button>-->
                     <!--                                {{/scrap.isScrap}}-->
                     <!--                                {{^scrap.isScrap}}-->
                 <!--                                    <form action="/comp/scrap/save" method="post" enctype="application/x-www-form-urlencoded">-->
-                <!--                                        <input type="hidden" name="resumeId" value="{{id}}">-->
+                <!--                                        <input type="hidden" name="resumeId" value="">-->
                 <!--                                        <button type="submit" class="btn btn-mint w-100 mb-10">스크랩</button>-->
                 <!--                                    </form>-->
                     <!--                                {{/scrap.isScrap}}-->
 
-                <form action="">
-                    <input type="hidden" name="" value="">
-                    <button type="submit" class="btn btn-outline-mint w-100">지원하기</button>
+                <form action="/resume/{{jobId}}/apply">
+                    {{#applySuccess}}
+                        <button type="submit" class="btn btn-outline-mint w-100" disabled >지원완료</button>
+                    {{/applySuccess}}
+                    {{^applySuccess}}
+                        <button type="submit" class="btn btn-outline-mint w-100" >지원하기</button>
+                    {{/applySuccess}}
+
+
                     <div>
                         <div class="card mt-3">
                             <h6 class="card-body text">내 이력서 선택</h6>
                             <hr class="mb-4">
                             {{#resumeList}}
                                 <div class="form-check mb-20">
-                                    <input type="radio" class="form-check-input" id="radio1" name="resume_id" value="{{id}}" checked>
-                                    <label class="form-check-label" for="radio1" style="font-weight: 400">{{title}}</label>
+                                    <input type="radio" class="form-check-input" id="radio1" name="resumeId"
+                                           value="{{id}}" checked>
+                                    <label class="form-check-label" for="radio1"
+                                           style="font-weight: 400">{{title}}</label>
                                 </div>
                             {{/resumeList}}
                         </div>

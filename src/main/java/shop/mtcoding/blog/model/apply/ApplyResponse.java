@@ -24,4 +24,7 @@ public class ApplyResponse {
             this.jobsId = jobsId;
         }
     }
+
+
+
 }

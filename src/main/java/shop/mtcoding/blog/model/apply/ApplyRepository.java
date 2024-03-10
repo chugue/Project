@@ -92,6 +92,7 @@ public class ApplyRepository {
     @Transactional
     public void deleteById () {}
 
+    @Transactional
     public void saveResumeJobsApply(Integer resumeId, Integer jobsId) {
         String q = """
                 INSERT INTO apply_tb (resume_id, jobs_id, status, created_at)
@@ -104,8 +105,17 @@ public class ApplyRepository {
 
     }
 
-    public void findByResumeJobs(Integer resumeId, Integer jobsId) {
+    public Object[] findStatusByResumeJobs(Integer resumeId, Integer jobsId) {
         String q = """
+                SELECT r.id, j.*, a.status
+                FROM resume_tb r 
+                JOIN apply_tb a ON r.id = a.resume_id
+                JOIN jobs_tb j ON a.jobs_id = j.id
+                WHERE resume_id = ? and jobs_id = ? 
                 """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, resumeId);
+        query.setParameter(2, jobsId);
+        return (Object[]) query.getSingleResult();
     }
 }

@@ -141,11 +141,12 @@ public class UserController {
 
 
     @PostMapping("/user/{id}/update")
-    public String updateForm(@PathVariable Integer id, UserRequest.UpdateDTO requestDTO) {
+    public String updateForm(@PathVariable Integer id, UserRequest.UpdateDTO requestDTO, HttpServletRequest request) {
         userRepository.updateById(id, requestDTO);
         User user = userRepository.findById(id);
         String a = user.getMyName();
-        System.out.println(a);
+
+
         return "redirect:/user/"+ id +"/userHome";
     }
 
@@ -172,7 +173,7 @@ public class UserController {
             ResumeRequest.UserViewDTO dto = resumeList.get(i);
             dto.setSkillList(resumeRepository.findAllByResumeId(dto.getId()));
         }
-
+        request.setAttribute("id", sessionUser.getId());
         request.setAttribute("resumeList", resumeList);
         System.out.println(request); // 이건 스킬추카하고 나서 리스트
 //        List<SkillResponse.ResumeSkillDTO> resumeSkillList = resumeRepository.findAllByResumeId(id);

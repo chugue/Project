@@ -239,9 +239,10 @@ public class JobsController {
                 .photo(String.valueOf(job[13]))
                 .build();
 
-        // row 세션에 담아
-        request.setAttribute("jobs", Checked);
         List<SkillRequest.ApplyskillDTO> skillList = skillRepository.JobsSkill(id);
+        // row 세션에 담아
+        request.setAttribute("jobId", id);
+        request.setAttribute("jobs", Checked);
         request.setAttribute("skillList", skillList);
         User user = (User) session.getAttribute("sessionUser");
         List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId((user.getId()));
