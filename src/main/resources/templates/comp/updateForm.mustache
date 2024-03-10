@@ -1,73 +1,119 @@
-{{> layout/compheader}}
+<!DOCTYPE html>
+<html lang="en">
 
-<div style="display:flex;" class="my-5">
-    <div class="mx-auto width-53 pt-40">
-        <div class="rounded-3 container all-form border border-3 p-3" style="width: 400px; margin-top: 60px">
-            <div class="form-group mb-3" style="text-align: center;">
-                <h4>기업 정보 수정</h4>
+<head>
+    <title>Blog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/32aa2b8683.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            margin-top: 2rem;
+        }
+
+        form {
+            width: 40%;
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid gray;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .form-group img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            /* border: 1px solid gray; */
+        }
+
+        .btn {
+            margin-top: 1rem;
+        }
+
+        body {
+            overflow-x: hidden;
+            overflow-y: hidden;
+            width: 100vw;
+        }
+    </style>
+</head>
+
+<body>
+
+
+<div class="">
+
+    <div class="container">
+        <h2 class="text-center">기업 사진 변경</h2>
+        <form id="profileForm" action="/upload" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <img src="/upload/{{imgFileName}}" alt="Current Photo" class="img-fluid" id="imagePreview">
             </div>
-            <div style="width:100%;">
-                <form action="/comp/{{sessionComp.id}}/update" method="post" style="width:100%; align-items: normal">
-                    <div class="form-group mb-2" style="width:100%;">
-                        <input type="name" name="myName" class="form-control" id="name" value="{{user.myName}}">
-                    </div>
-                    <div class="form-group mb-2" style="width:100%;">
-                        <input type="password" class="form-control" name="password" placeholder="Enter password"
-                               id="passwordCheck" value="">
-                    </div>
-                    <div class="form-group mb-2" style="width:100%;">
-                        <input type="text" name="compName" class="form-control" placeholder="Enter companyname"
-                               id="companyname" value="{{user.compName}}">
-                    </div>
-                    <div class="form-group mb-2" style="width:100%;">
-                        <input type="tel" class="form-control" placeholder="Enter passwordCheck" name="phone"
-                               id="passwordCheck" value="{{user.phone}}">
-                    </div>
-                    <div class="form-group mb-2" style="width:100%;">
-                        <input type="text" class="form-control" placeholder="Enter hompageLink" name="homepage"
-                                value="{{user.homepage}}">
-                    </div>
-                    <div class="form-group mb-2">
-                        <input type="date" name="birth" class="form-control" placeholder="" id="birth" value="{{user.birth}}">
-                    </div>
-                    <input class="btn btn-outline-mint mb-2" type="button" onClick="goPopup();" value="도로명주소 검색">
-                    <div id="list"></div>
-                    <div id="callBackDiv">
-                        <div class="form-group mb-4" >
-                            <input class="form-control" type="text" id="address" readonly name="address"
-                                   value="{{user.address}}"/>
-                        </div>
-                    </div>
-                    <div class="d-grid gap-2 mb-2">
-                        <button type="submit" class=" btn btn-mint">수정완료</button>
-                    </div>
-                </form>
+            <div class="form-group">
+                <!--                    <input type="hidden" class="form-control" name="title" value="{{sessionComp.id}}">-->
+                <input type="file" class="form-control" id="photo" name="imgFile" accept="image/*">
             </div>
-        </div>
+            <button type="submit" class="btn btn-success" style="color:#fff;">사진변경</button>
+        </form>
     </div>
+
 </div>
 <script>
-    function goPopup(){
-        // 현재 화면의 중앙 위치를 계산
-        var width = 500; // 팝업 창의 너비
-        var height = 480; // 팝업 창의 높이
-        var left = (window.screen.width / 2) - (width / 2);
-        var top = (window.screen.height / 2) - (height / 2);
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 주소 검색 결과 처리 로직
-                document.getElementById('address').value = data.roadAddress; // 도로명 주소
-                window.close();
-            },
-            width: width, // 팝업 창의 너비
-            height: height // 팝업 창의 높이
-        }).open({
-            left: left, // 팝업 창을 화면의 가운데로 위치
-            top: top
+    $(document).ready(function () {
+        // 파일 선택 시 미리보기 기능 추가
+        $('#photo').on('change', function (e) {
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(file);
         });
-    }
 
-
+        $('#profileForm').on('submit', function (e) {
+            e.preventDefault(); // Prevent form submission
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    // If upload is successful, close popup and refresh parent window
+                    window.opener.location.reload(); // Refresh parent window
+                    window.close(); // Close popup window
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
 </script>
-
-{{> layout/footer}}
+</body>
+</html>

@@ -8,7 +8,7 @@
 @font-face {
     font-family: 'Pretendard-Regular';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
+    font-weight: 400, 500, 600 ,700 ,800;
     font-style: normal;
 }
 
@@ -19,6 +19,7 @@
     margin: 0;
     padding: 0;
     outline: none;
+    font-family: 'Pretendard-Regular';
 }
 
 body {
@@ -57,9 +58,12 @@ img {
     content: '';
     clear: both;
 }
-
+input{
+    height: 50px;
+}
 input[type="date"] {
     cursor: pointer;
+
 }
 
 table {
@@ -69,6 +73,7 @@ table {
 
 input[type='text'] {
     width: 100%;
+
 }
 
 
@@ -527,9 +532,12 @@ input[type='text'] {
     --radius-20: 20px;
 }
 /*03-04 추가*/
+.d-flex .new-create-button:last-child{
+    margin-right:0;
+}
 .new-create-button{
     width: 100px;
-    padding-right: 10px;
+    margin-right:10px;
 }
 .new-create-button a{
     width: 100px;
@@ -554,7 +562,7 @@ input[type='text'] {
     margin-right:10px;
 }
 .new-container{
-    width: 1500px;
+    width: 1400px;
     margin: 0 auto;
     display: flex;
 }

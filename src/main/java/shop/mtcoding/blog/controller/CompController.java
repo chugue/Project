@@ -3,7 +3,6 @@ package shop.mtcoding.blog.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.blog.dto.scrap.ScrapResponse;
@@ -17,8 +16,8 @@ import shop.mtcoding.blog.model.jobs.JobResponse;
 
 import shop.mtcoding.blog.model.offer.OfferResponse;
 
-import shop.mtcoding.blog.model.page.Page;
-import shop.mtcoding.blog.model.page.Paging;
+import shop.mtcoding.blog.model.pass.page.Page;
+import shop.mtcoding.blog.model.pass.page.Paging;
 
 import shop.mtcoding.blog.model.pass.PassRepository;
 import shop.mtcoding.blog.model.pass.PassRequest;
@@ -26,7 +25,6 @@ import shop.mtcoding.blog.model.resume.Resume;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.resume.ResumeRequest;
 import shop.mtcoding.blog.model.resume.ResumeResponse;
-import shop.mtcoding.blog.model.scrap.Scrap;
 import shop.mtcoding.blog.model.scrap.ScrapRepository;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
 import shop.mtcoding.blog.model.skill.Skill;
@@ -36,7 +34,6 @@ import shop.mtcoding.blog.model.user.User;
 import shop.mtcoding.blog.model.user.UserRepository;
 import shop.mtcoding.blog.model.user.UserRequest;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -177,7 +174,8 @@ public class CompController {
     @GetMapping("/comp/{id}/comphome")
     public String compHome(@PathVariable Integer id, @RequestParam(required = false, defaultValue = "0") Integer jobsId, HttpServletRequest request) {
 
-        //
+        User user = (User) session.getAttribute("sessionComp");
+        System.out.println(user);
 
         // 내 공고리스트에 지원한 이력서 리스트
 
@@ -356,7 +354,10 @@ public class CompController {
     }
 
     @GetMapping("/comp/profileUpdateForm")
-    public String profileUpdateForm() {
+    public String profileUpdateForm(HttpServletRequest request) {
+        User user = userRepository.findById(((User) session.getAttribute("sessionComp")).getId());
+        request.setAttribute("imgFileName", user.getImgFileName());
+
 
         return "/comp/profileUpdateForm";
     }
