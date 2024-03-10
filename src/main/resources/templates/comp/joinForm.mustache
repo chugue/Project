@@ -9,36 +9,40 @@
 
             <form style="width: 350px; align-items: normal" action="/comp/join/2" method="post" onsubmit="return valid()">
                 <div class="d-flex form-group mt-2 mb-2">
-                    <input type="email" name="email" class="form-control" placeholder="Enter email" id="email" value="kim@nate.com">
+                    <input type="email" name="email" class="form-control" placeholder="Enter email" id="email">
                     <button type="button" class="badge bg-secondary ms-2" onclick="emailSameCheck()">중복확인</button>
                 </div>
 
                 <div class="form-group mb-2">
                     <input type="password" name="password" class="form-control" placeholder="Enter password"
-                           id="password" value="1234">
+                           id="password">
                 </div>
 
                 <div class="form-group mb-2">
-                    <input type="password" class="form-control" placeholder="Enter passwordCheck" id="passwordCheck" value="1234">
+                    <input type="password" class="form-control" placeholder="Enter passwordCheck" id="passwordCheck">
                 </div>
 
                 <div class="form-group mb-2">
                     <input type="text" name="myName" class="form-control" placeholder="Enter username"
-                           id="myName" value="이재용">
+                           id="myName">
                 </div>
 
                 <div class="form-group mb-2">
-                    <input type="text" name="representativeName" class="form-control"
-                           placeholder="Enter representativeName" id="representativeName" value="삼성">
+                    <input type="text" name="compName" class="form-control"
+                           placeholder="Enter compName" id="compName">
                 </div>
 
                 <div class="form-group mb-2">
                     <input type="text" name="businessNumber" class="form-control" placeholder="Enter businessNumber"
-                           id="businessNumber" value="1111-222-3333">
+                           id="businessNumber">
                 </div>
                 <div class="form-group mb-2">
                     <input type="tel" name="phone" class="form-control" placeholder="Enter phone number"
-                           id="businessNumber" value="010-3323-4444">
+                           id="phone">
+                </div>
+                <div class="form-group mb-2">
+                    <input type="text" name="homepage" class="form-control" placeholder="Enter homepage"
+                           id="homepage">
                 </div>
 
                 <input class="btn btn-outline-mint mb-2" type="button" onClick="goPopup();" value="도로명주소 검색">
