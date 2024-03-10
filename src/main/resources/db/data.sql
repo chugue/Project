@@ -100,9 +100,9 @@ insert into scrap_tb(user_id, resume_id, created_at) values(2, 2, now());
 
 -- 기업에 지원한 유저
 -- values (첫번째 이력서가 , 첫번째 공고에 지원, 대기중)
-insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(1,1,1,now());
+insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(1,1,2,now());
 insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(2,1,1,now());
-insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(1,2,1,now());
+insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(1,2,3,now());
 insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(3,1,1,now());
 insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(2,3,1,now());
 
