@@ -1,16 +1,15 @@
-package shop.mtcoding.blog.model.pass;
+package shop.mtcoding.blog.model.apply;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 import java.sql.Timestamp;
 
-public class PassRequest {
+public class ApplyRequest {
 
     @AllArgsConstructor
     @Data
-    public static class PassResumeJobsDTO{
+    public static class ApplyResumeJobsDTO{
         private Integer resumeId;
         private Integer userId;
         private Timestamp createdAt;
@@ -22,6 +21,5 @@ public class PassRequest {
         private String title;
         private Integer status;
         private Integer jobsId;
-
     }
 }

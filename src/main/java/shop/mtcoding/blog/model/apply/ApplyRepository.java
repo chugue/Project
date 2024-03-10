@@ -1,6 +1,8 @@
 package shop.mtcoding.blog.model.apply;
 
+
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.qlrm.mapper.JpaResultMapper;
@@ -15,6 +17,29 @@ import java.util.List;
 @Repository
 public class ApplyRepository {
     private final EntityManager em;
+
+
+    public ApplyRequest.ApplyResumeJobsDTO findByIdResumeJobs(Integer id, Integer jobsId) {
+        String q = """
+                SELECT r.*, p.status, j.id
+                FROM resume_tb r
+                JOIN pass_tb p ON r.id = p.resume_id
+                JOIN jobs_tb j ON p.jobs_id = j.id
+                WHERE r.id = ? AND j.id = ?
+                """;
+        Query query = em.createNativeQuery(q, ApplyRequest.ApplyResumeJobsDTO.class);
+        query.setParameter(1,id);
+        query.setParameter(2,jobsId);
+        ApplyRequest.ApplyResumeJobsDTO requestDTO = null;
+        try {
+            requestDTO = (ApplyRequest.ApplyResumeJobsDTO) query.getSingleResult();
+        } catch (NoResultException e) {
+            requestDTO.setStatus(0);
+        }
+
+        return requestDTO;
+    }
+
 
     public List<ApplyResponse.ApplyByJobsDTO> findAllByJobsId(Integer jobsId){
         String q = """
@@ -66,4 +91,21 @@ public class ApplyRepository {
 
     @Transactional
     public void deleteById () {}
+
+    public void saveResumeJobsApply(Integer resumeId, Integer jobsId) {
+        String q = """
+                INSERT INTO apply_tb (resume_id, jobs_id, status, created_at)
+                VALUES ( ?, ?, 0, NOW())
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1,resumeId);
+        query.setParameter(2,jobsId);
+        query.executeUpdate();
+
+    }
+
+    public void findByResumeJobs(Integer resumeId, Integer jobsId) {
+        String q = """
+                """;
+    }
 }

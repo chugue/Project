@@ -56,11 +56,6 @@ INSERT INTO jobs_tb(user_id, area, title, edu, career, content, dead_line, task,
 -- INSERT INTO jobs_tb(user_id, area, title, edu, career, content, dead_line, task, created_at) VALUES (5, '부산', '함께 일하실 분 모집!', '학력무관', '신입', '성실하고 열심히 일하실 분 모집!', '2024-03-29', '백엔드', NOW());
 -- INSERT INTO jobs_tb(user_id, area, title, edu, career, content, dead_line, task, created_at) VALUES (4, '부산', '배달의 민족 24년도 백엔드 신입 개발자 모집', '학력무관', '미들(4~8년)', '성실하고 열심히 일하실 분 모집!', '2024-03-10', '백엔드', NOW());
 
---- 합격 테이블
-INSERT INTO pass_tb (resume_id, jobs_id, status) values (1, 3, 2);
-INSERT INTO pass_tb (resume_id, jobs_id, status) values (2, 1, 0);
-INSERT INTO pass_tb (resume_id, jobs_id, status) values (4, 1, 3);
-
 
 -- 스킬 테이블 (개인)
 insert into skill_tb (resume_id, name, role) values(1, 'Java', 1);
@@ -100,11 +95,11 @@ insert into scrap_tb(user_id, resume_id, created_at) values(2, 2, now());
 
 -- 기업에 지원한 유저
 -- values (첫번째 이력서가 , 첫번째 공고에 지원, 대기중)
-insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(1,1,1,now());
-insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(2,1,1,now());
-insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(1,2,1,now());
-insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(3,1,1,now());
-insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(2,3,1,now());
+-- insert into apply_tb(resume_id, jobs_id, status, created_at) values(1,1,1,now());
+-- insert into apply_tb(resume_id, jobs_id, status, created_at) values(2,1,1,now());
+-- insert into apply_tb(resume_id, jobs_id, status, created_at) values(1,2,1,now());
+-- insert into apply_tb(resume_id, jobs_id, status, created_at) values(3,1,1,now());
+-- insert into apply_tb(resume_id, jobs_id, status, created_at) values(2,3,1,now());
 
 
 -- 기업이 제안한 이력서

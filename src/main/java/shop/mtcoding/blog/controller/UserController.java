@@ -105,8 +105,8 @@ public class UserController {
         return "/user/loginForm";
     }
 
-    @GetMapping("/user/{id}/offer")
-    public String offer(@PathVariable Integer id,
+    @GetMapping("/user/{id}/apply")
+    public String apply(@PathVariable Integer id,
                         @RequestParam(required = false, defaultValue = "1") Integer resumeId,
                         HttpServletRequest request) {
 
@@ -131,7 +131,7 @@ public class UserController {
 
         request.setAttribute("resumeList", resumeList);
 
-        return "/user/offer";
+        return "/user/apply";
     }
 
     @GetMapping("/user/{id}/scrap")

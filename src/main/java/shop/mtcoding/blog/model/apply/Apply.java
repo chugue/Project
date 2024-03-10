@@ -12,17 +12,10 @@ public class Apply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(nullable = false)
     private Integer resumeId;
-
-    @Column(nullable = false)
     private Integer jobsId;
-    // 유저 상태값 (1 : 대기중) (2 : 확인)  (3 : 탈락)
-    @Column(nullable = false)
-    private Integer isPass;
-
-    @Column(nullable = false)
+    private Integer status;
     private Timestamp createdAt;
+
 
 }

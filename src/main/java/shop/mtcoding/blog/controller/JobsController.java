@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import shop.mtcoding.blog.model.jobs.JobRequest;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
+import shop.mtcoding.blog.model.resume.Resume;
+import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.resume.ResumeRequest;
 import shop.mtcoding.blog.model.skill.Skill;
 import shop.mtcoding.blog.model.skill.SkillRepository;
@@ -28,6 +30,7 @@ public class JobsController {
     private final JobsRepository jobsRepository;
     private final SkillRepository skillRepository;
     private final HttpSession session;
+    private final ResumeRepository resumeRepository;
 
     @GetMapping("/jobs/{id}/interest")
     public String interest (@PathVariable int id, HttpServletRequest request) {
@@ -238,9 +241,11 @@ public class JobsController {
 
         // row 세션에 담아
         request.setAttribute("jobs", Checked);
-
         List<SkillRequest.ApplyskillDTO> skillList = skillRepository.JobsSkill(id);
         request.setAttribute("skillList", skillList);
+        User user = (User) session.getAttribute("sessionUser");
+        List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId((user.getId()));
+        request.setAttribute("resumeList", resumeList);
 
         return "/jobs/jobsDetail";
     }
