@@ -13,11 +13,11 @@
             <div class=" rounded-3 container all-form border border-3 p-3 mt-5" style="width: 400px;">
                 <ul class="nav nav-tabs nav-justified">
                     <li class="nav-item fs-4">
-                        <a class="nav-link user fw-600" href="/user/joinForm">회원가입</a>
+                        <a class="nav-link user fw-600">회원가입</a>
                     </li>
                 </ul>
 
-                <form action="/user/join/1" method="post" enctype="application/x-www-form-urlencoded" onsubmit="return valid()">
+                <form action="/user/join" method="post" enctype="application/x-www-form-urlencoded" onsubmit="return valid()">
                     <div class="d-flex form-group mt-2 mb-2">
                         <input type="email" name="email" class="form-control" placeholder="Enter email" id="email" value ="ssar@nate.com">
                         <button type="button" onclick="emailSameCheck()" class="badge bg-secondary ms-2" >중복확인</button>
@@ -81,6 +81,7 @@
                         </label>
                     </div>
                     <div class="d-grid gap-2 mb-4">
+                        <input type="hidden" name="role" value="1">
                         <input id="button" class=" btn btn-mint" type="submit" value="회원가입">
                     </div>
                 </form>

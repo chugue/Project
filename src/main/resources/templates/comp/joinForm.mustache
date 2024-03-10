@@ -7,7 +7,7 @@
                 <div class="point-color fw-600 fs-4">기업 회원가입</div>
             </div>
 
-            <form style="width: 350px; align-items: normal" action="/comp/join/2" method="post" onsubmit="return valid()">
+            <form style="width: 350px; align-items: normal" action="/comp/join" method="post" onsubmit="return valid()">
                 <div class="d-flex form-group mt-2 mb-2">
                     <input type="email" name="email" class="form-control" placeholder="Enter email" id="email">
                     <button type="button" class="badge bg-secondary ms-2" onclick="emailSameCheck()">중복확인</button>
@@ -50,7 +50,7 @@
                 <div id="callBackDiv">
                     <div class="form-group mb-4">
                         <input class="form-control" type="text" id="address" readonly name="roadFullAddr"
-                               placeholder="주소 들어갈 수 있게"/>
+                               placeholder="주소 검색으로 입력"/>
                         <input type="hidden" id="siNm" name="siNm"/>
                     </div>
                 </div>
@@ -69,8 +69,8 @@
                 </div>
 
                 <div class="d-grid gap-2 mb-4">
-
-                    <input id="button" class=" btn btn-mint" type="submit" value="회원가입" onclick="submitForm()">
+                    <input type="hidden" name="role" value="2">
+                    <input id="button" class=" btn btn-mint" type="submit" value="회원가입">
                 </div>
             </form>
         </div>
@@ -114,6 +114,25 @@
         });
     }
 
+    function goPopup() {
+        // 현재 화면의 중앙 위치를 계산
+        var width = 500; // 팝업 창의 너비
+        var height = 480; // 팝업 창의 높이
+        var left = (window.screen.width / 2) - (width / 2);
+        var top = (window.screen.height / 2) - (height / 2);
+        new daum.Postcode({
+            oncomplete: function (data) {
+                // 주소 검색 결과 처리 로직
+                document.getElementById('address').value = data.roadAddress; // 도로명 주소
+                window.close();
+            },
+            width: width, // 팝업 창의 너비
+            height: height // 팝업 창의 높이
+        }).open({
+            left: left, // 팝업 창을 화면의 가운데로 위치
+            top: top
+        });
+    }
 
 </script>
 
