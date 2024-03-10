@@ -1,9 +1,15 @@
 {{> layout/header}}
+<style>
+    .card:hover {
+        box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.14);
+        transition: all .3s ease-in-out;
+    }
+</style>
 
-<div class="ml-80 mr-80 px-3 pt-140" style="margin: 0 auto; width:80%;">
+<div class="ml-80 mr-80 px-3 new-container" style=" flex-direction: column; padding:150px 0 0">
     <!-- 가운데 탭-->
-    <div class="row px-2">
-        <div class="col-3">
+    <div class="" style=" display: grid; grid-gap: 10px; grid-template-columns: 1fr 1fr 1fr; grid-gap: 20px;">
+        <div class="">
             <!--<button type="button" class="btn btn-mint w-100 ">지역별</button>-->
             <select class="form-select tab btn-outline-mint" name="area" id="area">
                 <option selected disabled>지역별</option>
@@ -15,7 +21,7 @@
             </select>
             </td>
         </div>
-        <div class="col-3">
+        <div class="">
             <!--<button type="button" class="btn btn-outline-mint w-100">기술별</button>-->
             <select class="form-select tab btn-outline-mint" name="skillList" id="skillList">
                 <option selected disabled>기술별</option>
@@ -31,7 +37,7 @@
                 <option value="react">React</option>
             </select>
         </div>
-        <div class="col-3">
+        <div class="">
             <!--<button type="button" class="btn btn-outline-mint w-100">직무별</button>-->
             <select class="form-select tab btn-outline-mint" name="" id="">
                 <option selected disabled>직무별</option>
@@ -46,21 +52,12 @@
                 <option value="devops 개발자">devops 개발자</option>
             </select>
         </div>
-        <div class="col-3">
-            <!--<button type="button" class="btn btn-outline-mint w-100">직무별</button>-->
-            <select class="form-select tab btn-outline-mint" name="career" id="career">
-                <option selected disabled>경력별</option>
-                <option value="new">신입</option>
-                <option value="middle">미들(4~8년)</option>
-                <option value="senior">시니어(10년 이상)</option>
-            </select>
-        </div>
     </div>
     <!--가운데 탭-->
 
 
     <!-- 공고들 -->
-    <div class="info row pt-50 pb-50">
+    <div class="info" style=" display: grid; grid-gap: 10px; grid-template-columns: 1fr 1fr 1fr; grid-gap: 20px; margin: 50px 0;">
         {{#jobsList}}
             <!--공고-->
             <div class="card">
@@ -71,7 +68,7 @@
                     <div class="card-body">
 
                         <div class="mb-2 ft-16">네이버</div>
-                        <div class="point-ft ft-22 fw-600 mb-10" style="max-width:300px">{{title}}</div>
+                        <div class="point-ft ft-22 fw-600 mb-10 jobs-title">{{title}}</div>
 
                         <!--기술스킬-->
                         <div class="skill-wrap">
