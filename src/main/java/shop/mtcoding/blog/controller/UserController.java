@@ -65,7 +65,7 @@ public class UserController {
         userRepository.save(requestDTO);
         List<User> userList = userRepository.findAll();
         System.out.println(userList);
-        return "redirect:/";
+        return "redirect:/user/loginForm";
     }
 
     @PostMapping("/user/login")
