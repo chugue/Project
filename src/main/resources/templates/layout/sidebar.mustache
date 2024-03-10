@@ -118,7 +118,9 @@
             var currentPageUrl = getCurrentPageUrl();
             $('aside .sub-menu').each(function () {
                 if ($(this).attr('href') === currentPageUrl) {
-                    $(this).addClass('active');
+                    $(this).addClass('btn-mint');
+                    $(this).css('color', 'white'); // 글자 색상을 흰색으로 설정
+
                 }
             });
         }
