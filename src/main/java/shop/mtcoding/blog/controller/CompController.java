@@ -344,13 +344,14 @@ public class CompController {
         return "/comp/joinForm";
     }
 
-    @PostMapping("/comp/join/{role}")
-    public String compJoin(@PathVariable int role, UserRequest.UserAllDTO requestDTO) {
+    @PostMapping("/comp/join")
+    public String compJoin(@RequestParam("role") int role, UserRequest.UserAllDTO requestDTO) {
         requestDTO.setRole(role);
         userRepository.save(requestDTO);
-        List<User> userList = userRepository.findAll();
-        System.out.println(userList);
-        return "redirect:/user/loginForm";
+        User user = userRepository.findByEmail(requestDTO.getEmail());
+        session.setAttribute("sessionComp", user);
+        return "redirect:/comp/compIndex";
+
     }
 
     @GetMapping("/comp/profileUpdateForm")
