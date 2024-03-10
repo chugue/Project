@@ -351,6 +351,7 @@ public class CompController {
         User user = userRepository.findByEmail(requestDTO.getEmail());
         session.setAttribute("sessionComp", user);
         return "redirect:/comp/compIndex";
+
     }
 
     @GetMapping("/comp/profileUpdateForm")

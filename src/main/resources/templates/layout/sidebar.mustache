@@ -30,7 +30,7 @@
 <!--                            <a id="manageResume" class="nav-link sub-menu a p-1 mb-1" href="/resume/{{id}}/manageResume" >이력서 관리</a>-->
 <!--                        </li>-->
                         <li class="nav-item">
-                            <a id="offer" href="/user/{{sessionUser.id}}/offer" class="nav-link sub-menu a p-1 mb-1">제안</a>
+                            <a id="offer" href="/user/{{sessionUser.id}}/offer" class="nav-link sub-menu a p-1 mb-1">지원</a>
                         </li>
 <!--                        <li class="nav-item">-->
 <!--                            <a id="scrap" href="/user/{{sessionUser.id}}/scrap" class="nav-link sub-menu a p-1 mb-1">스크랩</a>-->
@@ -78,7 +78,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a id="apply" class="nav-link sub-menu a p-1 mb-1" href="/comp/{{sessionComp.id}}/apply">지원 / 제안</a>
+                            <a id="apply" class="nav-link sub-menu a p-1 mb-1" href="/comp/{{sessionComp.id}}/apply">제안</a>
                         </li>
 
 <!--                        <li class="nav-item">-->
@@ -118,7 +118,7 @@
             var currentPageUrl = getCurrentPageUrl();
             $('aside .sub-menu').each(function () {
                 if ($(this).attr('href') === currentPageUrl) {
-                    $(this).addClass('btn-mint');
+                    $(this).addClass('active');
                 }
             });
         }
