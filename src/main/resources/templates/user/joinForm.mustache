@@ -13,11 +13,11 @@
             <div class=" rounded-3 container all-form border border-3 p-3 mt-5" style="width: 400px;">
                 <ul class="nav nav-tabs nav-justified">
                     <li class="nav-item fs-4">
-                        <a class="nav-link user fw-600" href="/user/joinForm">회원가입</a>
+                        <a class="nav-link user fw-600">회원가입</a>
                     </li>
                 </ul>
 
-                <form action="/user/join/1" method="post" enctype="application/x-www-form-urlencoded" onsubmit="return valid()">
+                <form action="/user/join" method="post" enctype="application/x-www-form-urlencoded" onsubmit="return valid()">
                     <div class="d-flex form-group mt-2 mb-2">
                         <input type="email" name="email" class="form-control" placeholder="Enter email" id="email" value ="ssar@nate.com">
                         <button type="button" onclick="emailSameCheck()" class="badge bg-secondary ms-2" >중복확인</button>
@@ -36,13 +36,17 @@
                         <input type="password" class="form-control" placeholder="Enter passwordCheck"
                             id="passwordCheck" value="1234">
                     </div>
-
-                    <div class="form-group mb-2">
-                        <input type="date" name="birth" class="form-control" placeholder="Enter birth" id="birth" value="2222-02-23">
-                    </div>
-
                     <div class="form-group mb-2">
                         <input type="tel" name="phone" class="form-control" placeholder="Enter tel" id="tel" value="01022223333">
+                    </div>
+                    <div id="list">
+                        <input class="btn btn-outline-mint mb-2" type="button" onClick="goPopup();" value="도로명주소 검색">
+                    </div>
+                    <div id="callBackDiv">
+                        <div class="form-group mb-4">
+                            <input class="form-control" type="text" id="address" readonly
+                                   placeholder="" name="address" value=""/>
+                        </div>
                     </div>
 
                     <div class="form-check">
@@ -77,6 +81,7 @@
                         </label>
                     </div>
                     <div class="d-grid gap-2 mb-4">
+                        <input type="hidden" name="role" value="1">
                         <input id="button" class=" btn btn-mint" type="submit" value="회원가입">
                     </div>
                 </form>
@@ -129,7 +134,25 @@
             document.getElementById(id).checked = isChecked;
         });
     });
-
+    function goPopup(){
+        // 현재 화면의 중앙 위치를 계산
+        var width = 500; // 팝업 창의 너비
+        var height = 480; // 팝업 창의 높이
+        var left = (window.screen.width / 2) - (width / 2);
+        var top = (window.screen.height / 2) - (height / 2);
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 주소 검색 결과 처리 로직
+                document.getElementById('address').value = data.roadAddress; // 도로명 주소
+                window.close();
+            },
+            width: width, // 팝업 창의 너비
+            height: height // 팝업 창의 높이
+        }).open({
+            left: left, // 팝업 창을 화면의 가운데로 위치
+            top: top
+        });
+    }
 </script>
 
 

@@ -502,7 +502,7 @@ table th {
     color: #666;
 }
 .new-wrapper-contnent .new-content{
-    width: 70%;
+    width: 100%;
     margin-bottom: 20px;
 }
 .new-wrapper-contnent .new-content.bold{
@@ -513,7 +513,7 @@ table th {
 .new-wrapper-contnent{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 33%;
 }
 .new-title-name{}
 
