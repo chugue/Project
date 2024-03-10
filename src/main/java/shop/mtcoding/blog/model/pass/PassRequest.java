@@ -22,5 +22,6 @@ public class PassRequest {
         private String title;
         private Integer status;
         private Integer jobsId;
+
     }
 }

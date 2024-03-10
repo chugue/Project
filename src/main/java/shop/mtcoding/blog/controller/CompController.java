@@ -24,6 +24,7 @@ import shop.mtcoding.blog.model.pass.PassRepository;
 import shop.mtcoding.blog.model.pass.PassRequest;
 import shop.mtcoding.blog.model.resume.Resume;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
+import shop.mtcoding.blog.model.resume.ResumeRequest;
 import shop.mtcoding.blog.model.resume.ResumeResponse;
 import shop.mtcoding.blog.model.scrap.Scrap;
 import shop.mtcoding.blog.model.scrap.ScrapRepository;
@@ -58,6 +59,28 @@ public class CompController {
     @GetMapping("/comp/{id}/compResumeDetail")
     public String compResumeDetail(@PathVariable Integer id,@RequestParam("jobsId") Integer jobsId, HttpServletRequest request) {
         User sessionComp = (User) session.getAttribute("sessionComp");
+
+        Object[] resume = resumeRepository.findByResumeId(id);
+
+        ResumeRequest.resumeDetailDTO checked = ResumeRequest.resumeDetailDTO.builder()
+                .id((Integer) resume[0])
+                .myName(String.valueOf(resume[1]))
+                .address(String.valueOf(resume[2]))
+                .phone(String.valueOf(resume[3]))
+                .email(String.valueOf(resume[4]))
+                .birth(String.valueOf(resume[5]))
+                .edu(String.valueOf(resume[6]))
+                .career(String.valueOf(resume[7]))
+                .introduce(String.valueOf(resume[8]))
+                .title(String.valueOf(resume[9]))
+                .portLink(String.valueOf(resume[10]))
+                .area(String.valueOf(resume[11]))
+                .build();
+        request.setAttribute("resumeObject", checked);
+        List<SkillRequest.ApplyskillDTO> skillList = skillRepository.resumeSkill(id);
+        request.setAttribute("skillList", skillList);
+
+
 
         System.out.println(jobsId);
         Resume resumeDTO = resumeRepository.findById(id);

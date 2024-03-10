@@ -18,6 +18,7 @@ import shop.mtcoding.blog.model.jobs.JobsRepository;
 
 import shop.mtcoding.blog.model.offer.OfferRepository;
 import shop.mtcoding.blog.model.offer.OfferResponse;
+import shop.mtcoding.blog.model.pass.PassRequest;
 import shop.mtcoding.blog.model.resume.Resume;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.resume.ResumeRequest;
@@ -46,8 +47,29 @@ public class ResumeController {
     @GetMapping("/resume/resumeDetail/{id}")
     public String resumeDetail (@PathVariable Integer id, HttpServletRequest request) {
         User sessionComp = (User) session.getAttribute("sessionComp");
-        Resume resumeDTO = resumeRepository.findById(id);
-        request.setAttribute("resume", resumeDTO);
+
+        Object[] resume = resumeRepository.findByResumeId(id);
+
+        ResumeRequest.resumeDetailDTO checked = ResumeRequest.resumeDetailDTO.builder()
+                .id((Integer) resume[0])
+                .myName(String.valueOf(resume[1]))
+                .address(String.valueOf(resume[2]))
+                .phone(String.valueOf(resume[3]))
+                .email(String.valueOf(resume[4]))
+                .birth(String.valueOf(resume[5]))
+                .edu(String.valueOf(resume[6]))
+                .career(String.valueOf(resume[7]))
+                .introduce(String.valueOf(resume[8]))
+                .title(String.valueOf(resume[9]))
+                .portLink(String.valueOf(resume[10]))
+                .area(String.valueOf(resume[11]))
+                .build();
+
+
+        request.setAttribute("resume", checked);
+
+        List<SkillRequest.ApplyskillDTO> skillList = skillRepository.resumeSkill(id);
+        request.setAttribute("skillList", skillList);
 
 
         if(sessionComp == null) {
