@@ -11,40 +11,47 @@
         <div class="new-container">
             <!-- 지원 및 제안 -->
             {{> layout/sidebar}}
-            <div class="my-4 layer2-right-container" style="flex: 0 0 auto; width: calc(100% - 300px);">
+            <div class="my-4 layer2-right-container" style="flex: 0 0 auto; width: calc(100% - 270px);">
                 <div class="components">
                     <div class="components-div p-tb-10 d-flex justify-content-between">
-                        <div class="font">전체</div>
+                        <div class="font mb-3">전체</div>
                     </div>
                     <div class="components-div">
-                        <table class="table table-hover offer-table scroll">
+                        <table class="table table-hover offer-table scroll"
+                               style="text-align: center; border-top:2px solid #ddd">
                             <thead>
-                            <tr>
-                                <th scope="col" style="width: 5%;">No</th>
-                                <th scope="col" style="width: 40%;">이력서 목록</th>
-                                <th scope="col" style="width: 15%;">주소</th>
-                                <th scope="col" style="width: 15%;">경력</th>
-                                <th scope="col" style="width: 25%;">제안 공고 확인</th>
-                            </tr>
+                                <tr>
+                                    <th>No</th>
+                                    <th>이력서 목록</th>
+                                    <th>주소</th>
+                                    <th>경력</th>
+                                    <th>제안 공고 확인</th>
+                                </tr>
                             </thead>
                             <tbody>
                             {{^resumeList}}
                                 <div>현재 작성하신 이력서가 없습니다.</div>
                             {{/resumeList}}
                             {{#resumeList}}
-                                <tr class="offer-table">
+                                <tr class="offer-table" style="text-align: center">
+                                    <!--이력서 id-->
                                     <td>{{id}}</td>
+                                    <!--타이틀, 보유스킬-->
                                     <td>
-                                        <div>{{title}}</div>
+                                        <div style="text-align: start">{{title}}</div>
                                         <div class="new-skill-box">
                                             {{#skillList}}
                                                 <div class="{{color}}">{{name}}</div>
                                             {{/skillList}}
                                         </div>
                                     </td>
+                                    <!--주소-->
                                     <td>{{area}}</td>
+                                    <!--경력-->
                                     <td>{{career}}</td>
+
                                     <td class="d-flex justify-content-between">
+
                                         <div class="new-create-button">
                                             <a href="/user/{{sessionUser.id}}/offer?resumeId={{id}}">
                                             <button type="button" class="btn btn-mint offer-table-btn">제안 공고 확인</button>
@@ -60,23 +67,22 @@
                 <div class="components" style="height: 50px;"></div>
                 <!-- 제안 목록 -->
                 <div class="components">
-                    <div class="font">제안 목록</div>
+                    <div class="font mb-3">제안 목록</div>
                     <div>
-                        <hr>
-                    </div>
-                    <div>
-                        <table class="table table-hover offer-table scroll">
+                        <table class="table table-hover offer-table scroll"
+                               style="text-align: center; border-top:2px solid #ddd">
                             <thead>
-                            <tr>
-                                <th class="center-align" scope="col" style="width: 5%;">No</th>
-                                <th class="center-align" scope="col" style="width: 10%;">회사명</th>
-                                <th class="center-align" scope="col" style="width: 30%;">공고제목</th>
-                                <th class="center-align" scope="col" style="width: 10%;">필요경력</th>
-                                <th class="center-align" scope="col" style="width: 60%;">필요 기술</th>
-                                <th class="center-align" scope="col" style="width: 12%;">공고 확인</th>
-                            </tr>
+                                <tr>
+                                    <th class="center-align">No</th>
+                                    <th class="center-align">회사명</th>
+                                    <th class="center-align">공고제목</th>
+                                    <th class="center-align">필요경력</th>
+                                    <th class="center-align">필요 기술</th>
+                                    <th class="center-align">공고 확인</th>
+                                </tr>
                             </thead>
                             <tbody>
+
                             {{#offerList}}
                                 <tr class="offer-table">
                                     <th scope="row">{{jobsId}}</th>
@@ -119,8 +125,9 @@
                                         </div>
                                     </td>
                                 </tr>
+
                             {{/offerList}}
-                            </tbody>
+                        </tbody>
                         </table>
                     </div>
                 </div>

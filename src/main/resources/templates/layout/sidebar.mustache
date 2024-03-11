@@ -30,7 +30,9 @@
 <!--                            <a id="manageResume" class="nav-link sub-menu a p-1 mb-1" href="/resume/{{id}}/manageResume" >이력서 관리</a>-->
 <!--                        </li>-->
                         <li class="nav-item">
+
                             <a id="offer" href="/user/{{sessionUser.id}}/offer" class="nav-link sub-menu a p-1 mb-1">지원 관리</a>
+
                         </li>
 <!--                        <li class="nav-item">-->
 <!--                            <a id="scrap" href="/user/{{sessionUser.id}}/scrap" class="nav-link sub-menu a p-1 mb-1">스크랩</a>-->
@@ -78,7 +80,9 @@
                         </li>
 
                         <li class="nav-item">
+
                             <a id="apply" class="nav-link sub-menu a p-1 mb-1" href="/comp/{{sessionComp.id}}/apply">지원</a>
+
                         </li>
 
 <!--                        <li class="nav-item">-->
@@ -119,6 +123,8 @@
             $('aside .sub-menu').each(function () {
                 if ($(this).attr('href') === currentPageUrl) {
                     $(this).addClass('btn-mint');
+                    $(this).css('color', 'white'); // 글자 색상을 흰색으로 설정
+
                 }
             });
         }

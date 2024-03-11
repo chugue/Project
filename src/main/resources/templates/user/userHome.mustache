@@ -5,7 +5,7 @@
 
             {{> layout/sidebar}}
             <!--이력서 관리-->
-            <div class="my-4 layer2-right-container new-container"
+            <div class="my-4 layer2-right-container"
                  style="flex: 0 0 auto; width: calc(100% - 240px); padding:  0 !important;">
                 <div class="components">
                     <div>
@@ -80,13 +80,13 @@
                                         <div class="col-5">
                                             <div class="d-flex" style="justify-content: flex-end;">
                                                 <input type="hidden" value="" name="" id="">
-                                                <div class="mb-2 mr-10" style="">
-                                                    <form action="/resume/resumeDetail/{{id}}" method="get">
-                                                        <button type="submit" class="btn btn-mint">
-                                                            상세보기
-                                                        </button>
-                                                    </form>
-                                                </div>
+<!--                                                <div class="mb-2 mr-10" style="">-->
+<!--                                                    <form action="/resume/resumeDetail/{{id}}" method="get">-->
+<!--                                                        <button type="submit" class="btn btn-mint">-->
+<!--                                                            상세보기-->
+<!--                                                        </button>-->
+<!--                                                    </form>-->
+<!--                                                </div>-->
                                                 <div class="mb-2 mr-10" style="">
                                                     <form action="/resume/{{id}}/updateResumeForm" method="get">
                                                         <button type="submit" class="btn btn-mint">

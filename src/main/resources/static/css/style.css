@@ -7,7 +7,10 @@
 .jobs-title{
     word-break:keep-all;
 }
-
+.font-title {
+    font-size: 25px;
+    font-weight: 800;
+}
 /*
 input[type="checkbox" i] {
     background-color: var(--mint-color) !important;
@@ -18,6 +21,26 @@ select {
     width: 100%;
     height: 50px;
     padding: 10px;
+}
+
+/*페이징*/
+.pagination{}
+a.page-link{
+    color:#222 !important;
+    border-color: var(--white) !important;
+}
+.pagination li{margin-right: 20px;}
+.disabled>.page-link, .page-link.disabled {
+    pointer-events: none;
+    background-color:var(--white) !important;
+    border-color: var(--white) !important;
+
+}
+.active>.page-link{
+    background-color:var(--mint-color) !important;
+    border-radius:50%;
+    border-color:var(--mint-color) !important;
+    color:#fff !important;
 }
 
 /*버튼 공통*/
@@ -297,7 +320,9 @@ table th {
     width: 80%;
     height: auto;
 }
-
+.resume-info-img img{
+    border-radius: 10px;
+}
 .resume-info-txt table td,
 .resume-info-txt table th {
     padding: 0 0 25px;
@@ -479,7 +504,7 @@ table th {
     color: #666;
 }
 .new-wrapper-contnent .new-content{
-    width: 70%;
+    width: 100%;
     margin-bottom: 20px;
 }
 .new-wrapper-contnent .new-content.bold{
@@ -490,7 +515,7 @@ table th {
 .new-wrapper-contnent{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 33%;
 }
 .new-title-name{}
 
@@ -508,11 +533,17 @@ table th {
 }
 
 .card-header.resume-info-hdtitle{
-    font-size: 20px;
+    font-size: 22px;
+    font-width:700;
 }
 .card-header.resume-info-hdtitle span{
     font-size: 16px;
     padding-left: 5px;
+}
+
+.resume-info-txt table th{
+    padding-right:25px;
+
 }
 .row.my-border{
     background-color: #f8f8f8;
