@@ -17,7 +17,7 @@ public class JobsRepository {
 
     public List<JobResponse.DTO> findAllWithUserV2(){
         String q = """
-                select jt.id, jt.user_id, jt.area, jt.title, jt.edu, jt.career, jt.content, jt.dead_line, jt.task, jt.created_at, ut.comp_name 
+                select jt.id, jt.user_id, jt.area, jt.title, jt.edu, jt.career, jt.content, jt.dead_line, jt.task, jt.created_at,ut.img_file_name, ut.comp_name 
                 from jobs_tb jt inner join user_tb ut 
                 on jt.user_id = ut.id;
                 """;

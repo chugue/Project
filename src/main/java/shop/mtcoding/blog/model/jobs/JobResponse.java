@@ -32,9 +32,10 @@ public class JobResponse {
         private String task;
         private Timestamp createdAt;
         private String compName;
+        private String imgFileName;
         private List<SkillRequest.JobSkillDTO> skillList;
 
-        public DTO(Integer id, Integer userId, String area, String title, String edu, String career, String content, Date deadLine, String task, Timestamp createdAt, String compName) {
+        public DTO(Integer id, Integer userId, String area, String title, String edu, String career, String content, Date deadLine, String task, Timestamp createdAt, String imgFileName,String compName) {
             this.id = id;
             this.userId = userId;
             this.area = area;
@@ -45,6 +46,7 @@ public class JobResponse {
             this.deadLine = deadLine;
             this.task = task;
             this.createdAt = createdAt;
+            this.imgFileName = imgFileName;
             this.compName = compName;
         }
     }

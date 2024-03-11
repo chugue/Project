@@ -133,6 +133,8 @@ public class CompController {
                 List<Skill> skillList = skillRepository.compfindAllV2(dto.getId());
                 dto.setSkillList(skillList);
             });
+
+
             request.setAttribute("keyword", keyword);
             request.setAttribute("pages", pageActive);
             request.setAttribute("firstPage", firstPage);
@@ -467,18 +469,20 @@ public class CompController {
 
     @GetMapping("/comp/{id}/updateForm")
     public String updateForm(@PathVariable int id, HttpServletRequest request) {
-
+        User sessionComp = (User) session.getAttribute("sessionComp");
         User user = (User) userRepository.findById(id);
+        if (sessionComp != user){
+            return "/user/loginForm";
+        }
 
-        request.setAttribute("user", user);
+        request.setAttribute("user", sessionComp);
         return "/comp/updateForm";
     }
 
     @GetMapping("/comp/jobsInfo")
     public String jobsInfo() {
 
-        return "/comp/jobsInfo";
+        return null;
     }
-
 
 }
