@@ -139,6 +139,23 @@
                             {{/jobs}}
                         </div>
                     </form>
+
+
+
+                    <!--버튼-->
+                    <div class="col-3 ml-50">
+                        <div id="rButton" style="width: 12em;">
+                            <br>
+                            <div class="row p-1">
+                                <div>
+                                    <div id="scrap-${rDto.resumeId}-render">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <!--버튼-->
                     <div class="ml-50">
                         <div id="rButton" style="width: 380px;">
@@ -162,6 +179,7 @@
     </div>
     <div class="side-item">
         <div class="side-item-1">
+
                 <form action="/resume/{{jobId}}/apply" method="post">
                     {{#applySuccess}}
                         <button type="button" class="btn btn-outline-mint w-100"

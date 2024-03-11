@@ -36,7 +36,7 @@ public class User {
     private Timestamp createdAt;
 
     @Column
-    @ColumnDefault("'176c65b3-5f38-4cea-88be-f2e4dcb82016_naver.jpg'")
+    @ColumnDefault("'1e308313-4d3a-4997-b42c-d409e72034ec_noimage.png'")
     private String imgFileName;
 }
 

@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import shop.mtcoding.blog.model.jobs.JobRequest;
 import shop.mtcoding.blog.model.offer.OfferRequest;
 import shop.mtcoding.blog.model.skill.SkillRequest;
 import shop.mtcoding.blog.model.user.UserRequest;
@@ -165,6 +166,7 @@ public class ApplyRepository {
         query.setParameter(1,resumeId);
         query.setParameter(2,jobsId);
         query.executeUpdate();
+
 
     }
 

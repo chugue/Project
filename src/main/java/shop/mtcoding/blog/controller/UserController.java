@@ -84,7 +84,8 @@ public class UserController {
                 return "redirect:/";
             } else if (role == 2) {
                 session.setAttribute("sessionComp", user);
-                return  "redirect:/comp/jobsInfo";
+                return  "redirect:/comp/readResume";
+
             }
         }
         return "/user/loginForm";

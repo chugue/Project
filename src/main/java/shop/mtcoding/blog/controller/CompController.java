@@ -131,6 +131,8 @@ public class CompController {
                 List<Skill> skillList = skillRepository.compfindAllV2(dto.getId());
                 dto.setSkillList(skillList);
             });
+
+
             request.setAttribute("keyword", keyword);
             request.setAttribute("pages", pageActive);
             request.setAttribute("firstPage", firstPage);
@@ -380,23 +382,23 @@ public class CompController {
             if (prevViewDTO.getId() == job[0]) {
                 // 스킬 색깔 생성
                 String color = "";
-                if (((String) job[7]).equals("jQuery")) {
+                if (((String) job[8]).equals("JQuery")) {
                     color = "badge bg-primary";
-                } else if (((String) job[7]).equals("javaScript")) {
+                } else if (((String) job[8]).equals("JavaScript")) {
                     color = "badge bg-secondary";
-                } else if (((String) job[7]).equals("Spring")) {
+                } else if (((String) job[8]).equals("Spring")) {
                     color = "badge bg-success";
-                } else if (((String) job[7]).equals("HTML/CSS")) {
+                } else if (((String) job[8]).equals("HTML/CSS")) {
                     color = "badge bg-danger";
-                } else if (((String) job[7]).equals("JSP")) {
+                } else if (((String) job[8]).equals("JSP")) {
                     color = "badge bg-warning";
-                } else if (((String) job[7]).equals("java")) {
+                } else if (((String) job[8]).equals("Java")) {
                     color = "badge bg-info";
-                } else if (((String) job[7]).equals("React")) {
+                } else if (((String) job[8]).equals("React")) {
                     color = "badge bg-dark";
                 }
 
-                SkillRequest.CompskillDTO skillDTO = SkillRequest.CompskillDTO.builder().name((String) job[7]).color(color).build();
+                SkillRequest.CompskillDTO skillDTO = SkillRequest.CompskillDTO.builder().name((String) job[8]).color(color).build();
 
                 // 이전에 있던 viewDOT.skillList에 add
                 prevViewDTO.getSkillList().add(skillDTO);
@@ -405,24 +407,24 @@ public class CompController {
                 List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
 
                 String color = "";
-                if (((String) job[7]).equals("jQuery")) {
+                if (((String) job[8]).equals("JQuery")) {
                     color = "badge bg-primary";
-                } else if (((String) job[7]).equals("javaScript")) {
+                } else if (((String) job[8]).equals("JavaScript")) {
                     color = "badge bg-secondary";
-                } else if (((String) job[7]).equals("Spring")) {
+                } else if (((String) job[8]).equals("Spring")) {
                     color = "badge bg-success";
-                } else if (((String) job[7]).equals("HTML/CSS")) {
+                } else if (((String) job[8]).equals("HTML/CSS")) {
                     color = "badge bg-danger";
-                } else if (((String) job[7]).equals("JSP")) {
+                } else if (((String) job[8]).equals("JSP")) {
                     color = "badge bg-warning";
-                } else if (((String) job[7]).equals("java")) {
+                } else if (((String) job[8]).equals("Java")) {
                     color = "badge bg-info";
-                } else if (((String) job[7]).equals("React")) {
+                } else if (((String) job[8]).equals("React")) {
                     color = "badge bg-dark";
                 }
 
                 // 스킬 이름 set
-                skillList.add(SkillRequest.CompskillDTO.builder().name((String) job[7]).color(color).build());
+                skillList.add(SkillRequest.CompskillDTO.builder().name((String) job[8]).color(color).build());
 
                 // 새로운 DTO 생성
                 prevViewDTO = new CompRequest.ResumeViewDTO();
@@ -433,6 +435,7 @@ public class CompController {
                 prevViewDTO.setEdu((String) job[4]);
                 prevViewDTO.setCareer((String) job[5]);
                 prevViewDTO.setArea((String) job[6]);
+                prevViewDTO.setImgFileName((String) job[7]);
                 prevViewDTO.setSkillList(skillList);
                 viewDTOList.add(prevViewDTO);
             }
@@ -470,18 +473,20 @@ public class CompController {
 
     @GetMapping("/comp/{id}/updateForm")
     public String updateForm(@PathVariable int id, HttpServletRequest request) {
-
+        User sessionComp = (User) session.getAttribute("sessionComp");
         User user = (User) userRepository.findById(id);
+        if (sessionComp != user){
+            return "/user/loginForm";
+        }
 
-        request.setAttribute("user", user);
+        request.setAttribute("user", sessionComp);
         return "/comp/updateForm";
     }
 
     @GetMapping("/comp/jobsInfo")
     public String jobsInfo() {
 
-        return "/comp/jobsInfo";
+        return null;
     }
-
 
 }

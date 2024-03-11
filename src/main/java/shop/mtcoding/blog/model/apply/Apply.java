@@ -16,6 +16,7 @@ public class Apply {
     private Integer jobsId;
 
     // 유저 상태값 (1 : 대기중) (2 : 확인)  (3 : 탈락)
+    @Column(nullable = false)
     private String isPass;
 
     private Timestamp createdAt;

@@ -29,7 +29,13 @@
                             <tbody>
                             {{#jobList}}
 
-                                <tr class="offer-table" style="text-align: center">
+
+                                <tr class="offer-table">
+                                    <td>{{id}}</td>
+                                    <td>
+                                        <div style="    text-align: left; font-size: 20px;font-weight: 700;margin-bottom: 5px;">{{title}}</div>
+
+
 
                                     <td>{{id}}</td>
                                     <!--타이틀, 보유스킬-->
@@ -43,6 +49,7 @@
                                     </td>
                                     <td>{{task}}</td>
                                     <td>{{career}}</td>
+
                                     <!--공고 관련 버튼-->
                                     <!--여기 UI부분 눈을 헤쳐서 고쳤어요-->
                                     <td class="col-3" style="text-align: center">
