@@ -81,10 +81,11 @@ public class ApplyController {
         List<SkillRequest.ApplyskillDTO> skillList = skillRepository.JobsSkill(jobId);
         // row 세션에 담아
         request.setAttribute("jobsId", jobId);
+        request.setAttribute("sessionUserId", user.getId());
         request.setAttribute("jobs", applyResumeJobsDTOList);
         request.setAttribute("skillList", skillList );
         request.setAttribute("resumeList", resumeList);
         System.out.println(11111);
-        return "/user/"+ user.getId() +"/userhome";
+        return "/user/apply";
     }
 }
