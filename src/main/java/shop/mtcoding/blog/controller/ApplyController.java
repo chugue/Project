@@ -137,7 +137,6 @@ public class ApplyController {
 
     @PostMapping("/jobs/apply/save")
     public String applySave(ApplyRequest.saveDTO requestDTO) {
-
         applyRepository.save(requestDTO);
         return "redirect:/jobs/jobsDetail/" + requestDTO.getJobsId();
     }
@@ -184,6 +183,8 @@ public class ApplyController {
         applyRepository.saveResumeJobsApply(resumeId, jobId);
         Object[] job = jobsRepository.findByJobId(jobId);
 
+
+
         JobRequest.JobsJoinDTO Checked = JobRequest.JobsJoinDTO.builder()
                 .compName(String.valueOf(job[0]))
                 .userId((Integer) job[1])
@@ -209,7 +210,6 @@ public class ApplyController {
         request.setAttribute("jobs", Checked);
         request.setAttribute("skillList", skillList);
         request.setAttribute("resumeList", resumeList);
-
         return "/user/apply";
     }
 
