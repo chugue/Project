@@ -1,21 +1,32 @@
 package shop.mtcoding.blog.controller;
-
-<<<<<<< HEAD
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import shop.mtcoding.blog.model.apply.ApplyRepository;
 import shop.mtcoding.blog.model.apply.ApplyRequest;
+import shop.mtcoding.blog.model.jobs.JobRequest;
+import shop.mtcoding.blog.model.jobs.JobsRepository;
+import shop.mtcoding.blog.model.resume.ResumeRepository;
+import shop.mtcoding.blog.model.resume.ResumeRequest;
+import shop.mtcoding.blog.model.skill.SkillRepository;
+import shop.mtcoding.blog.model.skill.SkillRequest;
 import shop.mtcoding.blog.model.user.User;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class ApplyController {
     private final ApplyRepository applyRepository;
     private final HttpSession session;
+    private final JobsRepository jobsRepository;
+    private final SkillRepository skillRepository;
+    private final ResumeRepository resumeRepository;
 
     @PostMapping("/jobs/apply/save")
     public String applySave(ApplyRequest.saveDTO requestDTO) {
@@ -25,14 +36,14 @@ public class ApplyController {
     }
 
     @PostMapping("/apply/pass/update/{id}")
-    public String applyPassUpDate(@PathVariable Integer id, @RequestParam("jobsId")Integer jobsId) {
+    public String applyPassUpDate(@PathVariable Integer id, @RequestParam("jobsId") Integer jobsId) {
         User sessionComp = (User) session.getAttribute("sessionComp");
         applyRepository.passUpdate(id, jobsId);
         return "redirect:/comp/" + sessionComp.getId() + "/comphome?jobsId=" + jobsId;
     }
 
     @PostMapping("/apply/fail/update/{id}")
-    public String applyFailUpDate(@PathVariable Integer id, @RequestParam("jobsId")Integer jobsId) {
+    public String applyFailUpDate(@PathVariable Integer id, @RequestParam("jobsId") Integer jobsId) {
         User sessionComp = (User) session.getAttribute("sessionComp");
         applyRepository.failUpdate(id, jobsId);
         return "redirect:/comp/" + sessionComp.getId() + "/comphome?jobsId=" + jobsId;
@@ -48,44 +59,16 @@ public class ApplyController {
     public String applyFailUpDate2(@PathVariable Integer id, @RequestParam("jobsId") Integer jobsId) {
         applyRepository.failUpdate(id, jobsId);
         return "redirect:/resume/resumeDetail/" + id + "?jobsId=" + jobsId;
-=======
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import shop.mtcoding.blog.model.apply.ApplyRepository;
-import shop.mtcoding.blog.model.apply.ApplyRequest;
-import shop.mtcoding.blog.model.jobs.JobRequest;
-import shop.mtcoding.blog.model.jobs.JobsRepository;
-import shop.mtcoding.blog.model.resume.ResumeRepository;
-import shop.mtcoding.blog.model.resume.ResumeRequest;
-import shop.mtcoding.blog.model.skill.SkillRepository;
-import shop.mtcoding.blog.model.skill.SkillRequest;
-import shop.mtcoding.blog.model.user.User;
-
-import java.util.List;
-
-
-@RequiredArgsConstructor
-@Controller
-public class ApplyController {
-    private final ApplyRepository applyRepository;
-    private final HttpSession session;
-    private final JobsRepository jobsRepository;
-    private final SkillRepository skillRepository;
-    private final ResumeRepository resumeRepository;
-
+    }
 
     @GetMapping("/resume/{jobId}/apply")
-    public String apply (@PathVariable Integer jobId, @RequestParam("resumeId") Integer resumeId, HttpServletRequest request){
+    public String apply(@PathVariable Integer jobId, @RequestParam("resumeId") Integer resumeId, HttpServletRequest
+            request) {
         boolean applySuccess = false;
 
         applyRepository.saveResumeJobsApply(resumeId, jobId);
-        Object[] status =  applyRepository.findStatusByResumeJobs(resumeId,jobId);
-        if (status != null){
+        Object[] status = applyRepository.findStatusByResumeJobs(resumeId, jobId);
+        if (status != null) {
             applySuccess = true;
             request.setAttribute("applySuccess", applySuccess);
         }
@@ -121,9 +104,10 @@ public class ApplyController {
     }
 
     @GetMapping("/resume/{jobId}/applyList")
-    public String resumeApplyList (@PathVariable Integer jobId, @RequestParam("resumeId") Integer resumeId, HttpServletRequest request){
+    public String resumeApplyList(@PathVariable Integer jobId, @RequestParam("resumeId") Integer
+            resumeId, HttpServletRequest request) {
 
-        List<ApplyRequest.ApplyResumeJobsDTO2> applyResumeJobsDTOList= applyRepository.findAllByResumeId(resumeId);
+        List<ApplyRequest.ApplyResumeJobsDTO2> applyResumeJobsDTOList = applyRepository.findAllByResumeId(resumeId);
 
         User user = (User) session.getAttribute("sessionUser");
         List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId((user.getId()));
@@ -132,10 +116,9 @@ public class ApplyController {
         request.setAttribute("jobsId", jobId);
         request.setAttribute("sessionUserId", user.getId());
         request.setAttribute("jobs", applyResumeJobsDTOList);
-        request.setAttribute("skillList", skillList );
+        request.setAttribute("skillList", skillList);
         request.setAttribute("resumeList", resumeList);
         System.out.println(11111);
         return "/user/apply";
->>>>>>> d9b5cb1758f6793adaebcdf362d5c5a21823a761
     }
 }
