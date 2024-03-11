@@ -16,11 +16,10 @@ import shop.mtcoding.blog.model.jobs.JobResponse;
 
 import shop.mtcoding.blog.model.offer.OfferResponse;
 
-import shop.mtcoding.blog.model.pass.page.Page;
-import shop.mtcoding.blog.model.pass.page.Paging;
+import shop.mtcoding.blog.page.Page;
+import shop.mtcoding.blog.page.Paging;
 
-import shop.mtcoding.blog.model.pass.PassRepository;
-import shop.mtcoding.blog.model.pass.PassRequest;
+import shop.mtcoding.blog.model.apply.ApplyRequest;
 import shop.mtcoding.blog.model.resume.Resume;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.resume.ResumeRequest;
@@ -50,7 +49,6 @@ public class CompController {
     private final ResumeRepository resumeRepository;
     private final OfferRepository offerRepository;
     private final Paging paging;
-    private final PassRepository passRepository;
 
 
     @GetMapping("/comp/{id}/compResumeDetail")
@@ -81,7 +79,7 @@ public class CompController {
 
         System.out.println(jobsId);
         Resume resumeDTO = resumeRepository.findById(id);
-        PassRequest.PassResumeJobsDTO requestDTO = passRepository.findByIdResumeJobs(id, jobsId);
+        ApplyRequest.ApplyResumeJobsDTO requestDTO = applyRepository.findByIdResumeJobs(id, jobsId);
 
         request.setAttribute("resume", resumeDTO);
 
@@ -104,14 +102,14 @@ public class CompController {
     }
   
     @GetMapping("/comp/compIndex")
-    public String compIndex(HttpServletRequest request, @RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") String page) {
+    public String compIndex(HttpServletRequest request, @RequestParam("role") int role, @RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") String page) {
         int currentPage = Integer.parseInt(page);
         int totalPosts = resumeRepository.findAllWithUserV2().size();
         boolean lastPage = paging.complastPage(currentPage, totalPosts);
         boolean firstPage = paging.compfirstPage(currentPage);
         int totalPages = paging.compTotalPages(totalPosts);
-
         List<Page> pageActive = new ArrayList<>();
+
 
         // 페이지 네이션에 현재페이지 active기능 넣기
         for (int i = 1; i <= totalPages; i++) {
@@ -140,6 +138,9 @@ public class CompController {
             request.setAttribute("pageList", pageList);
             request.setAttribute("prevPage", Math.max(1, currentPage - 1));
             request.setAttribute("nextPage", Math.min(totalPages, currentPage + 1));
+            if (role == 1){
+                return "/user/loginForm";
+            }
             return "comp/compIndex";
 
         } else {    //검색하면 키워드를 던져줌
@@ -156,6 +157,9 @@ public class CompController {
             request.setAttribute("pageList", pageList);
             request.setAttribute("prevPage", Math.max(1, currentPage - 1));
             request.setAttribute("nextPage", Math.min(totalPages, currentPage + 1));
+            if (role == 1){
+                return "/user/loginForm";
+            }
             return "comp/compIndex";
         }
     }

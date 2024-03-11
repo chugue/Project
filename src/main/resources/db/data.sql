@@ -83,11 +83,6 @@ INSERT INTO jobs_tb(user_id, area, title, edu, career, content, dead_line, task,
 VALUES (23, '서울', '[채용공고] 백엔드 개발자 정규직 채용', '대졸', '경력무관', 'Java, Spring boot를 다룰 수 있고, Git을 통해 협업을 해보신 분', '2024-05-22', '백엔드', NOW());
 
 
---- 합격 테이블
-INSERT INTO pass_tb (resume_id, jobs_id, status) values (1, 3, 2);
-INSERT INTO pass_tb (resume_id, jobs_id, status) values (2, 1, 0);
-INSERT INTO pass_tb (resume_id, jobs_id, status) values (4, 1, 3);
-
 
 -- 스킬 테이블 (개인)
 insert into skill_tb (resume_id, name, role) values(1, 'Java', 1);
@@ -212,6 +207,7 @@ insert into scrap_tb(user_id, resume_id, created_at) values(2, 2, now());
 
 -- 기업에 지원한 유저
 -- values (첫번째 이력서가 , 첫번째 공고에 지원, 대기중)
+
 insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(1,1,2,now());
 insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(2,1,1,now());
 insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(1,2,3,now());
@@ -222,6 +218,7 @@ insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(6,1,1,now()
 
 insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(1,2,1,now());
 insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(2,3,1,now());
+
 
 
 -- 기업이 제안한 이력서

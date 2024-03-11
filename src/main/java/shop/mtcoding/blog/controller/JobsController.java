@@ -8,20 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import shop.mtcoding.blog.dto.scrap.ScrapResponse;
-import shop.mtcoding.blog.model.apply.Apply;
 import shop.mtcoding.blog.model.apply.ApplyRepository;
-import shop.mtcoding.blog.model.apply.ApplyRequest;
-import shop.mtcoding.blog.model.apply.ApplyResponse;
 import shop.mtcoding.blog.model.jobs.JobRequest;
-import shop.mtcoding.blog.model.jobs.JobResponse;
 import shop.mtcoding.blog.model.jobs.Jobs;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
-import shop.mtcoding.blog.model.offer.OfferResponse;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.resume.ResumeRequest;
-import shop.mtcoding.blog.model.skill.Skill;
 import shop.mtcoding.blog.model.skill.SkillRepository;
 import shop.mtcoding.blog.model.skill.SkillRequest;
 import shop.mtcoding.blog.model.skill.SkillResponse;
@@ -39,6 +31,8 @@ public class JobsController {
     private final ResumeRepository resumeRepository;
     private final ApplyRepository applyRepository;
     private final HttpSession session;
+
+
 
     @GetMapping("/jobs/{id}/interest")
     public String interest(@PathVariable int id, HttpServletRequest request) {
@@ -231,11 +225,14 @@ public class JobsController {
                 .photo(String.valueOf(job[13]))
                 .build();
 
-        // row 세션에 담아
-        request.setAttribute("jobs", Checked);
-
         List<SkillRequest.ApplyskillDTO> skillList = skillRepository.JobsSkill(id);
+        // row 세션에 담아
+        request.setAttribute("jobId", id);
+        request.setAttribute("jobs", Checked);
         request.setAttribute("skillList", skillList);
+        User user = (User) session.getAttribute("sessionUser");
+        List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId((user.getId()));
+        request.setAttribute("resumeList", resumeList);
 
         return "/jobs/jobsDetail";
     }

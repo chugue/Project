@@ -1,4 +1,4 @@
-package shop.mtcoding.blog.model.pass.page;
+package shop.mtcoding.blog.page;
 
 import lombok.Data;
 
