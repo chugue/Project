@@ -31,12 +31,15 @@
 <!--                        </li>-->
                         <li class="nav-item">
 
-                            <a id="offer" href="/user/{{sessionUser.id}}/applyList" class="nav-link sub-menu a p-1 mb-1">지원</a>
+
+
+                            <a id="offer" href="/user/{{sessionUser.id}}/offer" class="nav-link sub-menu a p-1 mb-1">지원 관리</a>
+
+
 
                         </li>
 <!--                        <li class="nav-item">-->
 <!--                            <a id="scrap" href="/user/{{sessionUser.id}}/scrap" class="nav-link sub-menu a p-1 mb-1">스크랩</a>-->
-<!--                        </li>-->
                         <hr>
                         <li class="nav-item">
                             <a href="/user/{{sessionUser.id}}/updateForm" class="nav-link sub-menu a p-1 mb-1">정보수정</a>
@@ -62,6 +65,7 @@
             <div style="width: 100%;">
                 <div class="relative mb-3">
                     <div>
+                        <div>
                         <a href="/comp/profileUpdateForm"
                            onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
                             <div class="user-img">

@@ -20,7 +20,6 @@
                         <table class="table table-hover offer-table scroll"
                                style="text-align: center; border-top:2px solid #ddd">
                             <thead>
-<<<<<<< HEAD:src/main/resources/templates/user/offer.mustache
                                 <tr>
                                     <th>No</th>
                                     <th>이력서 목록</th>
@@ -28,15 +27,7 @@
                                     <th>경력</th>
                                     <th>제안 공고 확인</th>
                                 </tr>
-=======
-                            <tr>
-                                <th scope="col" style="width: 5%;">No</th>
-                                <th scope="col" style="width: 40%;">이력서 목록</th>
-                                <th scope="col" style="width: 15%;">주소</th>
-                                <th scope="col" style="width: 15%;">경력</th>
-                                <th scope="col" style="width: 25%;">지원 공고 확인</th>
-                            </tr>
->>>>>>> d9b5cb1758f6793adaebcdf362d5c5a21823a761:src/main/resources/templates/user/apply.mustache
+
                             </thead>
                             <tbody>
                             {{^resumeList}}
@@ -60,7 +51,7 @@
                                     <!--경력-->
                                     <td>{{career}}</td>
 
-                                    <td class="d-flex justify-content-between">
+                                    <td class=" justify-content-between">
 
                                         <div class="new-create-button">
                                             <form action="/resume/{{sessionUser.id}}/applyList">

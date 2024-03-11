@@ -19,8 +19,9 @@ import shop.mtcoding.blog.model.user.User;
 
 import java.util.List;
 
-@Controller
+
 @RequiredArgsConstructor
+@Controller
 public class ApplyController {
     private final ApplyRepository applyRepository;
     private final HttpSession session;
@@ -59,7 +60,9 @@ public class ApplyController {
     public String applyFailUpDate2(@PathVariable Integer id, @RequestParam("jobsId") Integer jobsId) {
         applyRepository.failUpdate(id, jobsId);
         return "redirect:/resume/resumeDetail/" + id + "?jobsId=" + jobsId;
+
     }
+
 
     @GetMapping("/resume/{jobId}/apply")
     public String apply(@PathVariable Integer jobId, @RequestParam("resumeId") Integer resumeId, HttpServletRequest
