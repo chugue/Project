@@ -137,7 +137,8 @@ public class UserController {
 //        return "/user/apply";
 //    }
 
-    @GetMapping("/user/{id}/applyList")
+
+    @GetMapping("/user/{id}/apply")
     public String offer(@PathVariable Integer id,
                         @RequestParam(required = false, defaultValue = "1") Integer resumeId,
                         HttpServletRequest request) {
@@ -150,16 +151,6 @@ public class UserController {
         for (int i = 0; i < offerList.size(); i++) {
             UserRequest.ResumeOfterDTO dto = offerList.get(i);
             dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
-            if (dto.getIsPass() == 1) {
-                String passOrFail = "대기중입니다.";
-                request.setAttribute("wait", passOrFail);
-            } else if (dto.getIsPass() == 2) {
-                String passOrFail = "불합격 입니다.";
-                request.setAttribute("fail", passOrFail);
-            } else if (dto.getIsPass() == 3) {
-                String passOrFail = "합격 입니다!";
-                request.setAttribute("pass", passOrFail);
-            }
         }
         request.setAttribute("offerList", offerList);
 
@@ -175,6 +166,47 @@ public class UserController {
 
         return "/user/apply";
     }
+
+
+
+//    @GetMapping("/user/{id}/applyList")
+//    public String offer(@PathVariable Integer id,
+//                        @RequestParam(required = false, defaultValue = "1") Integer resumeId,
+//                        HttpServletRequest request) {
+//
+//        User sessionUser = (User) session.getAttribute("sessionUser");
+//        request.setAttribute("userId", sessionUser.getId());
+//
+//        List<UserRequest.ResumeOfterDTO> offerList = offerRepository.findAllByJobsId2(resumeId);
+//
+//        for (int i = 0; i < offerList.size(); i++) {
+//            UserRequest.ResumeOfterDTO dto = offerList.get(i);
+//            dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
+//            if (dto.getIsPass() == 1) {
+//                String passOrFail = "대기중입니다.";
+//                request.setAttribute("wait", passOrFail);
+//            } else if (dto.getIsPass() == 2) {
+//                String passOrFail = "불합격 입니다.";
+//                request.setAttribute("fail", passOrFail);
+//            } else if (dto.getIsPass() == 3) {
+//                String passOrFail = "합격 입니다!";
+//                request.setAttribute("pass", passOrFail);
+//            }
+//        }
+//        request.setAttribute("offerList", offerList);
+//
+//
+//        List<UserResponse.UserListByUserId> resumeList = offerRepository.findAllByResumeId(id);
+//
+//        for (int i = 0; i < resumeList.size(); i++) {
+//            UserResponse.UserListByUserId dto = resumeList.get(i);
+//            dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
+//        }
+//
+//        request.setAttribute("resumeList", resumeList);
+//
+//        return "/user/apply";
+//    }
 
 
 

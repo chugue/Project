@@ -36,7 +36,7 @@ public class ApplyRepository {
         try {
             requestDTO = (ApplyRequest.ApplyResumeJobsDTO) query.getSingleResult();
         } catch (NoResultException e) {
-            requestDTO.setStatus(0);
+            requestDTO.setIsPass("없음");
         }
 
         return requestDTO;
@@ -119,7 +119,7 @@ public class ApplyRepository {
     @Transactional
     public void passUpdate(Integer id, Integer jobsId) {
         String q = """
-                update apply_tb set is_pass = 3 where jobs_id = ? and resume_id = ?;
+                update apply_tb set is_pass = '합격' where jobs_id = ? and resume_id = ?;
                 """;
         Query query = em.createNativeQuery(q);
         query.setParameter(1, jobsId);
@@ -130,7 +130,7 @@ public class ApplyRepository {
     @Transactional
     public void failUpdate(Integer id, Integer jobsId) {
         String q = """
-                update apply_tb set is_pass = 2 where jobs_id = ? and resume_id = ?;
+                update apply_tb set is_pass = '불합격' where jobs_id = ? and resume_id = ?;
                 """;
         Query query = em.createNativeQuery(q);
         query.setParameter(1, jobsId);
@@ -138,11 +138,28 @@ public class ApplyRepository {
         query.executeUpdate();
     }
 
+    public Object findStatusAllOrNot (Integer userId, Integer jobId){
+        String q = """
+                SELECT a.is_pass
+                FROM user_tb u
+                JOIN apply_tb a ON u.id = a.user_id  
+                JOIN jobs_tb j ON a.jobs_id = j.id
+                WHERE user_id = ? and jobs_id = ?
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, userId);
+        query.setParameter(2, jobId);
+        return query.getSingleResult();
+
+
+    }
+
+
     @Transactional
     public void saveResumeJobsApply(Integer resumeId, Integer jobsId) {
         String q = """
-                INSERT INTO apply_tb (resume_id, jobs_id, status, created_at)
-                VALUES ( ?, ?, 0, NOW())
+                INSERT INTO apply_tb (resume_id, jobs_id, is_pass, created_at)
+                VALUES ( ?, ?, '대기중', NOW())
                 """;
         Query query = em.createNativeQuery(q);
         query.setParameter(1,resumeId);
@@ -151,9 +168,9 @@ public class ApplyRepository {
 
     }
 
-    public Object[] findStatusByResumeJobs(Integer resumeId, Integer jobsId) {
+    public List<Object[]> findStatusByResumeJobs(Integer resumeId, Integer jobsId) {
         String q = """
-                SELECT r.id, j.*, a.status
+                SELECT r.id, j.*, a.is_pass
                 FROM resume_tb r 
                 JOIN apply_tb a ON r.id = a.resume_id
                 JOIN jobs_tb j ON a.jobs_id = j.id
@@ -162,12 +179,12 @@ public class ApplyRepository {
         Query query = em.createNativeQuery(q);
         query.setParameter(1, resumeId);
         query.setParameter(2, jobsId);
-        return (Object[]) query.getSingleResult();
+        return query.getResultList();
     }
 
     public List<ApplyRequest.ApplyResumeJobsDTO2> findAllByResumeId(Integer resumeId){
         String q = """
-                    SELECT j.*, r.id, a.status
+                    SELECT j.*, r.id, a.is_pass
                     FROM jobs_tb j
                     JOIN apply_tb a ON j.id = a.jobs_id
                     JOIN resume_tb r ON a.resume_id = r.id

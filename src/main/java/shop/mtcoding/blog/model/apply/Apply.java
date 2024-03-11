@@ -14,8 +14,9 @@ public class Apply {
     private Integer id;
     private Integer resumeId;
     private Integer jobsId;
-    private Integer status;
+
+    // 유저 상태값 (1 : 대기중) (2 : 확인)  (3 : 탈락)
+    private String isPass;
+
     private Timestamp createdAt;
-
-
 }

@@ -102,7 +102,7 @@ public class CompController {
     }
   
     @GetMapping("/comp/compIndex")
-    public String compIndex(HttpServletRequest request, @RequestParam("role") int role, @RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") String page) {
+    public String compIndex(HttpServletRequest request, @RequestParam(required = false, defaultValue = "0") Integer role, @RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") String page) {
         int currentPage = Integer.parseInt(page);
         int totalPosts = resumeRepository.findAllWithUserV2().size();
         boolean lastPage = paging.complastPage(currentPage, totalPosts);

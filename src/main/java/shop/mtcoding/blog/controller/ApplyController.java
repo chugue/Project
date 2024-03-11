@@ -3,19 +3,18 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.blog.model.apply.ApplyRepository;
 import shop.mtcoding.blog.model.apply.ApplyRequest;
 import shop.mtcoding.blog.model.jobs.JobRequest;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
+import shop.mtcoding.blog.model.offer.OfferRepository;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.resume.ResumeRequest;
 import shop.mtcoding.blog.model.skill.SkillRepository;
 import shop.mtcoding.blog.model.skill.SkillRequest;
 import shop.mtcoding.blog.model.user.User;
+import shop.mtcoding.blog.model.user.UserRequest;
 
 import java.util.List;
 
@@ -28,6 +27,7 @@ public class ApplyController {
     private final JobsRepository jobsRepository;
     private final SkillRepository skillRepository;
     private final ResumeRepository resumeRepository;
+    private final OfferRepository offerRepository;
 
     @PostMapping("/jobs/apply/save")
     public String applySave(ApplyRequest.saveDTO requestDTO) {
@@ -64,17 +64,18 @@ public class ApplyController {
     }
 
 
-    @GetMapping("/resume/{jobId}/apply")
-    public String apply(@PathVariable Integer jobId, @RequestParam("resumeId") Integer resumeId, HttpServletRequest
+    @PostMapping("/resume/{jobId}/apply")
+    public String apply(@PathVariable Integer jobId, @RequestParam(required = false, defaultValue = "0") Integer resumeId, HttpServletRequest
             request) {
-        boolean applySuccess = false;
-
+//        boolean applySuccess = false;
+//
+//
+//        List<Object[]> status = applyRepository.findStatusByResumeJobs(resumeId, jobId);
+//        if (status != null) {
+//            applySuccess = true;
+//            request.setAttribute("applySuccess", applySuccess);
+//        }
         applyRepository.saveResumeJobsApply(resumeId, jobId);
-        Object[] status = applyRepository.findStatusByResumeJobs(resumeId, jobId);
-        if (status != null) {
-            applySuccess = true;
-            request.setAttribute("applySuccess", applySuccess);
-        }
         Object[] job = jobsRepository.findByJobId(jobId);
 
         JobRequest.JobsJoinDTO Checked = JobRequest.JobsJoinDTO.builder()
@@ -102,13 +103,21 @@ public class ApplyController {
         request.setAttribute("jobs", Checked);
         request.setAttribute("skillList", skillList);
         request.setAttribute("resumeList", resumeList);
-        System.out.println(11111);
-        return "/jobs/jobsDetail";
+
+        return "/user/apply";
     }
 
     @GetMapping("/resume/{jobId}/applyList")
-    public String resumeApplyList(@PathVariable Integer jobId, @RequestParam("resumeId") Integer
+    public String resumeApplyList(@PathVariable Integer jobId, @RequestParam(required = false, defaultValue = "0") Integer
             resumeId, HttpServletRequest request) {
+
+        List<UserRequest.ResumeOfterDTO> offerList = offerRepository.findAllByJobsId2(resumeId);
+
+        for (int i = 0; i < offerList.size(); i++) {
+            UserRequest.ResumeOfterDTO dto = offerList.get(i);
+            dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
+        }
+        request.setAttribute("offerList", offerList);
 
         List<ApplyRequest.ApplyResumeJobsDTO2> applyResumeJobsDTOList = applyRepository.findAllByResumeId(resumeId);
 
@@ -121,7 +130,6 @@ public class ApplyController {
         request.setAttribute("jobs", applyResumeJobsDTOList);
         request.setAttribute("skillList", skillList);
         request.setAttribute("resumeList", resumeList);
-        System.out.println(11111);
         return "/user/apply";
     }
 }
