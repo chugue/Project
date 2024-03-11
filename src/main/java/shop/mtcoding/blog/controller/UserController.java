@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import shop.mtcoding.blog.model.apply.ApplyRepository;
 import shop.mtcoding.blog.model.apply.ApplyRequest;
+import shop.mtcoding.blog.model.jobs.JobRequest;
 import shop.mtcoding.blog.model.offer.OfferRepository;
 import shop.mtcoding.blog.model.profile.ProfileRepository;
 import shop.mtcoding.blog.model.profile.ProfileRequest;
@@ -242,7 +243,7 @@ public class UserController {
 
         User sessionUser = (User) session.getAttribute("sessionUser");
         List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId(id);
-        System.out.println(request); // 이거 스킬 안넣었을때 리스트
+        System.out.println(request.toString()); // 이거 스킬 안넣었을때 리스트
 
         for (int i = 0; i < resumeList.size(); i++) {
             //우리가 아까만든 생성자에 resumeList 값들이 들어간다
@@ -251,8 +252,7 @@ public class UserController {
         }
         request.setAttribute("sessionUserId", sessionUser.getId());
         request.setAttribute("resumeList", resumeList);
-        System.out.println(request); // 이건 스킬추카하고 나서 리스트
-//        List<SkillResponse.ResumeSkillDTO> resumeSkillList = resumeRepository.findAllByResumeId(id);
+        System.out.println(request.toString()); // 이건 스킬추가하고 나서 리스트
         return "/user/userHome";
     }
 
