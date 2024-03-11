@@ -10,16 +10,16 @@ public class ApplyRequest {
     public static class saveDTO {
         private Integer resumeId;
         private Integer jobsId;
-        private Integer isPass;
+        private String isPass;
 
         public saveDTO() {
-            this.isPass = 1;
+            this.isPass = "대기중";
         }
     }
 
     @AllArgsConstructor
     @Data
     public static class JobsIdAndResumeIdDTO {
-        private Integer isPass;
+        private String isPass;
     }
 }

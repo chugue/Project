@@ -9,7 +9,7 @@
 <div class="mx-auto pt-80">
     <div class="new-flex-wrapper">
         <div class="new-container">
-            <!-- 지원 및 제안 -->
+            <!--지원 및 제안-->
             {{> layout/sidebar}}
             <div class="my-4 layer2-right-container" style="flex: 0 0 auto; width: calc(100% - 270px);">
                 <div class="components">
@@ -20,13 +20,13 @@
                         <table class="table table-hover offer-table scroll"
                                style="text-align: center; border-top:2px solid #ddd">
                             <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>이력서 목록</th>
-                                    <th>주소</th>
-                                    <th>경력</th>
-                                    <th>제안 공고 확인</th>
-                                </tr>
+                            <tr>
+                                <th>No</th>
+                                <th>이력서 목록</th>
+                                <th>주소</th>
+                                <th>경력</th>
+                                <th>제안 공고 확인</th>
+                            </tr>
                             </thead>
                             <tbody>
                             {{^resumeList}}
@@ -49,9 +49,8 @@
                                     <td>{{area}}</td>
                                     <!--경력-->
                                     <td>{{career}}</td>
-
-                                    <td class="d-flex justify-content-between">
-
+                                    <!--제안 공고 확인 버튼-->
+                                    <td class="col-3" style="text-align: center">
                                         <div class="new-create-button">
                                             <a href="/user/{{sessionUser.id}}/offer?resumeId={{id}}">
                                             <button type="button" class="btn btn-mint offer-table-btn">제안 공고 확인</button>
@@ -65,74 +64,54 @@
                     </div>
                 </div>
                 <div class="components" style="height: 50px;"></div>
-                <!-- 제안 목록 -->
                 <div class="components">
                     <div class="font mb-3">제안 목록</div>
                     <div>
                         <table class="table table-hover offer-table scroll"
                                style="text-align: center; border-top:2px solid #ddd">
                             <thead>
-                                <tr>
-                                    <th class="center-align">No</th>
-                                    <th class="center-align">회사명</th>
-                                    <th class="center-align">공고제목</th>
-                                    <th class="center-align">필요경력</th>
-                                    <th class="center-align">필요 기술</th>
-                                    <th class="center-align">공고 확인</th>
-                                </tr>
+                            <tr>
+                                <th class="center-align">No</th>
+                                <th class="center-align">회사명</th>
+                                <th class="center-align">공고제목</th>
+                                <th class="center-align">필요경력</th>
+                                <th class="center-align">필요 기술</th>
+                                <th class="center-align">공고 확인</th>
+                            </tr>
                             </thead>
-                            <tbody>
-
                             {{#offerList}}
-                                <tr class="offer-table">
-                                    <th scope="row">{{jobsId}}</th>
-                                    <td>{{compName}}</td>
-                                    <td>{{title}}</td>
-                                    <td>{{career}}</td>
-                                    <td>
-                                        <div class="new-skill-box">
-                                            {{#skillList}}
-                                                <div class="{{color}}">{{name}}</div>
-                                            {{/skillList}}
-                                        </div>
-                                    </td>
-                                    <td style="text-align: right;">
-                                        <div class="d-flex justify-content-end">
-                                            <div class="new-create-button"
-                                                 style="display: inline-block; margin-left: 5px;">
-                                                <a href="/jobs/jobsDetail/{{jobsId}}">
-                                                    <button type="button" class="btn btn-mint offer-table-btn">상세보기
-                                                    </button>
-                                                </a>
-                                            </div>
-                                            {{#wait}}
-                                                <div class="new-create-button" style="display: inline-block; margin-left: 5px;">
-                                                    <button type="button" class="btn btn-mint offer-table-btn">{{wait}}</button>
-                                                </div>
-                                            {{/wait}}
-
-                                            {{#fail}}
-                                                <div class="new-create-button" style="display: inline-block; margin-left: 5px;">
-                                                    <button type="button" class="btn btn-mint offer-table-btn">{{fail}}</button>
-                                                </div>
-                                            {{/fail}}
-
-                                            {{#pass}}
-                                                <div class="new-create-button" style="display: inline-block; margin-left: 5px;">
-                                                    <button type="button" class="btn btn-mint offer-table-btn">{{pass}}</button>
-                                                </div>
-                                            {{/pass}}
-                                        </div>
-                                    </td>
-                                </tr>
-
+                            <tbody>
+                            <tr class="offer-table">
+                                <th scope="row">{{jobsId}}</th>
+                                <td>{{compName}}</td>
+                                <td>{{title}}</td>
+                                <td style="width: 120px">{{career}}</td>
+                                <td>
+                                    <div class="new-skill-box">
+                                        {{#skillList}}
+                                            <div class="{{color}}">{{name}}</div>
+                                        {{/skillList}}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="new-create-button">
+                                        <a href="/jobs/jobsDetail/{{jobsId}}">
+                                            <button type="button" class="btn btn-mint offer-table-btn">상세보기</button>
+                                        </a>
+                                    </div>
+                                    <div class="new-create-button">
+                                        <button type="button" class="btn btn-mint offer-table-btn">{{isPass}}</button>
+                                    </div>
+                                </td>
+                            </tr>
                             {{/offerList}}
                         </tbody>
                         </table>
                     </div>
+
                 </div>
+
             </div>
         </div>
     </div>
-</div>
 {{> layout/footer}}

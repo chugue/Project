@@ -92,7 +92,7 @@ public class ApplyRepository {
     @Transactional
     public void passUpdate(Integer id, Integer jobsId) {
         String q = """
-                update apply_tb set is_pass = 3 where jobs_id = ? and resume_id = ?;
+                update apply_tb set is_pass = '불합격' where jobs_id = ? and resume_id = ?;
                 """;
         Query query = em.createNativeQuery(q);
         query.setParameter(1, jobsId);
@@ -103,7 +103,7 @@ public class ApplyRepository {
     @Transactional
     public void failUpdate(Integer id, Integer jobsId) {
         String q = """
-                update apply_tb set is_pass = 2 where jobs_id = ? and resume_id = ?;
+                update apply_tb set is_pass = '합격' where jobs_id = ? and resume_id = ?;
                 """;
         Query query = em.createNativeQuery(q);
         query.setParameter(1, jobsId);
