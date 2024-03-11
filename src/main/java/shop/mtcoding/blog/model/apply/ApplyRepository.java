@@ -53,6 +53,7 @@ public class ApplyRepository {
         JpaResultMapper mapper = new JpaResultMapper();
         return mapper.list(query, SkillRequest.ApplyskillDTO.class);
     }
+
     public ApplyRequest.JobsIdAndResumeIdDTO findAllByJobsIdAndResumeId(Integer jobsId, Integer resumeId) {
         String q = """
                 select is_pass from apply_tb where jobs_id = ? and resume_id = ?;

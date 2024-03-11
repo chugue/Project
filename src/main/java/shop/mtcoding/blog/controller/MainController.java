@@ -11,6 +11,7 @@ import shop.mtcoding.blog.model.pass.page.Page;
 import shop.mtcoding.blog.model.pass.page.Paging;
 import shop.mtcoding.blog.model.skill.Skill;
 import shop.mtcoding.blog.model.skill.SkillRepository;
+import shop.mtcoding.blog.model.skill.SkillRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,14 +46,17 @@ public class MainController {
         // 한 페이지에 5개씩 출력 - 10개중 현재페이지가 1이면 10부터 6까지, 현재 페이지가 2면 5부터 1까지
 
 
-
         if (keyword.isBlank()) { //isBlank면 검색 안함
+
+
             List<JobResponse.DTO> pageList = paging.showPagesV2(currentPage, jobsRepository.findAllWithUserV2());
 
             pageList.forEach(dto -> {
-                List<Skill> skillList = skillRepository.findAllV2(dto.getId());
+                List<SkillRequest.JobSkillDTO> skillList = jobsRepository.findAllSkillById(dto.getId());
                 dto.setSkillList(skillList);
             });
+
+
             request.setAttribute("keyword", keyword);
             request.setAttribute("pages", pageActive);
             request.setAttribute("firstPage", firstPage);
@@ -66,14 +70,14 @@ public class MainController {
             List<JobResponse.DTO> pageList = paging.showPagesV2(currentPage, jobsRepository.findAllWithUserV2(keyword));
 
             pageList.forEach(dto -> {
-                List<Skill> skillList = skillRepository.findAllV2(dto.getId());
+                List<SkillRequest.JobSkillDTO> skillList = jobsRepository.findAllSkillById(dto.getId());
                 dto.setSkillList(skillList);
             });
             request.setAttribute("keyword", keyword);
             request.setAttribute("pages", pageActive);
             request.setAttribute("firstPage", firstPage);
             request.setAttribute("lastPage", lastPage);
-            request.setAttribute("pageList", pageList);
+            request.setAttribute("jobList", pageList);
             request.setAttribute("prevPage", Math.max(1, currentPage - 1));
             request.setAttribute("nextPage", Math.min(totalPages, currentPage + 1));
             return "index";

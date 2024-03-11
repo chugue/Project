@@ -92,7 +92,7 @@ INSERT INTO pass_tb (resume_id, jobs_id, status) values (4, 1, 3);
 -- 스킬 테이블 (개인)
 insert into skill_tb (resume_id, name, role) values(1, 'Java', 1);
 insert into skill_tb (resume_id, name, role) values(1, 'JavaScript', 1);
-insert into skill_tb (resume_id, name, role) values(1, 'HTML', 1);
+insert into skill_tb (resume_id, name, role) values(1, 'HTML/CSS', 1);
 insert into skill_tb (resume_id, name, role) values(1, 'MySQL', 1);
 
 -- insert into skill_tb (resume_id, name, role) values(2, 'HTML', 1);
@@ -119,7 +119,7 @@ insert into skill_tb (resume_id, name, role) values(6, 'Java', 1);
 insert into skill_tb (resume_id, name, role) values(6, 'Spring', 1);
 
 insert into skill_tb (resume_id, name, role) values(7, 'Spring', 1);
-insert into skill_tb (resume_id, name, role) values(7, 'HTML', 1);
+insert into skill_tb (resume_id, name, role) values(7, 'HTML/CSS', 1);
 
 insert into skill_tb (resume_id, name, role) values(8, 'Java', 1);
 insert into skill_tb (resume_id, name, role) values(8, 'Spring', 1);
@@ -161,7 +161,7 @@ INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'MySQL', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'Java', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'Vue.js', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'React', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'HTML', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'HTML/CSS', 2);
 
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(4, 'Spring', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(4, 'Oracle', 2);
@@ -174,16 +174,16 @@ INSERT INTO skill_tb(jobs_id, name, role) VALUES(6, 'Java', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(6, 'Spring', 2);
 
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(7, 'JavaScript', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(7, 'HTML', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(7, 'HTML/CSS', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(7, 'React', 2);
 
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(8, 'Java', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(8, 'HTML', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(8, 'HTML/CSS', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(8, 'JavaScript', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(8, 'MySQL', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(8, 'React', 2);
 
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(9, 'HTML', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(9, 'HTML/CSS', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(9, 'JavaScript', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(9, 'React', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(9, 'Vue.js', 2);
@@ -191,7 +191,7 @@ INSERT INTO skill_tb(jobs_id, name, role) VALUES(9, 'Vue.js', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(10, 'Java', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(10, 'Spring', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(10, 'JavaScript', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(10, 'jquery', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(10, 'Jquery', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(10, 'MySQL', 2);
 
 

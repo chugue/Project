@@ -35,6 +35,7 @@ public class CompRequest {
         private String edu;
         private String career;
         private String area;
+        private String imgFileName;
         private List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
     }
 

@@ -32,7 +32,7 @@ public class JobResponse {
         private String task;
         private Timestamp createdAt;
         private String compName;
-        private List<Skill> skillList;
+        private List<SkillRequest.JobSkillDTO> skillList;
 
         public DTO(Integer id, Integer userId, String area, String title, String edu, String career, String content, Date deadLine, String task, Timestamp createdAt, String compName) {
             this.id = id;
@@ -48,7 +48,6 @@ public class JobResponse {
             this.compName = compName;
         }
     }
-
 
     @Data
     public static class JobListByUserId{
