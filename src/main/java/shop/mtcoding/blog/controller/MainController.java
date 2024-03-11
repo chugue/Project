@@ -55,8 +55,7 @@ public class MainController {
                 List<SkillRequest.JobSkillDTO> skillList = jobsRepository.findAllSkillById(dto.getId());
                 dto.setSkillList(skillList);
             });
-
-
+            
             request.setAttribute("keyword", keyword);
             request.setAttribute("pages", pageActive);
             request.setAttribute("firstPage", firstPage);

@@ -20,7 +20,7 @@ public class Apply {
     private Integer jobsId;
     // 유저 상태값 (1 : 대기중) (2 : 확인)  (3 : 탈락)
     @Column(nullable = false)
-    private Integer isPass;
+    private Integer status;
 
     @Column(nullable = false)
     private Timestamp createdAt;
