@@ -49,7 +49,10 @@
                             </a>
                         </li>
                         <li class="nav-item company-service ">
-                            <a class="nav-link mint-color" href="/comp/jobsInfo" style=" font-size: 16px; font-weight: 400;">기업서비스</a>
+                            <form action="comp/compIndex">
+                                <input type="hidden" name="role" value="{{role}}" >
+                                <button type="submit" class="nav-link mint-color" style="border-radius: 5px; font-size: 17px; font-weight: bolder;">기업서비스</button>
+                            </form>
                         </li>
                     </ul>
                 </div>

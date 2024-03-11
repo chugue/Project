@@ -1,11 +1,8 @@
 package shop.mtcoding.blog.model.apply;
 
-import lombok.Builder;
 import lombok.Data;
-import shop.mtcoding.blog.model.skill.Skill;
 import shop.mtcoding.blog.model.skill.SkillRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ApplyResponse {
@@ -27,4 +24,7 @@ public class ApplyResponse {
             this.jobsId = jobsId;
         }
     }
+
+
+
 }
