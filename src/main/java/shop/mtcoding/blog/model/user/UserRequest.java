@@ -17,16 +17,17 @@ public class UserRequest {
         private String title;
         private String career;
         private Integer jobsId;
-        private Integer status;
+        private Integer isPass;
         private List<SkillRequest.JobSkillDTO> skillList;
 
-        public ResumeOfterDTO(Integer id, String compName, String title, String career, Integer jobsId, Integer status) {
+
+        public ResumeOfterDTO(Integer id, String compName, String title, String career, Integer jobsId, Integer isPass) {
             this.id = id;
             this.compName = compName;
             this.title = title;
             this.career = career;
             this.jobsId = jobsId;
-            this.status = status;
+            this.isPass = isPass;
         }
     }
 

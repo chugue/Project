@@ -118,6 +118,16 @@ public class UserController {
         for (int i = 0; i < offerList.size(); i++) {
             UserRequest.ResumeOfterDTO dto = offerList.get(i);
             dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
+            if (dto.getIsPass() == 1) {
+                String passOrFail = "대기중입니다.";
+                request.setAttribute("wait", passOrFail);
+            } else if (dto.getIsPass() == 2) {
+                String passOrFail = "불합격 입니다.";
+                request.setAttribute("fail", passOrFail);
+            } else if (dto.getIsPass() == 3) {
+                String passOrFail = "합격 입니다!";
+                request.setAttribute("pass", passOrFail);
+            }
         }
         request.setAttribute("offerList", offerList);
 

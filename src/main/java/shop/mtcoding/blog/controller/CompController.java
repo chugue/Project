@@ -313,18 +313,18 @@ public class CompController {
 
     @GetMapping("/comp/{id}/apply")
     public String offer(@PathVariable Integer id,
-                        @RequestParam(required = false, defaultValue = "1") Integer jobsId,
+                        @RequestParam(required = false, defaultValue = "0") Integer jobsId,
                         HttpServletRequest request) {
 
         User sessionComp = (User) session.getAttribute("sessionComp");
         request.setAttribute("userId", sessionComp.getId());
-        List<OfferRequest.CompOfterDTO> offerList = offerRepository.findAllByJobsId(jobsId);
+        List<ApplyResponse.ApplyByJobsDTO> applyList = applyRepository.findAllByJobsId(jobsId);
 
-        for (int i = 0; i < offerList.size(); i++) {
-            OfferRequest.CompOfterDTO dto = offerList.get(i);
+        for (int i = 0; i < applyList.size(); i++) {
+            ApplyResponse.ApplyByJobsDTO dto = applyList.get(i);
             dto.setSkillList(applyRepository.findAllSkillById(dto.getId()));
         }
-        request.setAttribute("offerList", offerList);
+        request.setAttribute("applyList", applyList);
 
 
         List<OfferResponse.OfferListByUserId> jobList = offerRepository.findAllByUserId(id);

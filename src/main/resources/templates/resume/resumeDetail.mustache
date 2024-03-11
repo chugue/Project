@@ -230,36 +230,60 @@
                 <div>
                     <div id="scrap-${rDto.resumeId}-render">
                         <div id="scrap-${rDto.resumeId}-remove">
-                            {{#scrap.isScrap}}
-                                <form action="/resume/scrap/{{scrap.id}}/delete" method="post">
-                                    <input type="hidden" name="resumeId" value="{{resume.id}}">
-                                    <button type="submit" class="btn btn-mint w-100 mb-10">스크랩 취소</button>
-                                </form>
-                            {{/scrap.isScrap}}
-                            {{#offer.isScrap}}
-                                <form action="/resume/offer/{{scrap.id}}/delete" method="post">
-                                    <input type="hidden" name="resumeId" value="{{resume.id}}">
-                                    <button type="submit" class="btn btn-outline-mint w-100">제안 취소</button>
-                                </form>
-                            {{/offer.isScrap}}
-                            {{^scrap.isScrap}}
-                                <form action="/resume/scrap/save" method="post"
-                                      enctype="application/x-www-form-urlencoded">
-                                    <input type="hidden" name="resumeId" value="{{id}}">
-                                    <button type="submit" class="btn btn-mint w-100 mb-10">합격</button>
-                                </form>
-                            {{/scrap.isScrap}}
-                            {{^offer.isScrap}}
+                        <form id="passForm" method="post" enctype="application/x-www-form-urlencoded">
+                            <button type="button" class="btn btn-mint w-100 mb-10" onclick="submitFormWithResumeAndJobsId('pass')">합격</button>
+                        </form>
 
-                                <form action="/resume/offer/save" method="post"
-                                      enctype="application/x-www-form-urlencoded">
+                        <!-- 불합격 폼 -->
+                        <form id="failForm" method="post" enctype="application/x-www-form-urlencoded">
+                            <button type="button" class="btn btn-outline-mint w-100" onclick="submitFormWithResumeAndJobsId('fail')">불합격</button>
+                        </form>
+                        <script>
+                            // 폼을 제출할 때 resumeId와 jobsId 값을 추가하는 함수
+                            function submitFormWithResumeAndJobsId(formType) {
+                                // resumeId 추출
+                                var resumeId = window.location.pathname.split('/').pop();
 
+                                // jobsId 추출
+                                var jobsId = new URLSearchParams(window.location.search).get('jobsId');
 
-                                    <input type="hidden" name="resumeId" value="{{id}}">
-                                    <button type="submit" class="btn btn-outline-mint w-100">불합격</button>
-                                </form>
-                            {{/offer.isScrap}}
+                                // 폼 타입에 따른 액션 URL 설정
+                                var actionURL;
+                                if (formType === 'pass') {
+                                    actionURL = "/apply/pass2/update/" + resumeId;
+                                } else if (formType === 'fail') {
+                                    actionURL = "/apply/fail2/update/" + resumeId;
+                                } else {
+                                    console.error("Invalid form type.");
+                                    return;
+                                }
 
+                                // 폼 선택
+                                var form = document.getElementById(formType + 'Form');
 
+                                // 액션 URL 설정
+                                form.action = actionURL;
+
+                                // jobsId 값을 파라미터로 추가
+                                var jobsIdInput = document.createElement("input");
+                                jobsIdInput.type = "hidden";
+                                jobsIdInput.name = "jobsId";
+                                jobsIdInput.value = jobsId;
+
+                                // jobsId 입력란 폼에 추가
+                                form.appendChild(jobsIdInput);
+
+                                // 폼 제출
+                                form.submit();
+                            }
+                        </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
 {{> layout/footer}}

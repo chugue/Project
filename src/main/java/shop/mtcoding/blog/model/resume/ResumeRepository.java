@@ -113,6 +113,13 @@ public class ResumeRepository {
         return resume;
     }
 
+    public List<ResumeRequest.resumeTitleIdDTO> findByResumeTitle(Integer userId) {
+        Query query = em.createNativeQuery("select id, title from resume_tb where user_id = ?");
+        query.setParameter(1, userId);
+        JpaResultMapper mapper = new JpaResultMapper();
+        List<ResumeRequest.resumeTitleIdDTO> list = mapper.list(query, ResumeRequest.resumeTitleIdDTO.class);
+        return list;
+    }
 
     // DTO 타입으로 스킬리스트빼고 전부 들고오는 매서드
     public List<ResumeRequest.UserViewDTO> findAllUserId(Integer userId) {
@@ -135,6 +142,8 @@ public class ResumeRepository {
 
         return resumeSKillList;
     }
+
+
 
 
     // 탬플릿에서 유저 못찾고 있는데 ..
@@ -204,5 +213,6 @@ public class ResumeRepository {
             skillInsertQuery.executeUpdate();
         }
     }
+
 
 }

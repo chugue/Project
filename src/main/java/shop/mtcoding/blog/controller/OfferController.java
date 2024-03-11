@@ -27,8 +27,6 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class OfferController {
-    private final JobsRepository jobsRepository;
-    private final ApplyRepository applyRepository;
     private final OfferRepository offerRepository;
     private final HttpSession session;
 
