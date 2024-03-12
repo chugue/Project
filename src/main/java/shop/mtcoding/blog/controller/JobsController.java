@@ -194,19 +194,19 @@ public class JobsController {
     }
 
 
-    @GetMapping("/jobs/jobsDetail/{id}")
-    public String jobsDetail(@PathVariable Integer id, HttpServletRequest request) {
+    @GetMapping("/jobs/jobsDetail/{jobsId}")
+    public String jobsDetail(@PathVariable Integer jobsId, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         request.setAttribute("login", sessionUser);
 
         if(sessionUser != null) {
             List<ResumeRequest.resumeTitleIdDTO> resumeList = resumeRepository.findByResumeTitle(sessionUser.getId());
             request.setAttribute("resumeList", resumeList);
-            Jobs jobsId = jobsRepository.findCompId(id);
-            request.setAttribute("jobsId", jobsId.getId());
+            Jobs job = jobsRepository.findCompId(jobsId);
+            request.setAttribute("jobsId", job.getId());
         }
 
-        Object[] job = jobsRepository.findByJobId(id);
+        Object[] job = applyRepository.findJobByUserIdWithApply(jobsId, sessionUser.getId());
 
         JobRequest.JobsJoinDTO Checked = JobRequest.JobsJoinDTO.builder()
                 .compName(String.valueOf(job[0]))
@@ -225,9 +225,9 @@ public class JobsController {
                 .photo(String.valueOf(job[13]))
                 .build();
 
-        List<SkillRequest.ApplyskillDTO> skillList = skillRepository.JobsSkill(id);
+        List<SkillRequest.ApplyskillDTO> skillList = skillRepository.JobsSkill(jobsId);
         // row 세션에 담아
-        request.setAttribute("jobId", id);
+        request.setAttribute("jobId", jobsId);
         request.setAttribute("jobs", Checked);
         request.setAttribute("skillList", skillList);
         User user = (User) session.getAttribute("sessionUser");

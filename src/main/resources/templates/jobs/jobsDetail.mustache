@@ -141,7 +141,6 @@
                     </form>
 
 
-
                     <!--버튼-->
                     <div class="col-3 ml-50">
                         <div id="rButton" style="width: 12em;">
@@ -161,15 +160,6 @@
                         <div id="rButton" style="width: 380px;">
                             <br>
                             <div class="row p-1">
-                                <div>
-                                    <div>
-                                        <div>
-                                            {{^login}}
-                                                <div>로그인 하셔서 작성하신 이력서를 선택하여 공고에 지원하여 보세요!</div>
-                                            {{/login}}
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -180,37 +170,36 @@
     <div class="side-item">
         <div class="side-item-1">
 
-                <form action="/resume/{{jobId}}/apply" method="post">
-                    {{#applySuccess}}
-
-                        <button type="button" class="btn btn-outline-mint w-100"
-                                disabled>지원완료
-                        </button>
-                    {{/applySuccess}}
-                    {{^applySuccess}}
-                            <button type="submit" class="btn btn-outline-mint w-100">
-                                지원하기
-                            </button>
-                    {{/applySuccess}}
-                    <div>
-                        <div class="card mt-3">
-                            <h6 class="card-body text">내 이력서 선택</h6>
-                            <hr class="mb-4">
-                            {{#resumeList}}
-                                <div class="form-check mb-20">
-                                    <input type="radio" class="form-check-input"
-                                           id="radio1" name="resumeId"
-                                           value="{{id}}" checked>
-                                    <label class="form-check-label" for="radio1"
-                                           style="font-weight: 400">{{title}}</label>
-                                </div>
-                            {{/resumeList}}
-                        </div>
+            <form action="/resume/{{jobId}}/apply" method="post">
+                {{#applySuccess}}
+                    <button type="button" class="btn btn-outline-mint w-100"
+                            disabled>지원중
+                    </button>
+                {{/applySuccess}}
+                {{^applySuccess}}
+                    <button type="submit" class="btn btn-outline-mint w-100">
+                        지원하기
+                    </button>
+                {{/applySuccess}}
+                <div>
+                    <div class="card mt-3">
+                        <h6 class="card-body text">내 이력서 선택</h6>
+                        <hr class="mb-4">
+                        {{#resumeList}}
+                            <div class="form-check mb-20">
+                                <input type="radio" class="form-check-input"
+                                       id="radio1" name="resumeId"
+                                       value="{{id}}" checked>
+                                <label class="form-check-label" for="radio1"
+                                       style="font-weight: 400">{{title}}</label>
+                            </div>
+                        {{/resumeList}}
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 </div>
 
 

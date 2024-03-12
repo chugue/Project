@@ -110,10 +110,10 @@ public class ApplyController {
         request.setAttribute("jobs", Checked);
         request.setAttribute("skillList", skillList);
         request.setAttribute("resumeList", resumeList);
-        return "/jobs/jobsDetail";
+        return "redirect:/jobs/jobsDetail/" + user.getId();
     }
 
-    @GetMapping("/resume/{jobId}/applyList")
+    @GetMapping("/resume/{jobId}/applyListv2")
     public String resumeApplyList(@PathVariable Integer jobId, @RequestParam("resumeId") Integer
             resumeId, HttpServletRequest request) {
 
@@ -135,26 +135,26 @@ public class ApplyController {
         return "/user/apply";
     }
 
-//    @GetMapping("/resume/{jobId}/applyVisit")
-//    public String resumeApplyList(@PathVariable Integer jobId, HttpServletRequest request) {
-//
-//        User user = (User) session.getAttribute("sessionUser");
-//
-//        List<ApplyRequest.ApplyResumeJobsDTO2> applyResumeJobsDTOList = applyRepository.findAllByResumeId(user.getId());
-//
-//        List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId((user.getId()));
-//        List<SkillRequest.ApplyskillDTO> skillList = skillRepository.JobsSkill(jobId);
-//        // row 세션에 담아
-//
-//        List<ApplyRequest.ApplyResumeJobsDTO2> jobsList = applyRepository.findAllByResumeId(resume);
-//        request.setAttribute("offerList", jobsList);
-//        request.setAttribute("jobsId", jobId);
-//        request.setAttribute("sessionUserId", user.getId());
-//        request.setAttribute("jobs", applyResumeJobsDTOList);
-//        request.setAttribute("skillList", skillList);
-//        request.setAttribute("resumeList", resumeList);
-//        System.out.println(11111);
-//        return "/user/apply";
+    @GetMapping("/resume/{jobId}/applyList")
+    public String applyList(@PathVariable Integer jobId, HttpServletRequest request) {
 
+        User user = (User) session.getAttribute("sessionUser");
+
+        List<ApplyRequest.ApplyResumeJobsDTO2> applyResumeJobsDTOList = applyRepository.findAllByResumeId(user.getId());
+
+        List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId((user.getId()));
+        List<SkillRequest.ApplyskillDTO> skillList = skillRepository.JobsSkill(jobId);
+        // row 세션에 담아
+
+        List<ApplyRequest.ApplyResumeJobsDTO2> jobsList = applyRepository.findAllByUserId(user.getId());
+        request.setAttribute("offerList", jobsList);
+        request.setAttribute("jobsId", jobId);
+        request.setAttribute("sessionUserId", user.getId());
+        request.setAttribute("jobs", applyResumeJobsDTOList);
+        request.setAttribute("skillList", skillList);
+        request.setAttribute("resumeList", resumeList);
+        System.out.println(11111);
+        return "/user/apply";
+    }
 }
 

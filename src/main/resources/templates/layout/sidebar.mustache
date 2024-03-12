@@ -13,31 +13,31 @@
                         <a href="/user/profileUpdateForm"
                            onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
                             <div class="user-img" style=" min-height: 120px; background-size: cover;">
-                                <img src="/images/aboutme_img.jpg" class="rounded" alt="Cinque Terre"
+                                <img src="/upload/{{imgFileName}}" class="rounded" alt="Cinque Terre"
                                      style="width: 100%;">
                             </div>
                         </a>
                     </div>
                 </div>
                 <div>
-                    <h6 class="card-subtitle text-muted">{{sessionUser.myName}}</h6>
+                    <h6 class="card-subtitle text-muted">{{myName}}</h6>
                     <hr>
                     <ul class="nav flex-column nav-pills">
                         <li class="nav-item">
-                            <a id="userHome"  class="nav-link sub-menu a p-1 mb-1" href="/user/{{sessionUser.id}}/userHome">마이 홈</a>
+                            <a id="userHome"  class="nav-link sub-menu a p-1 mb-1" href="/user/{{id}}/userHome">마이 홈</a>
                         </li>
                         <!--                        <li class="nav-item">-->
                         <!--                            <a id="manageResume" class="nav-link sub-menu a p-1 mb-1" href="/resume/{{id}}/manageResume" >이력서 관리</a>-->
                         <!--                        </li>-->
                         <li class="nav-item">
-                            <a id="offer" href="/resume/{{sessionUser.id}}/applyList" class="nav-link sub-menu a p-1 mb-1">지원 관리</a>
+                            <a id="offer" href="/resume/{{id}}/applyList" class="nav-link sub-menu a p-1 mb-1">지원 관리</a>
                         </li>
                         <!--                        <li class="nav-item">-->
-                        <!--                            <a id="scrap" href="/user/{{sessionUser.id}}/scrap" class="nav-link sub-menu a p-1 mb-1">스크랩</a>-->
+                        <!--                            <a id="scrap" href="/user/{{id}}/scrap" class="nav-link sub-menu a p-1 mb-1">스크랩</a>-->
                         <!--                        </li>-->
                         <hr>
                         <li class="nav-item">
-                            <a href="/user/{{sessionUser.id}}/updateForm" class="nav-link sub-menu a p-1 mb-1">정보수정</a>
+                            <a href="/user/{{id}}/updateForm" class="nav-link sub-menu a p-1 mb-1">정보수정</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link sub-menu a p-1 mb-1" href="/">로그아웃</a>
@@ -63,23 +63,23 @@
                         <a href="/comp/profileUpdateForm"
                            onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
                             <div class="user-img" style="min-height: 120px; background-size: cover;">
-                                <img src="/upload/{{sessionComp.imgFileName}}" class="rounded" alt="Cinque Terre"
+                                <img src="/upload/{{imgFileName}}" class="rounded" alt="Cinque Terre"
                                      style="width: 100%;">
                             </div>
                         </a>
                     </div>
                 </div>
                 <div>
-                    <h6 class="card-subtitle text-muted">{{sessionComp.myName}}</h6>
+                    <h6 class="card-subtitle text-muted">{{myName}}</h6>
                     <hr>
                     <ul class="nav flex-column nav-pills">
                         <li class="nav-item">
-                            <a id="compHome" class="nav-link sub-menu a p-1 mb-1" href="/comp/{{sessionComp.id}}/comphome">공고 관리</a>
+                            <a id="compHome" class="nav-link sub-menu a p-1 mb-1" href="/comp/{{id}}/comphome">공고 관리</a>
                         </li>
 
                         <li class="nav-item">
 
-                            <a id="apply" class="nav-link sub-menu a p-1 mb-1" href="/comp/{{sessionComp.id}}/apply">지원자 관리</a>
+                            <a id="apply" class="nav-link sub-menu a p-1 mb-1" href="/comp/{{id}}/apply">지원자 관리</a>
 
                         </li>
 
@@ -92,7 +92,7 @@
 
                         <hr>
                         <li class="nav-item">
-                            <a href="/comp/{{sessionComp.id}}/updateForm" class="nav-link sub-menu a p-1 mb-1">정보수정</a>
+                            <a href="/comp/{{id}}/updateForm" class="nav-link sub-menu a p-1 mb-1">정보수정</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link  sub-menu a p-1" href="/">로그아웃</a>

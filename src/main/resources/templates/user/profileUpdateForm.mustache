@@ -72,7 +72,12 @@
             <h2 class="text-center">프로필 사진 변경</h2>
             <form id="profileForm" action="/user/profileUpload" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                    <img src="/upload/{{sessionComp.imgFileName}}" alt="Current Photo" class="img-fluid" id="imagePreview">
+                    {{#sessionUser}}
+                        <img src="/upload/{{imgFileName}}" alt="Current Photo" class="img-fluid" id="imagePreview">
+                    {{/sessionUser}}
+                    {{#sessionComp}}
+                        <img src="/upload/{{imgFileName}}" alt="Current Photo" class="img-fluid" id="imagePreview">
+                    {{/sessionComp}}
                 </div>
                 <div class="form-group">
                     <input type="file" class="form-control" id="photo" name="imgFile"><!--onchange="chooseImage(this)"-->

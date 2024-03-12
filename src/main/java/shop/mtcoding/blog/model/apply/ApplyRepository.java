@@ -38,7 +38,7 @@ public class ApplyRepository {
     }
     public List<ApplyRequest.ApplyResumeJobsDTO2> findAllByResumeId(Integer resumeId){
         String q = """
-                    SELECT j.*, r.id, a.status
+                    SELECT j.*, r.id, a.is_pass
                     FROM jobs_tb j
                     JOIN apply_tb a ON j.id = a.jobs_id
                     JOIN resume_tb r ON a.resume_id = r.id
@@ -46,6 +46,21 @@ public class ApplyRepository {
                 """;
         Query query = em.createNativeQuery(q);
         query.setParameter(1, resumeId);
+
+        JpaResultMapper mapper = new JpaResultMapper();
+        List<ApplyRequest.ApplyResumeJobsDTO2> result = mapper.list(query, ApplyRequest.ApplyResumeJobsDTO2.class);
+        return result;
+    }
+    public List<ApplyRequest.ApplyResumeJobsDTO2> findAllByUserId(Integer userId){
+        String q = """
+                    SELECT j.*, r.id, a.is_pass
+                    FROM jobs_tb j
+                    JOIN apply_tb a ON j.id = a.jobs_id
+                    JOIN resume_tb r ON a.resume_id = r.id
+                    WHERE r.user_id = ?;
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, userId);
 
         JpaResultMapper mapper = new JpaResultMapper();
         List<ApplyRequest.ApplyResumeJobsDTO2> result = mapper.list(query, ApplyRequest.ApplyResumeJobsDTO2.class);
@@ -214,5 +229,19 @@ public class ApplyRepository {
         query.setParameter(1, resumeId);
         query.setParameter(2, jobsId);
         return query.getResultList();
+    }
+
+    public Object[] findJobByUserIdWithApply(Integer jobsId, Integer userId) {
+        String q = """
+                SELECT 
+                FROM jobs_tb j 
+                JOIN apply_tb a ON a.jobs_id = j.id
+                JOIN resume_tb r ON a.resume_id = r.id
+                WHERE j.id = ? and r.user_id = ? 
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, jobsId);
+        query.setParameter(2, userId);
+        return (Object[]) query.getSingleResult();
     }
 }

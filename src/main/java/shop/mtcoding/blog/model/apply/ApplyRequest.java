@@ -59,6 +59,6 @@ public class ApplyRequest {
         private String task;
         private String title;
         private Integer resumeId;
-        private Integer status;
+        private String isPass;
     }
 }
