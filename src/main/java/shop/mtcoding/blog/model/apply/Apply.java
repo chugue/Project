@@ -16,6 +16,4 @@ public class Apply {
     private Integer jobsId;
     private Integer status;
     private Timestamp createdAt;
-
-
 }

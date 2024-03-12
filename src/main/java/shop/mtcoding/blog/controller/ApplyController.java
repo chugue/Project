@@ -1,12 +1,10 @@
 package shop.mtcoding.blog.controller;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.blog.model.apply.ApplyRepository;
 import shop.mtcoding.blog.model.apply.ApplyRequest;
 import shop.mtcoding.blog.model.jobs.JobRequest;
@@ -64,12 +62,12 @@ public class ApplyController {
     }
 
 
-    @GetMapping("/resume/{jobId}/apply")
+    @PostMapping("/resume/{jobId}/apply")
     public String apply(@PathVariable Integer jobId, @RequestParam("resumeId") Integer resumeId, HttpServletRequest
             request) {
         boolean applySuccess = false;
-
         applyRepository.saveResumeJobsApply(resumeId, jobId);
+
         Object[] status = applyRepository.findStatusByResumeJobs(resumeId, jobId);
         if (status != null) {
             applySuccess = true;
@@ -102,7 +100,6 @@ public class ApplyController {
         request.setAttribute("jobs", Checked);
         request.setAttribute("skillList", skillList);
         request.setAttribute("resumeList", resumeList);
-        System.out.println(11111);
         return "/jobs/jobsDetail";
     }
 
@@ -116,6 +113,8 @@ public class ApplyController {
         List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId((user.getId()));
         List<SkillRequest.ApplyskillDTO> skillList = skillRepository.JobsSkill(jobId);
         // row 세션에 담아
+
+        request.setAttribute("offerList", applyResumeJobsDTOList);
         request.setAttribute("jobsId", jobId);
         request.setAttribute("sessionUserId", user.getId());
         request.setAttribute("jobs", applyResumeJobsDTOList);
@@ -124,4 +123,25 @@ public class ApplyController {
         System.out.println(11111);
         return "/user/apply";
     }
+//    @GetMapping("/resume/{jobId}/applyVisit")
+//    public String resumeApplyList(@PathVariable Integer jobId, HttpServletRequest request) {
+//
+//        User user = (User) session.getAttribute("sessionUser");
+//
+//        List<ApplyRequest.ApplyResumeJobsDTO2> applyResumeJobsDTOList = applyRepository.findAllByResumeId(user.getId());
+//
+//        List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId((user.getId()));
+//        List<SkillRequest.ApplyskillDTO> skillList = skillRepository.JobsSkill(jobId);
+//        // row 세션에 담아
+//
+//        List<ApplyRequest.ApplyResumeJobsDTO2> jobsList = applyRepository.findAllByResumeId(resume);
+//        request.setAttribute("offerList", jobsList);
+//        request.setAttribute("jobsId", jobId);
+//        request.setAttribute("sessionUserId", user.getId());
+//        request.setAttribute("jobs", applyResumeJobsDTOList);
+//        request.setAttribute("skillList", skillList);
+//        request.setAttribute("resumeList", resumeList);
+//        System.out.println(11111);
+//        return "/user/apply";
 }
+

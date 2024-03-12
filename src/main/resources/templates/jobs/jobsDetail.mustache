@@ -192,16 +192,17 @@
                 <!--                                    </form>-->
                     <!--                                {{/scrap.isScrap}}-->
 
-                <form action="/resume/{{jobId}}/applyList">
+                <form action="/resume/{{jobId}}/apply" method="post">
                     {{#applySuccess}}
+
                         <button type="submit" class="btn btn-outline-mint w-100"
                                 disabled>지원완료
                         </button>
                     {{/applySuccess}}
                     {{^applySuccess}}
-                        <button type="submit" class="btn btn-outline-mint w-100">
-                            지원하기
-                        </button>
+                            <button type="submit" class="btn btn-outline-mint w-100">
+                                지원하기
+                            </button>
                     {{/applySuccess}}
                     <div>
                         <div class="card mt-3">

@@ -7,12 +7,12 @@ import lombok.Data;
 import java.sql.Timestamp;
 import java.util.Date;
 
-
 public class ApplyRequest {
 
     @AllArgsConstructor
     @Data
     public static class ApplyResumeJobsDTO {
+
         private Integer resumeId;
         private Integer userId;
         private Timestamp createdAt;
@@ -25,27 +25,8 @@ public class ApplyRequest {
         private Integer status;
         private Integer jobsId;
 
-    }
-
-    @Data
-    public static class saveDTO {
-        private Integer resumeId;
-        private Integer jobsId;
-        private Integer isPass;
-
-        public saveDTO() {
-            this.isPass = 1;
-        }
 
     }
-
-
-    @AllArgsConstructor
-    @Data
-    public static class JobsIdAndResumeIdDTO {
-        private Integer isPass;
-    }
-
     @AllArgsConstructor
     @Data
     public static class ApplyResumeJobsDTO2 {
@@ -61,6 +42,24 @@ public class ApplyRequest {
         private String title;
         private Integer resumeId;
         private Integer status;
+    }
+    @Data
+    public static class saveDTO {
+        private Integer resumeId;
+        private Integer jobsId;
+
+        private Integer isPass;
+
+        public saveDTO() {
+            this.isPass = 1;
+        }
+
+    }
+
+    @AllArgsConstructor
+    @Data
+    public static class JobsIdAndResumeIdDTO {
+        private Integer isPass;
 
     }
 }

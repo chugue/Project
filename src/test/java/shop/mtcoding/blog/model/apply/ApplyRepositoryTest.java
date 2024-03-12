@@ -27,7 +27,6 @@ public class ApplyRepositoryTest {
         int resumeId = 1;
         int jobsId = 3;
 
-
         String q = """
                 INSERT INTO apply_tb (resume_id, jobs_id, status, created_at)
                 VALUES ( ?, ?, 0, NOW())

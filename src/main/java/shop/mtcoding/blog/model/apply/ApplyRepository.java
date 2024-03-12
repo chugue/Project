@@ -20,6 +20,49 @@ import java.util.List;
 public class ApplyRepository {
     private final EntityManager em;
 
+    @Transactional
+    public void saveResumeJobsApply(Integer resumeId, Integer jobsId) {
+        String q = """
+                INSERT INTO apply_tb (resume_id, jobs_id, status, created_at)
+                VALUES ( ?, ?, 0, NOW())
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1,resumeId);
+        query.setParameter(2,jobsId);
+        query.executeUpdate();
+    }
+
+    public List<ApplyRequest.ApplyResumeJobsDTO2> findAllByJobsIdWithApply(Integer resumeId) {
+        String q = """
+                    SELECT j.*, r.id, a.status
+                    FROM jobs_tb j
+                    JOIN apply_tb a ON j.id = a.jobs_id
+                    JOIN resume_tb r ON a.resume_id = r.id
+                    WHERE resume_id = ?;
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, resumeId);
+
+        JpaResultMapper mapper = new JpaResultMapper();
+        List<ApplyRequest.ApplyResumeJobsDTO2> result = mapper.list(query, ApplyRequest.ApplyResumeJobsDTO2.class);
+        return result;
+    }
+    public List<ApplyRequest.ApplyResumeJobsDTO2> findAllByResumeId(Integer resumeId){
+        String q = """
+                    SELECT j.*, r.id, a.status
+                    FROM jobs_tb j
+                    JOIN apply_tb a ON j.id = a.jobs_id
+                    JOIN resume_tb r ON a.resume_id = r.id
+                    WHERE resume_id = ?;
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, resumeId);
+
+        JpaResultMapper mapper = new JpaResultMapper();
+        List<ApplyRequest.ApplyResumeJobsDTO2> result = mapper.list(query, ApplyRequest.ApplyResumeJobsDTO2.class);
+        return result;
+    }
+
 
     public ApplyRequest.ApplyResumeJobsDTO findByIdResumeJobs(Integer id, Integer jobsId) {
         String q = """
@@ -94,7 +137,7 @@ public class ApplyRepository {
     }
 
 
-    public void findById(){}
+    public void findByUserId(int userId){}
 
     @Transactional
     public void updateById(){}
@@ -102,12 +145,11 @@ public class ApplyRepository {
     @Transactional
     public void save(ApplyRequest.saveDTO requestDTO) {
         String q = """
-                insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(?,?,?, now());
+                insert into apply_tb(resume_id, jobs_id, status, created_at) values(?,?,0, now());
                 """;
         Query query = em.createNativeQuery(q);
         query.setParameter(1, requestDTO.getResumeId());
         query.setParameter(2, requestDTO.getJobsId());
-        query.setParameter(3, requestDTO.getIsPass());
         query.executeUpdate();
     }
 
@@ -138,18 +180,7 @@ public class ApplyRepository {
         query.executeUpdate();
     }
 
-    @Transactional
-    public void saveResumeJobsApply(Integer resumeId, Integer jobsId) {
-        String q = """
-                INSERT INTO apply_tb (resume_id, jobs_id, status, created_at)
-                VALUES ( ?, ?, 0, NOW())
-                """;
-        Query query = em.createNativeQuery(q);
-        query.setParameter(1,resumeId);
-        query.setParameter(2,jobsId);
-        query.executeUpdate();
 
-    }
 
     public Object[] findStatusByResumeJobs(Integer resumeId, Integer jobsId) {
         String q = """
@@ -165,19 +196,8 @@ public class ApplyRepository {
         return (Object[]) query.getSingleResult();
     }
 
-    public List<ApplyRequest.ApplyResumeJobsDTO2> findAllByResumeId(Integer resumeId){
-        String q = """
-                    SELECT j.*, r.id, a.status
-                    FROM jobs_tb j
-                    JOIN apply_tb a ON j.id = a.jobs_id
-                    JOIN resume_tb r ON a.resume_id = r.id
-                    WHERE resume_id = ?;
-                """;
-        Query query = em.createNativeQuery(q);
-        query.setParameter(1, resumeId);
 
-        JpaResultMapper mapper = new JpaResultMapper();
-        List<ApplyRequest.ApplyResumeJobsDTO2> result = mapper.list(query, ApplyRequest.ApplyResumeJobsDTO2.class);
-        return result;
-    }
+
+
+
 }

@@ -217,6 +217,13 @@ public class UserController {
             ResumeRequest.UserViewDTO dto = resumeList.get(i);
             dto.setSkillList(resumeRepository.findAllByResumeId(dto.getId()));
         }
+
+        int count = resumeList.size();
+        applyRepository.findByUserId(sessionUser.getId());
+
+
+
+        request.setAttribute("count", count);
         request.setAttribute("sessionUserId", sessionUser.getId());
         request.setAttribute("resumeList", resumeList);
         System.out.println(request); // 이건 스킬추카하고 나서 리스트
