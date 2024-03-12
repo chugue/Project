@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import shop.mtcoding.blog.model.apply.ApplyRepository;
 import shop.mtcoding.blog.model.apply.ApplyRequest;
+import shop.mtcoding.blog.model.jobs.JobRequest;
 import shop.mtcoding.blog.model.offer.OfferRepository;
 import shop.mtcoding.blog.model.profile.ProfileRepository;
 import shop.mtcoding.blog.model.profile.ProfileRequest;
@@ -84,7 +85,8 @@ public class UserController {
                 return "redirect:/";
             } else if (role == 2) {
                 session.setAttribute("sessionComp", user);
-                return  "redirect:/comp/jobsInfo";
+                return  "redirect:/comp/readResume";
+
             }
         }
         return "/user/loginForm";
@@ -137,7 +139,8 @@ public class UserController {
 //        return "/user/apply";
 //    }
 
-    @GetMapping("/user/{id}/applyList")
+
+    @GetMapping("/user/{id}/apply")
     public String offer(@PathVariable Integer id,
                         @RequestParam(required = false, defaultValue = "1") Integer resumeId,
                         HttpServletRequest request) {
@@ -150,16 +153,6 @@ public class UserController {
         for (int i = 0; i < offerList.size(); i++) {
             UserRequest.ResumeOfterDTO dto = offerList.get(i);
             dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
-            if (dto.getIsPass() == 1) {
-                String passOrFail = "대기중입니다.";
-                request.setAttribute("wait", passOrFail);
-            } else if (dto.getIsPass() == 2) {
-                String passOrFail = "불합격 입니다.";
-                request.setAttribute("fail", passOrFail);
-            } else if (dto.getIsPass() == 3) {
-                String passOrFail = "합격 입니다!";
-                request.setAttribute("pass", passOrFail);
-            }
         }
         request.setAttribute("offerList", offerList);
 
@@ -175,6 +168,47 @@ public class UserController {
 
         return "/user/apply";
     }
+
+
+
+//    @GetMapping("/user/{id}/applyList")
+//    public String offer(@PathVariable Integer id,
+//                        @RequestParam(required = false, defaultValue = "1") Integer resumeId,
+//                        HttpServletRequest request) {
+//
+//        User sessionUser = (User) session.getAttribute("sessionUser");
+//        request.setAttribute("userId", sessionUser.getId());
+//
+//        List<UserRequest.ResumeOfterDTO> offerList = offerRepository.findAllByJobsId2(resumeId);
+//
+//        for (int i = 0; i < offerList.size(); i++) {
+//            UserRequest.ResumeOfterDTO dto = offerList.get(i);
+//            dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
+//            if (dto.getIsPass() == 1) {
+//                String passOrFail = "대기중입니다.";
+//                request.setAttribute("wait", passOrFail);
+//            } else if (dto.getIsPass() == 2) {
+//                String passOrFail = "불합격 입니다.";
+//                request.setAttribute("fail", passOrFail);
+//            } else if (dto.getIsPass() == 3) {
+//                String passOrFail = "합격 입니다!";
+//                request.setAttribute("pass", passOrFail);
+//            }
+//        }
+//        request.setAttribute("offerList", offerList);
+//
+//
+//        List<UserResponse.UserListByUserId> resumeList = offerRepository.findAllByResumeId(id);
+//
+//        for (int i = 0; i < resumeList.size(); i++) {
+//            UserResponse.UserListByUserId dto = resumeList.get(i);
+//            dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
+//        }
+//
+//        request.setAttribute("resumeList", resumeList);
+//
+//        return "/user/apply";
+//    }
 
 
 
@@ -210,7 +244,7 @@ public class UserController {
 
         User sessionUser = (User) session.getAttribute("sessionUser");
         List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId(id);
-        System.out.println(request); // 이거 스킬 안넣었을때 리스트
+        System.out.println(request.toString()); // 이거 스킬 안넣었을때 리스트
 
         for (int i = 0; i < resumeList.size(); i++) {
             //우리가 아까만든 생성자에 resumeList 값들이 들어간다
@@ -226,8 +260,7 @@ public class UserController {
         request.setAttribute("count", count);
         request.setAttribute("sessionUserId", sessionUser.getId());
         request.setAttribute("resumeList", resumeList);
-        System.out.println(request); // 이건 스킬추카하고 나서 리스트
-//        List<SkillResponse.ResumeSkillDTO> resumeSkillList = resumeRepository.findAllByResumeId(id);
+        System.out.println(request.toString()); // 이건 스킬추가하고 나서 리스트
         return "/user/userHome";
     }
 

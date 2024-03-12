@@ -22,11 +22,29 @@ public class ApplyRequest {
         private String introduce;
         private String portLink;
         private String title;
-        private Integer status;
+        private String isPass;
         private Integer jobsId;
 
-
     }
+
+    @Data
+    public static class saveDTO {
+        private Integer resumeId;
+        private Integer jobsId;
+        private String isPass;
+
+        public saveDTO() {
+            this.isPass = "대기중";
+        }
+    }
+
+
+    @AllArgsConstructor
+    @Data
+    public static class JobsIdAndResumeIdDTO {
+        private String isPass;
+    }
+
     @AllArgsConstructor
     @Data
     public static class ApplyResumeJobsDTO2 {
@@ -42,24 +60,5 @@ public class ApplyRequest {
         private String title;
         private Integer resumeId;
         private Integer status;
-    }
-    @Data
-    public static class saveDTO {
-        private Integer resumeId;
-        private Integer jobsId;
-
-        private Integer isPass;
-
-        public saveDTO() {
-            this.isPass = 1;
-        }
-
-    }
-
-    @AllArgsConstructor
-    @Data
-    public static class JobsIdAndResumeIdDTO {
-        private Integer isPass;
-
     }
 }

@@ -234,6 +234,14 @@ public class JobsController {
         List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId((user.getId()));
         request.setAttribute("resumeList", resumeList);
 
+        boolean applySuccess = false;
+
+//        Object status = applyRepository.findStatusAllOrNot(user.getId(), id);
+//        if (status.equals(0)) {
+//            applySuccess = false;
+//            request.setAttribute("applySuccess", applySuccess);
+//        }
+
         return "/jobs/jobsDetail";
     }
 

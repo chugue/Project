@@ -141,6 +141,7 @@
                     </form>
 
 
+
                     <!--버튼-->
                     <div class="col-3 ml-50">
                         <div id="rButton" style="width: 12em;">
@@ -153,6 +154,7 @@
                             </div>
                         </div>
                     </div>
+
 
                     <!--버튼-->
                     <div class="ml-50">
@@ -177,25 +179,11 @@
     </div>
     <div class="side-item">
         <div class="side-item-1">
-            <div id="scrap-${rDto.resumeId}-remove">
-            <!--                                {{#scrap.isScrap}}-->
-                <!--                                    <form action="/comp/scrap/{{scrap.id}}/delete" method="post">-->
-                <!--                                        <input type="hidden" name="resumeId" value="">-->
-                <!--                                        <button type="submit" class="btn btn-mint w-100 mb-10">스크랩 취소</button>-->
-                <!--                                    </form>-->
-                <!--                                    <button id="scrap-${rDto.resumeId}" type="button" class="btn btn-outline-mint w-100">지원하기</button>-->
-                    <!--                                {{/scrap.isScrap}}-->
-                    <!--                                {{^scrap.isScrap}}-->
-                <!--                                    <form action="/comp/scrap/save" method="post" enctype="application/x-www-form-urlencoded">-->
-                <!--                                        <input type="hidden" name="resumeId" value="">-->
-                <!--                                        <button type="submit" class="btn btn-mint w-100 mb-10">스크랩</button>-->
-                <!--                                    </form>-->
-                    <!--                                {{/scrap.isScrap}}-->
 
                 <form action="/resume/{{jobId}}/apply" method="post">
                     {{#applySuccess}}
 
-                        <button type="submit" class="btn btn-outline-mint w-100"
+                        <button type="button" class="btn btn-outline-mint w-100"
                                 disabled>지원완료
                         </button>
                     {{/applySuccess}}

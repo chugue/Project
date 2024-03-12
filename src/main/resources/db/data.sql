@@ -1,38 +1,38 @@
 -- 개인 유저
-insert into user_tb(email, my_name, password, phone, address, birth, role, created_at)
-values ('bluepig4b@naver.com','심유주','1234','010-9011-5822','부산광역시 부산진구 범향빌딩 405호','1999-09-30','1',now());
-insert into user_tb(email, my_name, password, phone, address, birth, role, created_at)
-values ('blueocean@naver.com','이서연','1234','010-1555-5842','부산광역시 사상구 괘법동 234번지 괘법아파트','2000-10-06','1',now());
-insert into user_tb(email, my_name, password, phone, address, birth, role, created_at)
-values ('hamimi1997@naver.com','김하형','1234','010-2684-5842','부산광역시 해운대구 우동 789번지 센텀시티 202호','1997-05-23','1',now());
-insert into user_tb(email, my_name, password, phone, address, birth, role, created_at)
-values ('96hoho@gmail.com','양승호','1234','010-3535-9985','대전광역시 유성구 궁동 789번지 유성타워 3동 405호','1996-11-25','1', now()),
-       ('jjangjung@naver.com','장현정','1234','010-9252-8834','서울특별시 마포구 새창로2길 17 대우아파트 1001호','1990-05-12','1', now()),
-       ('universe07@daum.net','최주호','1234','010-6452-2311','경기도 용인시 수지구 동천로 567번지 수지그린아파트 102동 1203호','1981-05-06','1', now()),
-       ('jaesung00@gmail.com','류재성','1234','010-4456-6343','광주광역시 서구 상무대로 111번길 23 우동 1502호','1992-02-15','1', now()),
-       ('sungkim_87@naver.com','김성훈','1234','010-6255-2435','서울특별시 강남구 역삼동 123번지 아이파크','1987-07-20','1', now()),
-       ('snowhoon@naver.com','설동훈','1234','010-1125-0988','부산광역시 동래구 명장동 678번지 명장타워 703호','1996-12-01','1', now()),
-       ('babie@gmail.com','서지민','1234','010-0253-7898','부산광역시 남구 대연동 345번지 대연센트럴빌라 506호','2003-06-22','1', now()),
-       ('minjung@naver.com','이민정','1234','010-2214-3354','서울특별시 송파구 잠실동 789번지 롯데 캐슬 1107동 303호','2000-03-25','1', now()),
-       ('woo1988@gmail.com','최혁우','1234','010-9985-3114','서울특별시 강남구 역삼동 123번지 아이파크','1988-09-18','1', now()),
-       ('manhou@gmail.com','박만호','1234','010-3567-1252','대전광역시 대덕구 송촌동 555번지 송촌 아파트 601호', '1993-06-22','1', now());
+insert into user_tb(email, my_name, password, phone, address, birth, role, img_file_name,created_at)
+values ('bluepig4b@naver.com','심유주','1234','010-9011-5822','부산광역시 부산진구 범향빌딩 405호','1999-09-30','1','0ff7e86a-d0db-4d7c-ad5b-bd68682ccb11_user01.png',now());
+insert into user_tb(email, my_name, password, phone, address, birth, role, img_file_name,created_at)
+values ('blueocean@naver.com','이서연','1234','010-1555-5842','부산광역시 사상구 괘법동 234번지 괘법아파트','2000-10-06','1','702385bb-c937-4204-a142-7583f908bfaf_user02.png',now());
+insert into user_tb(email, my_name, password, phone, address, birth, role, img_file_name,created_at)
+values ('hamimi1997@naver.com','김하형','1234','010-2684-5842','부산광역시 해운대구 우동 789번지 센텀시티 202호','1997-05-23','1','706ffd65-ca99-4b91-a4e1-c73741f9b23f_user03.png',now());
+insert into user_tb(email, my_name, password, phone, address, birth, role, img_file_name,created_at)
+values ('96hoho@gmail.com','양승호','1234','010-3535-9985','대전광역시 유성구 궁동 789번지 유성타워 3동 405호','1996-11-25','1','89826566-1f51-4ab0-ada7-17cd7e3f6e58_user04.png',now()),
+       ('jjangjung@naver.com','장현정','1234','010-9252-8834','서울특별시 마포구 새창로2길 17 대우아파트 1001호','1990-05-12','1','0b80de68-14b2-4f75-8864-cd23a663c3b3_user05.png',now()),
+       ('universe07@daum.net','최주호','1234','010-6452-2311','경기도 용인시 수지구 동천로 567번지 수지그린아파트 102동 1203호','1981-05-06','1','dc3d8891-d3d8-45ae-beb4-fda2bbebbb52_user06.png',now()),
+       ('jaesung00@gmail.com','류재성','1234','010-4456-6343','광주광역시 서구 상무대로 111번길 23 우동 1502호','1992-02-15','1', '30b8a3ab-c54f-42be-b417-c6ef2660eea6_user07.png',now()),
+       ('sungkim_87@naver.com','김성훈','1234','010-6255-2435','서울특별시 강남구 역삼동 123번지 아이파크','1987-07-20','1', 'a542d45d-5420-4284-b903-f527f20a7c5c_user08.png',now()),
+       ('snowhoon@naver.com','설동훈','1234','010-1125-0988','부산광역시 동래구 명장동 678번지 명장타워 703호','1996-12-01','1','517f9d79-8671-40d0-bb5e-6d272e767a9d_user09.png',now()),
+       ('babie@gmail.com','서지민','1234','010-0253-7898','부산광역시 남구 대연동 345번지 대연센트럴빌라 506호','2003-06-22','1','fb14a8c5-d17d-4324-b742-0d84e5923900_user10.png',now()),
+       ('minjung@naver.com','이민정','1234','010-2214-3354','서울특별시 송파구 잠실동 789번지 롯데 캐슬 1107동 303호','2000-03-25','1','5c2ad87d-6b7d-4670-a766-2a3d586c6f0b_user11.png',now()),
+       ('woo1988@gmail.com','최혁우','1234','010-9985-3114','서울특별시 강남구 역삼동 123번지 아이파크','1988-09-18','1','d0f6a6b4-5769-49c1-ab31-c8abc43305b0_user12.png' ,now()),
+       ('manhou@gmail.com','박만호','1234','010-3567-1252','대전광역시 대덕구 송촌동 555번지 송촌 아파트 601호', '1993-06-22','1','a497e36e-3ded-487d-a867-0fdca503116c_user13.png',now());
 
 
 -- 기업 유저
-insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, photo, created_at)
-values ('blackpig4b@naver.com','이재용','1234','010-1234-5822','경기도 수원시 영통구 삼성로 129 (매탄동, 삼성디지털시티)','1938-03-01','606-58-33101','SAMSUNG','www.samsung.com','2', '/images/sam.png',now());
-insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, photo, created_at)
-values ('g@n','이혁근','1234','010-5678-5822','부산광역시 부산진구 범향빌딩403호','1999-06-02','301-15-12412','네이버','www.naver.com','2', '/images/naver.png', now());
-insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, photo, created_at)
-values ('6@c','이준수','1234','010-9824-5421','서울특별시 송파구 위례성대로 2 (방이동) 장은빌딩','2011-03-10','606-17-12120','(주)우아한형제들','www.bamin.com','2', '/images/bemin.png', now());
-insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, photo, created_at)
-values ('yun@n','최상연','1234','010-8868-5232','서울특별시 송파구 송파대로 570','2010-07-01','709-88-35610','쿠팡','www.coupang.com','2', '/images/coupang.png', now()),
-       ('y1@n','김정혁','1234','010-3252-6789','경기도 성남시 분당구 대왕판교로644번길 12','1997-03-11','176-67-88160','(주)엔씨소프트','www.ncsoft.com','2', '/images/ncsoft.png', now()),
-       ('y2@n','이민정','1234','010-2467-0053','서울 구로구 디지털로26길 38 G타워','2000-05-12','303-91-33085','넷마블(주)','www.netmarble.com','2', '/images/netmarble.png', now()),
-       ('y3@n','강혜정','1234','010-8865-2476','경기도 성남시 분당구 판교역로 166 카카오 판교아지트 A동 3층','1995-02-16','607-45-16054','(주)카카오','www.kakao.com','2', '/images/kakao.png', now()),
-       ('y4@n','지현수','1234','010-5457-0975','경기도 성남시 분당구 판교로256번길 7 (삼평동)','1994-02-15','107-56-88921','(주)넥슨컴퍼니','www.nexon.com','2', '/images/nexon.png', now()),
-       ('y5@n','정수지','1234','010-3758-1353','서울특별시 중구 통일로2길 16, 2층 (순화동, AIA타워)','2006-07-07','301-93-11325','한국닌텐도(주)','www.nintendo.im','2', '/images/nintendo.png', now()),
-       ('y6@n','허만정','1234','010-6674-1422','서울특별시 영등포구 여의대로 128 (여의도동)','1947-01-05','606-32-44986','LG','www.lg.me','2', '/images/lg.png', now());
+insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, photo,img_file_name,created_at)
+values ('blackpig4b@naver.com','이재용','1234','010-1234-5822','경기도 수원시 영통구 삼성로 129 (매탄동, 삼성디지털시티)','1938-03-01','606-58-33101','SAMSUNG','www.samsung.com','2','/images/sam.png','0cba0e4d-debb-4413-b079-d9195992e447_lg.png',now());
+insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, photo,img_file_name, created_at)
+values ('g@n','이혁근','1234','010-5678-5822','부산광역시 부산진구 범향빌딩403호','1999-06-02','301-15-12412','네이버','www.naver.com','2', '/images/naver.png','7d7ce466-b2b0-424d-bc2b-c233d98030f6_kakao.png', now());
+insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, photo,img_file_name,created_at)
+values ('6@c','이준수','1234','010-9824-5421','서울특별시 송파구 위례성대로 2 (방이동) 장은빌딩','2011-03-10','606-17-12120','(주)우아한형제들','www.bamin.com','2', '/images/bemin.png','8a6fc873-37df-48d4-8756-c4bf86193552_kia.png', now());
+insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, photo,img_file_name,created_at)
+values ('yun@n','최상연','1234','010-8868-5232','서울특별시 송파구 송파대로 570','2010-07-01','709-88-35610','쿠팡','www.coupang.com','2', '/images/coupang.png','38bf61fe-a713-47e1-83f6-6cd79f1f5ec3_sk.png' ,now()),
+       ('y1@n','김정혁','1234','010-3252-6789','경기도 성남시 분당구 대왕판교로644번길 12','1997-03-11','176-67-88160','(주)엔씨소프트','www.ncsoft.com','2', '/images/ncsoft.png', '130c456d-5f28-4060-bf99-455d60f7ff63_youtube.png',now()),
+       ('y2@n','이민정','1234','010-2467-0053','서울 구로구 디지털로26길 38 G타워','2000-05-12','303-91-33085','넷마블(주)','www.netmarble.com','2', '/images/netmarble.png','223af633-9908-4fff-bf1a-fbcaaf83a236_nintendo.png',now()),
+       ('y3@n','강혜정','1234','010-8865-2476','경기도 성남시 분당구 판교역로 166 카카오 판교아지트 A동 3층','1995-02-16','607-45-16054','(주)카카오','www.kakao.com','2', '/images/kakao.png', '2002e31a-eaa0-4d5c-a8cc-c7dc47258daa_nexon.png',now()),
+       ('y4@n','지현수','1234','010-5457-0975','경기도 성남시 분당구 판교로256번길 7 (삼평동)','1994-02-15','107-56-88921','(주)넥슨컴퍼니','www.nexon.com','2', '/images/nexon.png','b59207f1-ee5f-4a40-9af7-54945bb1d687_doosan.png', now()),
+       ('y5@n','정수지','1234','010-3758-1353','서울특별시 중구 통일로2길 16, 2층 (순화동, AIA타워)','2006-07-07','301-93-11325','한국닌텐도(주)','www.nintendo.im','2', '/images/nintendo.png','c227570a-2df9-4969-bbb5-5c49b3700e46_netmarble.png', now()),
+       ('y6@n','허만정','1234','010-6674-1422','서울특별시 영등포구 여의대로 128 (여의도동)','1947-01-05','606-32-44986','LG','www.lg.me','2', '/images/lg.png','d9010d71-a222-478a-b4c1-ef7193ed72e8_ncsoft.png', now());
 
 
 -- 이력서 테이블
@@ -87,7 +87,7 @@ VALUES (23, '서울', '[채용공고] 백엔드 개발자 정규직 채용', '�
 -- 스킬 테이블 (개인)
 insert into skill_tb (resume_id, name, role) values(1, 'Java', 1);
 insert into skill_tb (resume_id, name, role) values(1, 'JavaScript', 1);
-insert into skill_tb (resume_id, name, role) values(1, 'HTML', 1);
+insert into skill_tb (resume_id, name, role) values(1, 'HTML/CSS', 1);
 insert into skill_tb (resume_id, name, role) values(1, 'MySQL', 1);
 
 -- insert into skill_tb (resume_id, name, role) values(2, 'HTML', 1);
@@ -114,7 +114,7 @@ insert into skill_tb (resume_id, name, role) values(6, 'Java', 1);
 insert into skill_tb (resume_id, name, role) values(6, 'Spring', 1);
 
 insert into skill_tb (resume_id, name, role) values(7, 'Spring', 1);
-insert into skill_tb (resume_id, name, role) values(7, 'HTML', 1);
+insert into skill_tb (resume_id, name, role) values(7, 'HTML/CSS', 1);
 
 insert into skill_tb (resume_id, name, role) values(8, 'Java', 1);
 insert into skill_tb (resume_id, name, role) values(8, 'Spring', 1);
@@ -156,7 +156,7 @@ INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'MySQL', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'Java', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'Vue.js', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'React', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'HTML', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'HTML/CSS', 2);
 
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(4, 'Spring', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(4, 'Oracle', 2);
@@ -169,16 +169,16 @@ INSERT INTO skill_tb(jobs_id, name, role) VALUES(6, 'Java', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(6, 'Spring', 2);
 
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(7, 'JavaScript', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(7, 'HTML', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(7, 'HTML/CSS', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(7, 'React', 2);
 
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(8, 'Java', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(8, 'HTML', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(8, 'HTML/CSS', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(8, 'JavaScript', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(8, 'MySQL', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(8, 'React', 2);
 
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(9, 'HTML', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(9, 'HTML/CSS', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(9, 'JavaScript', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(9, 'React', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(9, 'Vue.js', 2);
@@ -186,7 +186,7 @@ INSERT INTO skill_tb(jobs_id, name, role) VALUES(9, 'Vue.js', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(10, 'Java', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(10, 'Spring', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(10, 'JavaScript', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(10, 'jquery', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(10, 'Jquery', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(10, 'MySQL', 2);
 
 
@@ -203,24 +203,6 @@ insert into scrap_tb(user_id, resume_id, created_at) values(6, 3, now());
 
 insert into scrap_tb(user_id, resume_id, created_at) values(1, 1, now());
 insert into scrap_tb(user_id, resume_id, created_at) values(2, 2, now());
-
-
--- 기업에 지원한 유저
--- values (첫번째 이력서가 , 첫번째 공고에 지원, 대기중)
-
-
--- insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(1,1,2,now());
--- insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(2,1,1,now());
--- insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(1,2,3,now());
---
--- insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(3,1,1,now());
--- insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(5,1,1,now());
--- insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(6,1,1,now());
---
--- insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(1,2,1,now());
--- insert into apply_tb(resume_id, jobs_id, is_pass, created_at) values(2,3,1,now());
-
-
 
 
 -- 기업이 제안한 이력서
