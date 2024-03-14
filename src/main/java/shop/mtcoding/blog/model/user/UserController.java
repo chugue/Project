@@ -1,4 +1,4 @@
-package shop.mtcoding.blog.controller;
+package shop.mtcoding.blog.model.user;
 
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,21 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.multipart.MultipartFile;
 import shop.mtcoding.blog.model.apply.ApplyRepository;
-import shop.mtcoding.blog.model.apply.ApplyRequest;
-import shop.mtcoding.blog.model.jobs.JobRequest;
 import shop.mtcoding.blog.model.offer.OfferRepository;
-import shop.mtcoding.blog.model.profile.ProfileRepository;
 import shop.mtcoding.blog.model.profile.ProfileRequest;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.resume.ResumeRequest;
 import shop.mtcoding.blog.model.skill.SkillRepository;
-import shop.mtcoding.blog.model.user.User;
-import shop.mtcoding.blog.model.user.UserRepository;
 
-import shop.mtcoding.blog.model.user.UserRequest;
-import shop.mtcoding.blog.model.user.UserResponse;
-
-import shop.mtcoding.blog.util.ApiUtil;
+import shop.mtcoding.blog._util.ApiUtil;
 
 
 import java.io.IOException;

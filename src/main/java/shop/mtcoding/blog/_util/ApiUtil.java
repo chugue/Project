@@ -1,4 +1,4 @@
-package shop.mtcoding.blog.util;
+package shop.mtcoding.blog._util;
 
 import lombok.Data;
 

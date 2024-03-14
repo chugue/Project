@@ -1,4 +1,4 @@
-package shop.mtcoding.blog.controller;
+package shop.mtcoding.blog.model.apply;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

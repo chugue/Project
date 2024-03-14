@@ -1,17 +1,14 @@
-package shop.mtcoding.blog.controller;
+package shop.mtcoding.blog.model.comp;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import shop.mtcoding.blog.dto.scrap.ScrapResponse;
+import shop.mtcoding.blog.model.scrap.ScrapResponse;
 import shop.mtcoding.blog.model.apply.ApplyRepository;
 import shop.mtcoding.blog.model.apply.ApplyResponse;
-import shop.mtcoding.blog.model.comp.CompRepository;
-import shop.mtcoding.blog.model.comp.CompRequest;
 import shop.mtcoding.blog.model.offer.OfferRepository;
-import shop.mtcoding.blog.model.offer.OfferRequest;
 import shop.mtcoding.blog.model.jobs.JobResponse;
 
 import shop.mtcoding.blog.model.offer.OfferResponse;

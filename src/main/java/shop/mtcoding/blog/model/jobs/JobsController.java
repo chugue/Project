@@ -1,4 +1,4 @@
-package shop.mtcoding.blog.controller;
+package shop.mtcoding.blog.model.jobs;
 
 
 import jakarta.servlet.http.HttpServletRequest;

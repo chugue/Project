@@ -1,4 +1,4 @@
-package shop.mtcoding.blog.controller;
+package shop.mtcoding.blog.model.resume;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -7,15 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import shop.mtcoding.blog.dto.scrap.ScrapResponse;
+import shop.mtcoding.blog.model.scrap.ScrapResponse;
 
 import shop.mtcoding.blog.model.jobs.JobResponse;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
 
 import shop.mtcoding.blog.model.offer.OfferRepository;
 import shop.mtcoding.blog.model.offer.OfferResponse;
-import shop.mtcoding.blog.model.resume.ResumeRepository;
-import shop.mtcoding.blog.model.resume.ResumeRequest;
 import shop.mtcoding.blog.model.scrap.ScrapRepository;
 import shop.mtcoding.blog.model.skill.SkillRepository;
 import shop.mtcoding.blog.model.skill.SkillRequest;
