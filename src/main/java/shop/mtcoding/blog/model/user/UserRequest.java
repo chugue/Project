@@ -17,16 +17,16 @@ public class UserRequest {
         private String title;
         private String career;
         private Integer jobsId;
-        private Integer status;
+        private String isPass;
         private List<SkillRequest.JobSkillDTO> skillList;
 
-        public ResumeOfterDTO(Integer id, String compName, String title, String career, Integer jobsId, Integer status) {
+        public ResumeOfterDTO(Integer id, String compName, String title, String career, Integer jobsId, String isPass) {
             this.id = id;
             this.compName = compName;
             this.title = title;
             this.career = career;
             this.jobsId = jobsId;
-            this.status = status;
+            this.isPass = isPass;
         }
     }
 
@@ -47,7 +47,7 @@ public class UserRequest {
     }
 
     @Data
-    public static class UpdateDTO{
+    public static class UpdateDTO {
         private String password;
         private String myName;
         private String phone;
@@ -56,13 +56,13 @@ public class UserRequest {
     }
 
     @Data
-    public static class LoginDTO{
+    public static class LoginDTO {
         private String email;
         private String password;
     }
 
     @Data
-    public static class JoinDTO{
+    public static class JoinDTO {
         private String email;
         private String myName;
         private String password;
@@ -73,7 +73,7 @@ public class UserRequest {
 
     @Data
     @Builder
-    public static class UserAllDTO{
+    public static class UserAllDTO {
 
         private Integer id;
         private String email;
@@ -89,8 +89,9 @@ public class UserRequest {
         private Integer role;
         private Timestamp createdAt;
     }
+
     @Data
-    public static class CompUpdateDTO{
+    public static class CompUpdateDTO {
         private String myName;
         private String password;
         private String phone;

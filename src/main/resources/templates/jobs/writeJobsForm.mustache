@@ -31,7 +31,7 @@
                              style=" align-items: flex-end; margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
                             <div class="my-border resume-info-img col-3 mt-3"
                                  style="text-align: center; width: 200px; height: 200px; margin-top: 0 !important; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
-                                <img class="" src="/images/logo.png" alt="" srcset="" style="width: 100%;"
+                                <img class="" src="/upload/{{sessionComp.imgFileName}}" alt="" srcset="" style="width: 100%;"
                                      id="photo">
                             </div>
 
@@ -77,13 +77,12 @@
                                 <div class="form-group">
                                     <select class="form-select" name="edu" id="edu">
                                         <option disabled>최종 학력 사항을 선택해주세요</option>
-                                        <option selected value="초졸">초졸</option>
-                                        <option value="중졸">중졸</option>
-                                        <option value="고졸">고졸</option>
+                                        <option selected value="초졸">고졸</option>
                                         <option value="대졸">대졸</option>
-                                        <option value="대학원 이상">대학원 이상</option>
+                                        <option value="학력무관">학력무관</option>
                                     </select>
                                 </div>
+
                             </div>
                             <div class="card-header resume-info-hdtitle">경력 사항<span style="color: red">(필수)</span></div>
                             <div class="card-body">
@@ -91,15 +90,9 @@
                                     <select class="form-select" name="career" id="career">
                                         <option disabled>경력 사항을 선택해주세요</option>
                                         <option selected value="신입">신입</option>
-                                        <option value="1년차 미만">1년차 미만</option>
-                                        <option value="1년">1년</option>
-                                        <option value="2년">2년</option>
-                                        <option value="3년">3년</option>
-                                        <option value="4년">4년</option>
-                                        <option value="5년">5년</option>
-                                        <option value="6년">6년</option>
-                                        <option value="7년">7년</option>
-                                        <option value="8년차 이상">8년차 이상</option>
+                                        <option value="미들">미들(4~8년)</option>
+                                        <option value="senior">시니어(10년 이상)</option>
+                                        <option value="경력무관">경력무관</option>
                                     </select>
                                 </div>
                             </div>

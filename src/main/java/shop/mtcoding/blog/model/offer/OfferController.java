@@ -11,8 +11,6 @@ import shop.mtcoding.blog.model.jobs.JobsRepository;
 @Controller
 @RequiredArgsConstructor
 public class OfferController {
-    private final JobsRepository jobsRepository;
-    private final ApplyRepository applyRepository;
     private final OfferRepository offerRepository;
     private final HttpSession session;
 

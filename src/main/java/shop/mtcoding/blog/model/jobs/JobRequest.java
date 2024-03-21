@@ -19,6 +19,11 @@ import java.util.List;
 public class JobRequest {
 
     @Data
+    public static class jobsId {
+        private Integer jobsId;
+    }
+
+    @Data
     public static class JobsViewDTO {
         private Integer id;
         private Integer userId;

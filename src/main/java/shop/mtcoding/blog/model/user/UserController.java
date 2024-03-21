@@ -15,11 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.multipart.MultipartFile;
 import shop.mtcoding.blog.model.apply.ApplyRepository;
+import shop.mtcoding.blog.model.apply.ApplyRequest;
+import shop.mtcoding.blog.model.jobs.JobRequest;
 import shop.mtcoding.blog.model.offer.OfferRepository;
 import shop.mtcoding.blog.model.profile.ProfileRepository;
 import shop.mtcoding.blog.model.profile.ProfileRequest;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.resume.ResumeRequest;
+import shop.mtcoding.blog.model.skill.SkillRepository;
 import shop.mtcoding.blog.model.user.User;
 import shop.mtcoding.blog.model.user.UserRepository;
 
@@ -40,11 +43,11 @@ import java.util.List;
 @Controller
 public class UserController {
     private final UserRepository userRepository;
-    private final ProfileRepository profileRepository;
     private final OfferRepository offerRepository;
     private final ApplyRepository applyRepository;
     private final HttpSession session;
     private final ResumeRepository resumeRepository;
+    private final SkillRepository skillRepository;
 
     //아이디 중복체크 용. 이메일로 회원가입해서 email을 해줌
     @GetMapping("/api/user/username-same-check")
@@ -82,7 +85,8 @@ public class UserController {
                 return "redirect:/";
             } else if (role == 2) {
                 session.setAttribute("sessionComp", user);
-                return  "redirect:/comp/jobsInfo";
+                return  "redirect:/comp/readResume";
+
             }
         }
         return "/user/loginForm";
@@ -105,7 +109,38 @@ public class UserController {
         return "/user/loginForm";
     }
 
-    @GetMapping("/user/{id}/offer")
+
+//    @GetMapping("/user/{id}/applyList")
+//    public String apply(@PathVariable Integer id,
+//                        @RequestParam("resumeId") Integer resumeId,
+//                        HttpServletRequest request) {
+//
+//        User sessionUser = (User) session.getAttribute("sessionUser");
+//        request.setAttribute("userId", sessionUser.getId());
+//
+//        List<ApplyRequest.ApplyResumeJobsDTO2> applyList = applyRepository.findAllByResumeId(resumeId);
+//
+//        for (int i = 0; i < applyList.size(); i++) {
+//            ApplyRequest.ApplyResumeJobsDTO2 dto = applyList.get(i);
+//            dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
+//        }
+//        request.setAttribute("applyList", applyList);
+//
+//
+//        List<UserResponse.UserListByUserId> resumeList = offerRepository.findAllByResumeId(id);
+//
+//        for (int i = 0; i < resumeList.size(); i++) {
+//            UserResponse.UserListByUserId dto = resumeList.get(i);
+//            dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
+//        }
+//
+//        request.setAttribute("resumeList", resumeList);
+//
+//        return "/user/apply";
+//    }
+
+
+    @GetMapping("/user/{id}/apply")
     public String offer(@PathVariable Integer id,
                         @RequestParam(required = false, defaultValue = "1") Integer resumeId,
                         HttpServletRequest request) {
@@ -131,8 +166,51 @@ public class UserController {
 
         request.setAttribute("resumeList", resumeList);
 
-        return "/user/offer";
+        return "/user/apply";
     }
+
+
+
+//    @GetMapping("/user/{id}/applyList")
+//    public String offer(@PathVariable Integer id,
+//                        @RequestParam(required = false, defaultValue = "1") Integer resumeId,
+//                        HttpServletRequest request) {
+//
+//        User sessionUser = (User) session.getAttribute("sessionUser");
+//        request.setAttribute("userId", sessionUser.getId());
+//
+//        List<UserRequest.ResumeOfterDTO> offerList = offerRepository.findAllByJobsId2(resumeId);
+//
+//        for (int i = 0; i < offerList.size(); i++) {
+//            UserRequest.ResumeOfterDTO dto = offerList.get(i);
+//            dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
+//            if (dto.getIsPass() == 1) {
+//                String passOrFail = "대기중입니다.";
+//                request.setAttribute("wait", passOrFail);
+//            } else if (dto.getIsPass() == 2) {
+//                String passOrFail = "불합격 입니다.";
+//                request.setAttribute("fail", passOrFail);
+//            } else if (dto.getIsPass() == 3) {
+//                String passOrFail = "합격 입니다!";
+//                request.setAttribute("pass", passOrFail);
+//            }
+//        }
+//        request.setAttribute("offerList", offerList);
+//
+//
+//        List<UserResponse.UserListByUserId> resumeList = offerRepository.findAllByResumeId(id);
+//
+//        for (int i = 0; i < resumeList.size(); i++) {
+//            UserResponse.UserListByUserId dto = resumeList.get(i);
+//            dto.setSkillList(offerRepository.findAllSkillById(dto.getId()));
+//        }
+//
+//        request.setAttribute("resumeList", resumeList);
+//
+//        return "/user/apply";
+//    }
+
+
 
     @GetMapping("/user/{id}/scrap")
     public String scrap(@PathVariable Integer id) {
@@ -141,11 +219,12 @@ public class UserController {
 
 
     @PostMapping("/user/{id}/update")
-    public String updateForm(@PathVariable Integer id, UserRequest.UpdateDTO requestDTO) {
+    public String updateForm(@PathVariable Integer id, UserRequest.UpdateDTO requestDTO, HttpServletRequest request) {
         userRepository.updateById(id, requestDTO);
         User user = userRepository.findById(id);
         String a = user.getMyName();
-        System.out.println(a);
+
+
         return "redirect:/user/"+ id +"/userHome";
     }
 
@@ -165,7 +244,7 @@ public class UserController {
 
         User sessionUser = (User) session.getAttribute("sessionUser");
         List<ResumeRequest.UserViewDTO> resumeList = resumeRepository.findAllUserId(id);
-        System.out.println(request); // 이거 스킬 안넣었을때 리스트
+        System.out.println(request.toString()); // 이거 스킬 안넣었을때 리스트
 
         for (int i = 0; i < resumeList.size(); i++) {
             //우리가 아까만든 생성자에 resumeList 값들이 들어간다
@@ -173,9 +252,15 @@ public class UserController {
             dto.setSkillList(resumeRepository.findAllByResumeId(dto.getId()));
         }
 
+        int count = resumeList.size();
+        applyRepository.findByUserId(sessionUser.getId());
+
+
+
+        request.setAttribute("count", count);
+        request.setAttribute("sessionUserId", sessionUser.getId());
         request.setAttribute("resumeList", resumeList);
-        System.out.println(request); // 이건 스킬추카하고 나서 리스트
-//        List<SkillResponse.ResumeSkillDTO> resumeSkillList = resumeRepository.findAllByResumeId(id);
+        System.out.println(request.toString()); // 이건 스킬추가하고 나서 리스트
         return "/user/userHome";
     }
 

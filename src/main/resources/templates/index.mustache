@@ -181,15 +181,14 @@
                     <a href="/jobs/jobsDetail/{{id}}">
                         <div class="card-body">
                             <div>
-                                <img class="card-img-top" src="/images/logo.png" alt="" srcset=""
-                                     style="height: 5em; width: 180px; padding:5px; text-align: center;">
+                                <img class="card-img-top" src="/upload/{{imgFileName}}" alt="" srcset="" style="height: 5em; width: 180px; padding:5px; text-align: center;">
                                 <div class="mb-2 ft-16">{{compName}}</div>
                                 <div class="point-ft ft-22 fw-600 mb-10 jobs-title">{{title}}</div>
                                 <!--기술스킬-->
                                 <div class="d-flex">
                                     {{#skillList}}
                                         <div class="skill-wrap mr-5">
-                                            <span class="badge bg-primary">{{name}}</span>
+                                            <span class="{{color}}">{{name}}</span>
                                         </div>
                                     {{/skillList}}
                                 </div>
@@ -249,18 +248,19 @@
         <!--페이징-->
         <div class="pages">
             <ul class="pagination justify-content-center pb-50">
-                <li class="page-item {{#firstPage}}disabled{{/firstPage}}">
-                    <a class="page-link" href="?page={{prevPage}}&keyword={{keyword}}">Previous</a></li>
+                <li class="page-item {{#firstPage}}disabled prev{{/firstPage}}">
+                    <a class="page-link" href="?page={{prevPage}}&keyword={{keyword}}"><i class="fa-solid fa-angle-left"></i></a></li>
                 {{#pages}}
                     <li class="page-item {{#isActive}}active{{/isActive}}"><a class="page-link"
                                                                               href="?page={{number}}&keyword={{keyword}}">{{number}}</a></li>
                 {{/pages}}
-                <li class="page-item {{#lastPage}}disabled{{/lastPage}}">
-                    <a class="page-link" href="?page={{nextPage}}&keyword={{keyword}}">Next</a>
+                <li class="page-item {{#lastPage}}disabled next{{/lastPage}}">
+                    <a class="page-link" href="?page={{nextPage}}&keyword={{keyword}}"><i class="fa-solid fa-angle-right"></i></a>
                 </li>
             </ul>
         </div>
     </div>
+
 </div>
 
 <!--고객센터-->

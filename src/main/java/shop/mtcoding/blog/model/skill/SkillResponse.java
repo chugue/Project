@@ -39,7 +39,7 @@ public class SkillResponse {
                     this.vueJs = true;
                 }else if(skillName.equals("Oracle")){
                     this.oracle = true;
-                }else if(skillName.equals("MysQL")){
+                }else if(skillName.equals("MySQL")){
                     this.mySql = true;
                 }else if(skillName.equals("React")){
                     this.react = true;

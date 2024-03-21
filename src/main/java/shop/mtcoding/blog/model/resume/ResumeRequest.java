@@ -1,5 +1,6 @@
 package shop.mtcoding.blog.model.resume;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -96,5 +97,12 @@ public class ResumeRequest {
         private String title;
         private String portLink;
         private String area;
+    }
+
+    @AllArgsConstructor
+    @Data
+    public static class resumeTitleIdDTO {
+        private Integer id;
+        private String title;
     }
 }

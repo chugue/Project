@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import shop.mtcoding.blog.model.apply.ApplyRequest;
 import shop.mtcoding.blog.model.skill.SkillRequest;
 import shop.mtcoding.blog.model.user.UserRequest;
 import shop.mtcoding.blog.model.user.UserResponse;
@@ -76,14 +77,14 @@ public class OfferRepository {
 
     public List<UserRequest.ResumeOfterDTO> findAllByJobsId2(Integer resumeId){
         String q = """
-                    select
-                    ot.id, ut.comp_name, jt.title, jt.career, ot.jobs_id, ot.status
-                    from offer_tb ot
-                    join jobs_tb jt
-                    on ot.jobs_id = jt.id
-                    join user_tb ut
-                    on ut.id = jt.user_id
-                    where ot.resume_id = ?;
+                    select 
+                    at.id, ut.comp_name, jt.title, jt.career, at.jobs_id, at.is_pass 
+                    from apply_tb at 
+                    join jobs_tb jt 
+                    on at.jobs_id = jt.id 
+                    join user_tb ut 
+                    on ut.id = jt.user_id 
+                    where at.resume_id = ?;
                 """;
         Query query = em.createNativeQuery(q);
         query.setParameter(1, resumeId);
@@ -92,6 +93,10 @@ public class OfferRepository {
         List<UserRequest.ResumeOfterDTO> result = mapper.list(query, UserRequest.ResumeOfterDTO.class);
         return result;
     }
+
+
+
+
 
     public List<SkillRequest.JobSkillDTO> findAllSkillById(Integer id){
         String q = """
