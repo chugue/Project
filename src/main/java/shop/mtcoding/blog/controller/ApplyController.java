@@ -28,7 +28,12 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 public class ApplyController {
-
+    private final ApplyRepository applyRepository;
+    private final ResumeRepository resumeRepository;
+    private final JobsRepository jobsRepository;
+    private final SkillRepository skillRepository;
+    private final OfferRepository offerRepository;
+    private final HttpSession session;
 
 
     @PostMapping("/jobs/apply/save")

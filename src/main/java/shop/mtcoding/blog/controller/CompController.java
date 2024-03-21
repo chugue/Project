@@ -49,6 +49,7 @@ public class CompController {
     private final ResumeRepository resumeRepository;
     private final OfferRepository offerRepository;
     private final Paging paging;
+    //////sdgffgdfgdfgdfg
 
 
     @GetMapping("/comp/{id}/comp-resume-detail")
