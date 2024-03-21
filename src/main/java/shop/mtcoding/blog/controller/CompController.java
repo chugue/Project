@@ -52,6 +52,7 @@ public class CompController {
     //////sdgffgdfgdfgdfg
 
 
+
     @GetMapping("/comp/{id}/comp-resume-detail")
     public String compResumeDetail(@PathVariable Integer id,@RequestParam("jobsId") Integer jobsId, HttpServletRequest request) {
         User sessionComp = (User) session.getAttribute("sessionComp");
