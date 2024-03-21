@@ -49,7 +49,7 @@ public class CompController {
     private final ResumeRepository resumeRepository;
     private final OfferRepository offerRepository;
     private final Paging paging;
-
+//////호포ㅓ호ㅓ호ㅓ호ㅓㅗㅓㅏㅗㅓㅏ
 
     @GetMapping("/comp/{id}/compResumeDetail")
     public String compResumeDetail(@PathVariable Integer id,@RequestParam("jobsId") Integer jobsId, HttpServletRequest request) {
