@@ -1,12 +1,10 @@
-package shop.mtcoding.blog.controller;
+package shop.mtcoding.blog.model.scrap;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import shop.mtcoding.blog.dto.scrap.ScrapRequest;
-import shop.mtcoding.blog.model.scrap.ScrapRepository;
 import shop.mtcoding.blog.model.user.User;
 
 @Controller
