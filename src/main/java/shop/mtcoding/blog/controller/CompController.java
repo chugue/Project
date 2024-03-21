@@ -51,7 +51,7 @@ public class CompController {
     private final Paging paging;
 
 
-    @GetMapping("/comp/{id}/compResumeDetail")
+    @GetMapping("/comp/{id}/comp-resume-detail")
     public String compResumeDetail(@PathVariable Integer id,@RequestParam("jobsId") Integer jobsId, HttpServletRequest request) {
         User sessionComp = (User) session.getAttribute("sessionComp");
 
@@ -101,7 +101,7 @@ public class CompController {
         return "redirect:/comp/"+ id +"/comphome";
     }
   
-    @GetMapping("/comp/compIndex")
+    @GetMapping("/comp/comp-index")
     public String compIndex(HttpServletRequest request, @RequestParam(required = false, defaultValue = "0") Integer role, @RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") String page) {
         int currentPage = Integer.parseInt(page);
         int totalPosts = resumeRepository.findAllWithUserV2().size();
@@ -344,7 +344,7 @@ public class CompController {
         return "/comp/apply";
     }
 
-    @GetMapping("/comp/joinForm")
+    @GetMapping("/comp/join-form")
     public String compJoinForm() {
 
         return "/comp/joinForm";
@@ -360,7 +360,7 @@ public class CompController {
 
     }
 
-    @GetMapping("/comp/profileUpdateForm")
+    @GetMapping("/comp/profile-update-form")
     public String profileUpdateForm(HttpServletRequest request) {
         User user = userRepository.findById(((User) session.getAttribute("sessionComp")).getId());
         request.setAttribute("imgFileName", user.getImgFileName());
@@ -370,7 +370,7 @@ public class CompController {
     }
 
 
-    @GetMapping("/comp/readResume")
+    @GetMapping("/comp/read-resume")
     public String readResume(HttpServletRequest request) {
         List<Object[]> resumeViewList = compRepository.findAllByUserId();
         List<CompRequest.ResumeViewDTO> viewDTOList = new ArrayList<>();// 담는리스트
@@ -471,7 +471,7 @@ public class CompController {
         return "/comp/talent";
     }
 
-    @GetMapping("/comp/{id}/updateForm")
+    @GetMapping("/comp/{id}/update-form")
     public String updateForm(@PathVariable int id, HttpServletRequest request) {
         User sessionComp = (User) session.getAttribute("sessionComp");
         User user = (User) userRepository.findById(id);
@@ -483,7 +483,7 @@ public class CompController {
         return "/comp/updateForm";
     }
 
-    @GetMapping("/comp/jobsInfo")
+    @GetMapping("/comp/jobs-info")
     public String jobsInfo() {
 
         return null;
